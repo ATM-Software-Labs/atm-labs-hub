@@ -96,6 +96,19 @@ const CATALOG = {
     stack: ['Pages', 'DNS', 'Edge'],
     cta: 'Abrir raíz'
   },
+  'savings-runway': {
+    id: 'savings-runway',
+    title: 'Savings & Runway Familiar',
+    description: 'Auditoría privada de liquidez, colchón de supervivencia financiera y coste de oportunidad al 7%. Procesamiento 100% en RAM.',
+    url: 'https://savings.trujillomingorance.com',
+    domain: 'savings.trujillomingorance.com',
+    alt: '',
+    featured: true,
+    category: 'finance',
+    keywords: 'savings runway finanzas ahorro bancos extractos liquidez presupuesto',
+    stack: ['React 19', 'Zero-Knowledge', 'RAM Volátil'],
+    cta: 'Abrir Savings'
+  },
 };
 
 const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'domain-root', 'atm-labs-hub', 'rocky-setter']);
@@ -103,9 +116,11 @@ const FEATURED_ORDER = [
   'trujillo-ai-studio',
   'rewrite-ai',
   'trujillo-guides',
+  'savings-runway',
   'focusguard',
   'alberto-portfolio'
 ];
+
 
 function ownHost(value) {
   if (!value) return '';
@@ -193,7 +208,7 @@ function jsonResponse(body, status) {
 export async function onRequestGet(context) {
   const { request, env } = context;
   const cache = caches.default;
-  const cacheKey = new Request(new URL('/api/projects?v=hub7', request.url), { method: 'GET' });
+  const cacheKey = new Request(new URL('/api/projects?v=hub8', request.url), { method: 'GET' });
 
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
