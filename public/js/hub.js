@@ -358,6 +358,14 @@
   }
 
   function setupAuth() {
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'AUTH_SUCCESS' && e.data.token) {
+        setSharedToken(e.data.token, e.data.user);
+        closeHubAuth();
+        location.reload();
+      }
+    });
+
     var openBtn = $('btn-open-auth');
     if (openBtn) openBtn.onclick = openHubAuth;
     var closeBtn = $('hub-close-auth');
@@ -366,6 +374,49 @@
     if (modal) {
       modal.onclick = function(e) {
         if (e.target === modal) closeHubAuth();
+      };
+    }
+
+    var popupBtn = $('hub-studio-popup-btn');
+    if (popupBtn) {
+      popupBtn.onclick = function() {
+        var url = 'https://ai.trujillomingorance.com/login?redirect_to=' + encodeURIComponent(window.location.href);
+        window.open(url, 'trujillo_auth_popup', 'width=520,height=680,scrollbars=yes,resizable=yes');
+      };
+    }
+
+    var emailForm = $('hub-email-form');
+    if (emailForm) {
+      emailForm.onsubmit = async function(e) {
+        e.preventDefault();
+        var email = $('hub-login-email').value.trim().toLowerCase();
+        var password = $('hub-login-password').value;
+        var btn = $('btn-hub-email-submit');
+        if (!email || !password) return;
+        btn.disabled = true;
+        btn.textContent = 'Accediendo...';
+        showHubAuthError('');
+        if ($('hub-auth-error')) $('hub-auth-error').style.display = 'none';
+        try {
+          var res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, password: password })
+          });
+          var data = await res.json();
+          if (res.ok && data.token) {
+            setSharedToken(data.token, data.user);
+            closeHubAuth();
+            renderAuthState(data.user);
+          } else {
+            showHubAuthError(data.error || 'Credenciales incorrectas');
+          }
+        } catch(err) {
+          showHubAuthError('Error de conexión con el servidor');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Iniciar sesión';
+        }
       };
     }
 
@@ -414,24 +465,24 @@
       localStorage.getItem('auth_token') ||
       getSharedCookie('ta_session') ||
       getSharedCookie('auth_token');
-    if (tok) {
-      fetch('/api/auth/me', {
-        headers: { 'Authorization': 'Bearer ' + tok }
-      })
-        .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, d: d }; }); })
-        .then(function(res) {
-          if (res.ok && res.d.user) {
-            renderAuthState(res.d.user);
-          } else {
-            renderAuthState(null);
-          }
-        })
-        .catch(function() {
+    
+    var reqHeaders = {};
+    if (tok) reqHeaders['Authorization'] = 'Bearer ' + tok;
+    fetch('/api/auth/me', {
+      headers: reqHeaders,
+      credentials: 'include'
+    })
+      .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, d: d }; }); })
+      .then(function(res) {
+        if (res.ok && res.d.user) {
+          renderAuthState(res.d.user);
+        } else {
           renderAuthState(null);
-        });
-    } else {
-      renderAuthState(null);
-    }
+        }
+      })
+      .catch(function() {
+        renderAuthState(null);
+      });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
