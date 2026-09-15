@@ -8,28 +8,24 @@
   <meta name="theme-color" content="#080c14">
   <link rel="icon" type="image/png" href="/avatar.png">
   <script src="/js/theme-boot.js"></script>
-  <link rel="stylesheet" href="/css/tokens.css?v=hub7">
-  <link rel="stylesheet" href="/styles.css?v=hub7">
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <link rel="stylesheet" href="/css/tokens.css?v=hub9">
+  <link rel="stylesheet" href="/styles.css?v=hub9">
 </head>
 <body class="docs-body">
   <div class="bg-glow" aria-hidden="true"></div>
 
   <header class="docs-topbar">
-    <a href="/" class="brand">
+    <a href="/" class="brand" data-notranslate>
       <img src="/avatar.png" alt="" class="brand-avatar" width="28" height="28">
       <span>ATM Labs</span>
     </a>
     <div class="topbar-actions">
-      <a class="hub-link" href="https://ai.trujillomingorance.com" rel="noopener">AI</a>
-      <a class="hub-link" href="https://rewrite.trujillomingorance.com" rel="noopener">Rewrite</a>
-      <a class="hub-link" href="https://guides.trujillomingorance.com" rel="noopener">Guides</a>
-      <a class="hub-link" href="https://savings.trujillomingorance.com" rel="noopener">Savings</a>
-      <div id="account-area" style="display:flex;align-items:center;">
-        <button type="button" class="hub-link" id="btn-open-auth" style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:4px 10px;border-radius:9999px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span id="auth-btn-label">Acceder</span>
+      <div class="lang-picker" id="lang-picker">
+        <button type="button" class="lang-flag-btn" id="lang-flag-btn" aria-haspopup="listbox" aria-expanded="false" title="Español" aria-label="Seleccionar idioma">
+          <span class="flag">🇪🇸</span>
+          <span class="lang-code">ES</span>
         </button>
+        <div class="lang-menu" id="lang-menu" role="listbox" hidden></div>
       </div>
       <button type="button" class="theme-toggle-btn" id="theme-btn" title="Cambiar tema" aria-label="Cambiar tema">
         <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -67,48 +63,13 @@
 
   <footer class="hub-footer">
     <div class="footer-bottom">
-      <p>© 2026 Alberto Trujillo Mingorance</p>
-      <div class="domain-pill">trujillomingorance.com</div>
+      <p>© 2026 <span data-notranslate>Alberto Trujillo Mingorance</span></p>
+      <div class="domain-pill" data-notranslate>trujillomingorance.com</div>
     </div>
   </footer>
 
-  <div class="auth-modal" id="hub-auth-modal" style="position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:9999;padding:16px;">
-    <div class="auth-card" style="background:#0f172a;border:1px solid rgba(255,255,255,0.15);border-radius:18px;max-width:380px;width:100%;padding:24px;position:relative;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);">
-      <button type="button" id="hub-close-auth" aria-label="Cerrar" style="position:absolute;top:16px;right:16px;background:none;border:none;color:var(--text-muted,#94a3b8);font-size:18px;cursor:pointer;padding:4px 8px;">✕</button>
-      <div style="text-align:center;margin-bottom:20px;">
-        <img src="/avatar.png" alt="" width="36" height="36" style="border-radius:50%;margin-bottom:8px;">
-        <h2 style="font-size:18px;font-weight:700;margin:0 0 4px;color:#fff;">Cuenta Trujillo AI</h2>
-        <p style="font-size:13px;color:var(--text-muted,#94a3b8);margin:0;">Inicia sesión para sincronizar tu cuenta en todo el ecosistema.</p>
-      </div>
-
-      <div id="hub-auth-error" style="display:none;margin-bottom:14px;padding:8px 12px;border-radius:8px;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);color:#fca5a5;font-size:12px;text-align:center;"></div>
-
-      <div style="display:flex;flex-direction:column;gap:10px;align-items:center;width:100%;margin-bottom:16px;">
-        <div id="google-hub-btn" style="min-height:44px;display:flex;justify-content:center;width:100%;"></div>
-        <button type="button" id="btn-hub-x" style="width:100%;max-width:280px;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#000;color:#fff;border:1px solid rgba(255,255,255,0.2);border-radius:9999px;font-size:14px;font-weight:600;padding:10px 16px;cursor:pointer;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          <span>Continuar con X</span>
-        </button>
-      </div>
-
-      <div style="display:flex;align-items:center;gap:10px;margin:8px 0 14px;color:var(--text-muted,#94a3b8);font-size:12px;width:100%;">
-        <span style="flex:1;height:1px;background:rgba(255,255,255,0.1);"></span>
-        <span>o con correo y contraseña</span>
-        <span style="flex:1;height:1px;background:rgba(255,255,255,0.1);"></span>
-      </div>
-
-      <form id="hub-email-form" style="display:flex;flex-direction:column;gap:8px;width:100%;">
-        <input type="email" id="hub-login-email" placeholder="Correo electrónico" required style="width:100%;box-sizing:border-box;padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:rgba(0,0,0,0.25);color:#fff;font-size:13px;">
-        <input type="password" id="hub-login-password" placeholder="Contraseña" required style="width:100%;box-sizing:border-box;padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:rgba(0,0,0,0.25);color:#fff;font-size:13px;">
-        <button type="submit" id="btn-hub-email-submit" style="padding:9px;border-radius:8px;background:var(--primary,#38bdf8);color:#000;font-weight:600;font-size:13px;border:none;cursor:pointer;margin-top:2px;">Iniciar sesión</button>
-      </form>
-
-      <div style="margin-top:14px;text-align:center;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08);">
-        <button type="button" id="hub-studio-popup-btn" style="background:none;border:none;color:var(--text-muted,#94a3b8);font-size:12px;cursor:pointer;text-decoration:underline;">Abrir Trujillo AI Studio en ventana emergente &rarr;</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="/js/hub.js?v=hub8"></script>
+  <script src="/js/i18n.js?v=hub9"></script>
+  <script src="/js/translate.js?v=hub9"></script>
+  <script src="/js/hub.js?v=hub9"></script>
 </body>
 </html>

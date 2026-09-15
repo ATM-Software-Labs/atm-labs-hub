@@ -59,7 +59,10 @@
   function applyTheme(theme) {
     var next = theme === 'light' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    try { localStorage.setItem('trujillo_theme', next); } catch (e) {}
+    try {
+      localStorage.setItem('trujillo_theme', next);
+      localStorage.setItem('atm_theme', next);
+    } catch (e) {}
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute('content', next === 'light' ? '#ffffff' : '#080c14');
     var btn = $('theme-btn');
@@ -142,6 +145,8 @@
 
     if (noResults) noResults.classList.toggle('hidden', visible.length > 0);
     if (queryEl) queryEl.textContent = state.query;
+
+    document.dispatchEvent(new CustomEvent('atm:content'));
   }
 
   async function loadProjects() {
