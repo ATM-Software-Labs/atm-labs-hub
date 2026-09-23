@@ -13,7 +13,7 @@ const CATALOG = {
     url: 'https://ai.trujillomingorance.com',
     domain: 'ai.trujillomingorance.com',
     alt: '',
-    featured: true,
+    featured: false,
     category: 'ai',
     keywords: 'ia ai groq qwen vision chatbot studio multimodal',
     stack: ['Groq LPU', 'Qwen Vision', 'Cloudflare Worker'],
@@ -26,7 +26,7 @@ const CATALOG = {
     url: 'https://rewrite.trujillomingorance.com',
     domain: 'rewrite.trujillomingorance.com',
     alt: '',
-    featured: true,
+    featured: false,
     category: 'ai',
     keywords: 'rewrite humanizer anti-ia turnitin groq',
     stack: ['Pages Functions', 'Groq LPU', 'Workers AI'],
@@ -39,7 +39,7 @@ const CATALOG = {
     url: 'https://focusguard.trujillomingorance.com',
     domain: 'focusguard.trujillomingorance.com',
     alt: '',
-    featured: true,
+    featured: false,
     category: 'security',
     keywords: 'focusguard adshield dns adblock zero-trust',
     stack: ['DNS-over-HTTPS', 'Zero-Trust', 'D1 & KV'],
@@ -52,7 +52,7 @@ const CATALOG = {
     url: 'https://alberto.trujillomingorance.com',
     domain: 'alberto.trujillomingorance.com',
     alt: '',
-    featured: true,
+    featured: false,
     category: 'engineering',
     keywords: 'portfolio alberto cv sysadmin devops',
     stack: ['Cloudflare Pages', 'Vanilla JS', 'Security Eng'],
@@ -65,7 +65,7 @@ const CATALOG = {
     url: 'https://guides.trujillomingorance.com',
     domain: 'guides.trujillomingorance.com',
     alt: '',
-    featured: true,
+    featured: false,
     category: 'engineering',
     keywords: 'guias guides documentacion devops cloudflare',
     stack: ['Technical Docs', 'DevOps', 'Edge'],
@@ -103,7 +103,7 @@ const CATALOG = {
     url: 'https://invest.trujillomingorance.com',
     domain: 'invest.trujillomingorance.com',
     alt: '',
-    featured: true,
+    featured: false,
     category: 'finance',
     keywords: 'invest acciones crypto bonos scoring buffett burry dalio fintech',
     stack: ['Next.js 15', 'Cloudflare Pages', 'Scoring determinista'],
@@ -116,7 +116,7 @@ const CATALOG = {
     url: 'https://savings.trujillomingorance.com',
     domain: 'savings.trujillomingorance.com',
     alt: '',
-    featured: true,
+    featured: false,
     category: 'finance',
     keywords: 'savings runway finanzas ahorro bancos extractos liquidez presupuesto',
     stack: ['React 19', 'Zero-Knowledge', 'RAM Volátil'],
@@ -149,16 +149,8 @@ const CATALOG = {
     cta: 'Visitar a Rocky', repo: 'https://github.com/ATM-Software-Labs/rocky-dog-website'
   },
 };
-const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'domain-root']);
-const FEATURED_ORDER = [
-  'trujillo-ai-studio',
-  'rewrite-ai',
-  'trujillo-guides',
-  'invest-platform',
-  'savings-runway',
-  'focusguard',
-  'alberto-portfolio'
-];
+const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'domain-root', 'rocky-setter']);
+const FEATURED_ORDER = ['alberto-portfolio', 'trujillo-ai-studio', 'rewrite-ai', 'invest-platform'];
 
 
 function ownHost(value) {
@@ -184,7 +176,7 @@ function rankOf(id) {
 }
 
 function polish(item) {
-  if (!item) return null;
+  if (!item || HIDDEN.has(item.id)) return null;
   const domain = ownHost(item.domain || item.url);
   if (!domain) return null;
   
@@ -275,6 +267,9 @@ export async function onRequestOptions() {
     }
   });
 }
+
+
+
 
 
 
