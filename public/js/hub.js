@@ -14,9 +14,9 @@
     while (node.firstChild) node.removeChild(node.firstChild);
   }
 
-  var FEATURED = {'trujillo-ai-studio': 0, 'rewrite-ai': 1, 'trujillo-guides': 2, 'invest-platform': 3, 'focusguard': 4, 'alberto-portfolio': 5};
+  var FEATURED = {'alberto-portfolio': 0, 'trujillo-ai-studio': 1, 'rewrite-ai': 2, 'invest-platform': 3};
 
-  var HIDDEN_HOSTS = {'labs.trujillomingorance.com': 1, 'rocky.trujillomingorance.com': 1};
+  var HIDDEN_HOSTS = {};
 
   var state = {
     projects: [],
@@ -36,7 +36,7 @@
     var host = professionalHost(project && project.domain) || professionalHost(project && project.url);
     if (!host || HIDDEN_HOSTS[host]) return false;
     var id = project.id || '';
-    if (id === 'domain-root' || id === 'atm-labs-hub' || id === 'rocky-setter') return false;
+    if (id === 'domain-root') return false;
     return true;
   }
 
@@ -482,4 +482,6 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+
 

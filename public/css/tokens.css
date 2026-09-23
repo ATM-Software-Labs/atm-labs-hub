@@ -1,27 +1,27 @@
 /* Shared Trujillo tokens — same contract as Guides / AI Studio. */
 :root,
 [data-theme="dark"] {
-  --bg: #080c14;
-  --bg-elev: #0d1522;
-  --bg-card: rgba(15, 22, 36, 0.78);
-  --bg-color: #080c14;
-  --card-bg: rgba(15, 22, 36, 0.78);
-  --card-hover: rgba(22, 32, 52, 0.9);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --card-border-hover: rgba(255, 255, 255, 0.16);
+  --bg: #000000;
+  --bg-elev: #0a0a0a;
+  --bg-card: #0a0a0a;
+  --bg-color: #000000;
+  --card-bg: #0a0a0a;
+  --card-hover: #111111;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-border-hover: rgba(255, 255, 255, 0.2);
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.14);
-  --text: #f8fafc;
-  --text-primary: #f8fafc;
-  --text-main: #f8fafc;
-  --muted: #94a3b8;
-  --text-secondary: #94a3b8;
-  --dim: #64748b;
-  --text-muted: #64748b;
+  --text: #ededed;
+  --text-primary: #ededed;
+  --text-main: #ededed;
+  --muted: #888888;
+  --text-secondary: #888888;
+  --dim: #666666;
+  --text-muted: #666666;
   --white: #ffffff;
-  --accent: #0078d4;
-  --accent-cyan: #38bdf8;
-  --accent-pill: #0078d4;
+  --accent: #ffffff;
+  --accent-cyan: #ffffff;
+  --accent-pill: #ffffff;
   --accent-pill-text: #ffffff;
   --green: #107c41;
   --success: #107c41;
@@ -53,20 +53,20 @@
   --bg-card: #ffffff;
   --bg-color: #ffffff;
   --card-bg: #ffffff;
-  --card-hover: #f8fafc;
-  --card-border: #e2e8f0;
-  --card-border-hover: #94a3b8;
+  --card-hover: #fafafa;
+  --card-border: #eaeaea;
+  --card-border-hover: #000000;
   --line: rgba(15, 23, 42, 0.1);
   --line-strong: rgba(15, 23, 42, 0.18);
-  --text: #0f172a;
-  --text-primary: #0f172a;
-  --text-main: #0f172a;
+  --text: #111111;
+  --text-primary: #111111;
+  --text-main: #111111;
   --muted: #334155;
   --text-secondary: #334155;
-  --dim: #64748b;
-  --text-muted: #64748b;
+  --dim: #666666;
+  --text-muted: #666666;
   --white: #ffffff;
-  --accent-pill: #0f172a;
+  --accent-pill: #000000;
   --accent-pill-text: #ffffff;
   --fill-subtle: rgba(15, 23, 42, 0.04);
   --fill-hover: rgba(15, 23, 42, 0.08);
@@ -76,3 +76,5 @@
   --header-bg: rgba(255, 255, 255, 0.92);
   --header-border: #e2e8f0;
 }
+
+

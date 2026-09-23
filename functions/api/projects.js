@@ -122,9 +122,34 @@ const CATALOG = {
     stack: ['React 19', 'Zero-Knowledge', 'RAM Volátil'],
     cta: 'Abrir Savings'
   },
+  'atm-tools': {
+    id: 'atm-tools',
+    title: 'ATM Tools',
+    description: 'Herramientas de productividad y utilidades de ingenieria para uso diario.',
+    url: 'https://tools.trujillomingorance.com',
+    domain: 'tools.trujillomingorance.com',
+    alt: '',
+    featured: false,
+    category: 'engineering',
+    keywords: 'tools herramientas utilities',
+    stack: ['Vanilla JS', 'Edge'],
+    cta: 'Abrir Tools'
+  },
+  'rocky-setter': {
+    id: 'rocky-setter',
+    title: 'Rocky setter',
+    description: 'Pagina personal para mi perrete, Rocky.',
+    url: 'https://rocky.trujillomingorance.com',
+    domain: 'rocky.trujillomingorance.com',
+    alt: '',
+    featured: false,
+    category: 'personal',
+    keywords: 'rocky perro setter',
+    stack: ['HTML', 'CSS'],
+    cta: 'Visitar a Rocky'
+  },
 };
-
-const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'domain-root', 'atm-labs-hub', 'rocky-setter']);
+const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'domain-root']);
 const FEATURED_ORDER = [
   'trujillo-ai-studio',
   'rewrite-ai',
@@ -162,7 +187,7 @@ function polish(item) {
   if (!item) return null;
   const domain = ownHost(item.domain || item.url);
   if (!domain) return null;
-  if (domain === 'trujillomingorance.com' || domain === 'labs.trujillomingorance.com' || domain === 'rocky.trujillomingorance.com') return null;
+  
   const rank = rankOf(item.id);
   return Object.assign({}, item, {
     domain,
@@ -250,3 +275,5 @@ export async function onRequestOptions() {
     }
   });
 }
+
+
