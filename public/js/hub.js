@@ -88,7 +88,16 @@
       body.appendChild(list);
     }
     card.appendChild(body);
-    var footer = h('div', 'card-footer');
+        var footer = h('div', 'card-footer');
+    if (project.repo) {
+      var repo = h('a', 'btn-repo');
+      repo.href = project.repo;
+      repo.target = '_blank';
+      repo.rel = 'noopener';
+      repo.title = 'Ver en GitHub';
+      repo.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>';
+      footer.appendChild(repo);
+    }
     var launch = h('a', 'btn-launch');
     launch.href = project.url || '#';
     launch.target = '_blank';
@@ -142,7 +151,7 @@
     var grid = $('projectsGrid');
     if (grid) renderSkeletons(grid, 5);
     try {
-      var res = await fetch('/api/projects?v=hub8', { headers: { Accept: 'application/json' } });
+      var res = await fetch('/api/projects?v=hub11', { headers: { Accept: 'application/json' } });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var data = await res.json();
       state.projects = (Array.isArray(data.projects) ? data.projects : []).filter(isOwnProject);
@@ -482,6 +491,8 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+
 
 
 

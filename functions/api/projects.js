@@ -17,7 +17,7 @@ const CATALOG = {
     category: 'ai',
     keywords: 'ia ai groq qwen vision chatbot studio multimodal',
     stack: ['Groq LPU', 'Qwen Vision', 'Cloudflare Worker'],
-    cta: 'Abrir IA'
+    cta: 'Abrir IA', repo: 'https://github.com/ATM-Software-Labs/trujillo-ai-studio'
   },
   'rewrite-ai': {
     id: 'rewrite-ai',
@@ -30,7 +30,7 @@ const CATALOG = {
     category: 'ai',
     keywords: 'rewrite humanizer anti-ia turnitin groq',
     stack: ['Pages Functions', 'Groq LPU', 'Workers AI'],
-    cta: 'Abrir Rewrite'
+    cta: 'Abrir Rewrite', repo: 'https://github.com/ATM-Software-Labs/rewrite-ai'
   },
   'focusguard': {
     id: 'focusguard',
@@ -43,7 +43,7 @@ const CATALOG = {
     category: 'security',
     keywords: 'focusguard adshield dns adblock zero-trust',
     stack: ['DNS-over-HTTPS', 'Zero-Trust', 'D1 & KV'],
-    cta: 'Abrir FocusGuard'
+    cta: 'Abrir FocusGuard', repo: 'https://github.com/ATM-Software-Labs/focusguard-saas'
   },
   'alberto-portfolio': {
     id: 'alberto-portfolio',
@@ -56,7 +56,7 @@ const CATALOG = {
     category: 'engineering',
     keywords: 'portfolio alberto cv sysadmin devops',
     stack: ['Cloudflare Pages', 'Vanilla JS', 'Security Eng'],
-    cta: 'Ver Portfolio'
+    cta: 'Ver Portfolio', repo: 'https://github.com/ATM-Software-Labs/portfolio'
   },
   'trujillo-guides': {
     id: 'trujillo-guides',
@@ -69,7 +69,7 @@ const CATALOG = {
     category: 'engineering',
     keywords: 'guias guides documentacion devops cloudflare',
     stack: ['Technical Docs', 'DevOps', 'Edge'],
-    cta: 'Explorar Guías'
+    cta: 'Explorar Guías', repo: 'https://github.com/ATM-Software-Labs/trujillo-guides'
   },
   'atm-labs-hub': {
     id: 'atm-labs-hub',
@@ -81,7 +81,7 @@ const CATALOG = {
     category: 'engineering',
     keywords: 'labs atm hub central directorio',
     stack: ['Central Hub', 'Edge Gateway', 'Pages Functions'],
-    cta: 'Estás aquí',
+    cta: 'Estás aquí', repo: 'https://github.com/ATM-Software-Labs/atm-labs-hub',
     current: true
   },
   'domain-root': {
@@ -107,7 +107,7 @@ const CATALOG = {
     category: 'finance',
     keywords: 'invest acciones crypto bonos scoring buffett burry dalio fintech',
     stack: ['Next.js 15', 'Cloudflare Pages', 'Scoring determinista'],
-    cta: 'Abrir INVEST'
+    cta: 'Abrir INVEST', repo: 'https://github.com/ATM-Software-Labs/invest-platform'
   },
   'savings-runway': {
     id: 'savings-runway',
@@ -120,7 +120,7 @@ const CATALOG = {
     category: 'finance',
     keywords: 'savings runway finanzas ahorro bancos extractos liquidez presupuesto',
     stack: ['React 19', 'Zero-Knowledge', 'RAM Volátil'],
-    cta: 'Abrir Savings'
+    cta: 'Abrir Savings', repo: 'https://github.com/ATM-Software-Labs/savings-runway'
   },
   'atm-tools': {
     id: 'atm-tools',
@@ -133,7 +133,7 @@ const CATALOG = {
     category: 'engineering',
     keywords: 'tools herramientas utilities',
     stack: ['Vanilla JS', 'Edge'],
-    cta: 'Abrir Tools'
+    cta: 'Abrir Tools', repo: 'https://github.com/ATM-Software-Labs/atm-tools'
   },
   'rocky-setter': {
     id: 'rocky-setter',
@@ -146,7 +146,7 @@ const CATALOG = {
     category: 'personal',
     keywords: 'rocky perro setter',
     stack: ['HTML', 'CSS'],
-    cta: 'Visitar a Rocky'
+    cta: 'Visitar a Rocky', repo: 'https://github.com/ATM-Software-Labs/rocky-dog-website'
   },
 };
 const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'domain-root']);
@@ -275,5 +275,7 @@ export async function onRequestOptions() {
     }
   });
 }
+
+
 
 

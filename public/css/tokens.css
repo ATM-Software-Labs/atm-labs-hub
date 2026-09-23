@@ -22,7 +22,7 @@
   --accent: #ffffff;
   --accent-cyan: #ffffff;
   --accent-pill: #ffffff;
-  --accent-pill-text: #ffffff;
+  --accent-pill-text: #000000;
   --green: #107c41;
   --success: #107c41;
   --success-bg: rgba(16, 124, 65, 0.12);
@@ -76,5 +76,6 @@
   --header-bg: rgba(255, 255, 255, 0.92);
   --header-border: #e2e8f0;
 }
+
 
 

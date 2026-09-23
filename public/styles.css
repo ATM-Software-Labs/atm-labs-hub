@@ -554,3 +554,21 @@ body {
   .app-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
+.btn-repo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  margin-right: auto;
+  transition: all 0.2s;
+}
+.btn-repo:hover {
+  color: var(--text-primary);
+  background: var(--card-hover);
+  border-color: var(--line-strong);
+}
