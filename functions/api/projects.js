@@ -96,6 +96,19 @@ const CATALOG = {
     stack: ['Pages', 'DNS', 'Edge'],
     cta: 'Abrir raíz'
   },
+  'invest-platform': {
+    id: 'invest-platform',
+    title: 'INVEST Terminal',
+    description: 'Mesa cuantitativa institucional: identificadores globales, normalización IFRS/US GAAP y scoring determinista Buffett/Burry/Dalio.',
+    url: 'https://invest.trujillomingorance.com',
+    domain: 'invest.trujillomingorance.com',
+    alt: '',
+    featured: true,
+    category: 'finance',
+    keywords: 'invest acciones crypto bonos scoring buffett burry dalio fintech',
+    stack: ['Next.js 15', 'Cloudflare Pages', 'Scoring determinista'],
+    cta: 'Abrir INVEST'
+  },
   'savings-runway': {
     id: 'savings-runway',
     title: 'Savings & Runway Familiar',
@@ -116,6 +129,7 @@ const FEATURED_ORDER = [
   'trujillo-ai-studio',
   'rewrite-ai',
   'trujillo-guides',
+  'invest-platform',
   'savings-runway',
   'focusguard',
   'alberto-portfolio'

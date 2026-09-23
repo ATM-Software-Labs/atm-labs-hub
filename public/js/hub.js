@@ -14,20 +14,9 @@
     while (node.firstChild) node.removeChild(node.firstChild);
   }
 
-  var FEATURED = {
-    'trujillo-ai-studio': 0,
-    'rewrite-ai': 1,
-    'trujillo-guides': 2,
-    'savings-runway': 3,
-    focusguard: 4,
-    'alberto-portfolio': 5
-  };
+  var FEATURED = {'trujillo-ai-studio': 0, 'rewrite-ai': 1, 'trujillo-guides': 2, 'invest-platform': 3, 'focusguard': 4, 'alberto-portfolio': 5};
 
-  var HIDDEN_HOSTS = {
-    'trujillomingorance.com': 1,
-    'labs.trujillomingorance.com': 1,
-    'rocky.trujillomingorance.com': 1
-  };
+  var HIDDEN_HOSTS = {'labs.trujillomingorance.com': 1, 'rocky.trujillomingorance.com': 1};
 
   var state = {
     projects: [],
@@ -493,3 +482,4 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
