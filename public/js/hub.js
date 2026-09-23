@@ -102,7 +102,7 @@
     launch.href = project.url || '#';
     launch.target = '_blank';
     launch.rel = 'noopener';
-    launch.appendChild(h('span', null, project.cta || 'Abrir'));
+    launch.title = project.cta || 'Abrir'; launch.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>';
     footer.appendChild(launch);
     card.appendChild(footer);
     return card;
@@ -151,7 +151,7 @@
     var grid = $('projectsGrid');
     if (grid) renderSkeletons(grid, 5);
     try {
-      var res = await fetch('/api/projects?v=hub11', { headers: { Accept: 'application/json' } });
+      var res = await fetch('/api/projects?v=hub12', { headers: { Accept: 'application/json' } });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var data = await res.json();
       state.projects = (Array.isArray(data.projects) ? data.projects : []).filter(isOwnProject);
@@ -491,6 +491,8 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+
 
 
 
