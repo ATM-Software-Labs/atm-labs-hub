@@ -3,7 +3,7 @@
  * Autodiscovery of Cloudflare Pages projects with Edge cache (s-maxage=3600).
  */
 
-const ACCOUNT_ID = '9c48e0ad7e36cf970f20839768fe8a64';
+const ACCOUNT_ID = 'YOUR_CLOUDFLARE_ACCOUNT_ID';
 
 const CATALOG = {
   'trujillo-ai-studio': {
@@ -267,6 +267,7 @@ export async function onRequestOptions() {
     }
   });
 }
+
 
 
 

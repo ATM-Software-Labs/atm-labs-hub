@@ -3,5 +3,6 @@ pages_build_output_dir = "public"
 compatibility_date = "2026-09-09"
 
 [vars]
-CF_ACCOUNT_ID = "9c48e0ad7e36cf970f20839768fe8a64"
+CF_ACCOUNT_ID = "YOUR_CLOUDFLARE_ACCOUNT_ID"
 ENVIRONMENT = "production"
+
