@@ -149,7 +149,7 @@ const CATALOG = {
     cta: 'Visitar a Rocky', repo: 'https://github.com/ATM-Software-Labs/rocky-dog-website'
   },
 };
-const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'domain-root', 'rocky-setter']);
+const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'domain-root', 'rocky-setter', 'atm-labs-hub']);
 const FEATURED_ORDER = ['alberto-portfolio', 'trujillo-ai-studio', 'rewrite-ai', 'invest-platform'];
 
 
@@ -267,6 +267,7 @@ export async function onRequestOptions() {
     }
   });
 }
+
 
 
 
