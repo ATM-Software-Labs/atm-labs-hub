@@ -247,7 +247,7 @@ function jsonResponse(body, status) {
 export async function onRequestGet(context) {
   const { request, env } = context;
   const cache = caches.default;
-  const cacheKey = new Request(new URL('/api/projects?v=hub8', request.url), { method: 'GET' });
+  const cacheKey = new Request(new URL(request.url), { method: 'GET' });
 
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
@@ -275,6 +275,7 @@ export async function onRequestOptions() {
     }
   });
 }
+
 
 
 
