@@ -1,13 +1,13 @@
-# ATM Software Labs - Ecosystem Hub
+# Your Organization - Ecosystem Hub
 
-[![Cloudflare Pages](https://img.shields.io/badge/Cloudflare_Pages-Deployed-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://labs.trujillomingorance.com)
+[![Cloudflare Pages](https://img.shields.io/badge/Cloudflare_Pages-Deployed-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://subdomain.yourdomain.com)
 [![Status](https://img.shields.io/badge/Status-Operational-107c41?style=flat-square)](#)
 [![Theme](https://img.shields.io/badge/Design_System-Mica_Corporate-0078d4?style=flat-square)](#)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](./LICENSE)
 
-Production Gateway: [labs.trujillomingorance.com](https://labs.trujillomingorance.com)
+Production Gateway: [subdomain.yourdomain.com](https://subdomain.yourdomain.com)
 
-The central directory and navigation portal for the services, tools, and technical resources deployed across the `trujillomingorance.com` ecosystem.
+The central directory and navigation portal for the services, tools, and technical resources deployed across the `yourdomain.com` ecosystem.
 
 ---
 
@@ -15,12 +15,12 @@ The central directory and navigation portal for the services, tools, and technic
 
 | Domain | Service | Stack Overview |
 | :--- | :--- | :--- |
-| `ai.trujillomingorance.com` | Trujillo AI Studio | Multimodal AI assistant on Groq LPU and Cloudflare Workers |
-| `rewrite.trujillomingorance.com` | Rewrite AI | Editorial rewriter and humanizer with Edge streaming |
-| `focusguard.trujillomingorance.com` | FocusGuard | Zero-Trust DNS-over-HTTPS filtering, ad-blocking, and parental controls |
-| `alberto.trujillomingorance.com` | Engineering Portfolio | Personal portfolio, skills showcase, and systems engineering background |
-| `guides.trujillomingorance.com` | ATM Technical Guides | In-depth engineering runbooks, mail architectures, and technical docs |
-| `labs.trujillomingorance.com` | Ecosystem Hub | Central service directory with client-side search |
+| `subdomain.yourdomain.com` | Trujillo AI Studio | Multimodal AI assistant on Groq LPU and Cloudflare Workers |
+| `subdomain.yourdomain.com` | Rewrite AI | Editorial rewriter and humanizer with Edge streaming |
+| `subdomain.yourdomain.com` | FocusGuard | Zero-Trust DNS-over-HTTPS filtering, ad-blocking, and parental controls |
+| `your-portfolio.com` | Engineering Portfolio | Personal portfolio, skills showcase, and systems engineering background |
+| `subdomain.yourdomain.com` | ATM Technical Guides | In-depth engineering runbooks, mail architectures, and technical docs |
+| `subdomain.yourdomain.com` | Ecosystem Hub | Central service directory with client-side search |
 
 ---
 
@@ -52,7 +52,7 @@ atm-labs-hub/
 
 ## Branching Model
 
-- `main`: Production branch. Automatically deployed to `labs.trujillomingorance.com`.
+- `main`: Production branch. Automatically deployed to `subdomain.yourdomain.com`.
 - `develop`: Staging and active integration branch. Used to test directory changes and style tweaks.
 
 ---
@@ -73,12 +73,13 @@ npx wrangler pages deploy . --project-name atm-labs-hub --commit-dirty=true
 
 ## Author
 
-Alberto Trujillo Mingorance  
-- Website: [alberto.trujillomingorance.com](https://alberto.trujillomingorance.com)  
-- GitHub: [@atrumin16](https://github.com/atrumin16)
+Your Name  
+- Website: [your-portfolio.com](https://your-portfolio.com)  
+- GitHub: [@your-github-username](https://github.com/your-github-username)
 
 ---
 
 ## License
 
-Copyright (c) 2026 Alberto Trujillo Mingorance. Released under the MIT License.
+Copyright (c) 2026 Your Name. Released under the MIT License.
+
