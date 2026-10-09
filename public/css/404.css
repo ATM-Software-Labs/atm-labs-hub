@@ -289,11 +289,15 @@ body {
 
 .diag-desc code {
   font-family: var(--font-mono);
-  color: var(--accent-cyan);
+  color: #38bdf8;
   background: var(--fill-subtle);
   padding: 0.15rem 0.45rem;
   border-radius: 4px;
   border: 1px solid var(--card-border);
+}
+
+[data-theme="light"] .diag-desc code {
+  color: #0284c7;
 }
 
 .telemetry-console {
