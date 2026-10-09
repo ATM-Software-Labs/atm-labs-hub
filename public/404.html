@@ -92,52 +92,12 @@
 
     <section class="services-nav">
       <div class="services-nav-header">
-        <h2 class="services-nav-title">Servicios activos</h2>
-        <span class="services-nav-sub">6 endpoints</span>
+        <h2 class="services-nav-title" data-i18n="services_active">Servicios activos</h2>
+        <span class="services-nav-sub" id="servicesCount">- endpoints</span>
       </div>
 
-      <div class="services-grid">
-        <a href="https://labs.trujillomingorance.com" class="service-tile">
-          <div class="service-tile-top">
-            <span class="service-tile-domain">labs.</span>
-          </div>
-          <span class="service-tile-desc">Portal central ATM Labs</span>
-        </a>
-
-        <a href="https://ai.trujillomingorance.com" class="service-tile">
-          <div class="service-tile-top">
-            <span class="service-tile-domain">ai.</span>
-          </div>
-          <span class="service-tile-desc">Trujillo AI Studio</span>
-        </a>
-
-        <a href="https://rewrite.trujillomingorance.com" class="service-tile">
-          <div class="service-tile-top">
-            <span class="service-tile-domain">rewrite.</span>
-          </div>
-          <span class="service-tile-desc">Rewrite AI · humanizador</span>
-        </a>
-
-        <a href="https://focusguard.trujillomingorance.com" class="service-tile">
-          <div class="service-tile-top">
-            <span class="service-tile-domain">focusguard.</span>
-          </div>
-          <span class="service-tile-desc">FocusGuard DNS Zero-Trust</span>
-        </a>
-
-        <a href="https://guides.trujillomingorance.com" class="service-tile">
-          <div class="service-tile-top">
-            <span class="service-tile-domain">guides.</span>
-          </div>
-          <span class="service-tile-desc">Engineering Guides</span>
-        </a>
-
-        <a href="https://alberto.trujillomingorance.com" class="service-tile">
-          <div class="service-tile-top">
-            <span class="service-tile-domain">alberto.</span>
-          </div>
-          <span class="service-tile-desc">Portfolio profesional</span>
-        </a>
+      <div class="services-grid" id="servicesGrid">
+        <!-- Renderizado dinámicamente vía 404.js -->
       </div>
     </section>
   </main>

@@ -64,4 +64,49 @@
       else window.location.href = 'https://labs.trujillomingorance.com';
     });
   }
+
+  // Dynamic projects loader for 404 page
+  function renderServices(projects) {
+    var grid = document.getElementById('servicesGrid');
+    var count = document.getElementById('servicesCount');
+    if (!grid) return;
+    
+    grid.innerHTML = '';
+    if (count) count.textContent = projects.length + ' endpoints';
+
+    projects.forEach(function(p) {
+      var a = document.createElement('a');
+      a.href = p.url || ('https://' + p.domain);
+      a.className = 'service-tile';
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+
+      var top = document.createElement('div');
+      top.className = 'service-tile-top';
+      
+      var dom = document.createElement('span');
+      dom.className = 'service-tile-domain';
+      var hostSplit = (p.domain || '').split('.');
+      dom.textContent = hostSplit.length > 2 ? hostSplit[0] + '.' : (p.domain || '');
+      
+      top.appendChild(dom);
+      a.appendChild(top);
+
+      var desc = document.createElement('span');
+      desc.className = 'service-tile-desc';
+      desc.textContent = p.title || p.id;
+      a.appendChild(desc);
+
+      grid.appendChild(a);
+    });
+  }
+
+  fetch('/api/projects?v=hub17')
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data && Array.isArray(data.projects)) {
+        renderServices(data.projects);
+      }
+    })
+    .catch(function() {});
 })();
