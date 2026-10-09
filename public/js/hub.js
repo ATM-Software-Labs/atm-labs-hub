@@ -35,8 +35,6 @@
   function isOwnProject(project) {
     var host = professionalHost(project && project.domain) || professionalHost(project && project.url);
     if (!host || HIDDEN_HOSTS[host]) return false;
-    var id = project.id || '';
-    if (id === 'domain-root') return false;
     return true;
   }
 
@@ -157,7 +155,7 @@
     var grid = $('projectsGrid');
     if (grid) renderSkeletons(grid, 5);
     try {
-      var res = await fetch('/api/projects?v=hub15', { headers: { Accept: 'application/json' } });
+      var res = await fetch('/api/projects?v=hub16', { headers: { Accept: 'application/json' } });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var data = await res.json();
       state.projects = (Array.isArray(data.projects) ? data.projects : []).filter(isOwnProject);
