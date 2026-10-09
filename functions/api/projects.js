@@ -6,151 +6,133 @@
 const ACCOUNT_ID = 'YOUR_CLOUDFLARE_ACCOUNT_ID';
 
 const CATALOG = {
-  'trujillo-ai-studio': {
-    id: 'trujillo-ai-studio',
-    title: 'Trujillo AI Studio',
-    description: 'Asistente multimodal de ultra-alta velocidad en Groq LPU. Visión, razonamiento de código y streaming en el Edge.',
-    url: 'https://ai.trujillomingorance.com',
-    domain: 'ai.trujillomingorance.com',
+  'nutrifit': {
+    id: 'nutrifit',
+    title: 'NutriFit PWA',
+    description: 'Salud / Visión IA',
+    url: 'https://nutri.trujillomingorance.com',
+    domain: 'nutri.trujillomingorance.com',
     alt: '',
-    featured: false,
-    category: 'ai',
-    keywords: 'ia ai groq qwen vision chatbot studio multimodal',
-    stack: ['Groq LPU', 'Qwen Vision', 'Cloudflare Worker'],
-    cta: 'Abrir IA', repo: 'https://github.com/ATM-Software-Labs/trujillo-ai-studio'
+    category: 'apps',
+    keywords: 'nutri fitness salud pwa vision',
+    stack: ['PWA', 'Visión IA'],
+    cta: 'Abrir', repo: ''
   },
-  'rewrite-ai': {
-    id: 'rewrite-ai',
-    title: 'Rewrite AI',
-    description: 'Humanizador de texto 99.9% humano y corrector editorial. Proxy streaming en el Edge con calibración de estilo.',
-    url: 'https://rewrite.trujillomingorance.com',
-    domain: 'rewrite.trujillomingorance.com',
+  'api-gateway': {
+    id: 'api-gateway',
+    title: 'API Gateway',
+    description: 'Perímetro / Proxy Central',
+    url: 'https://api.trujillomingorance.com',
+    domain: 'api.trujillomingorance.com',
     alt: '',
-    featured: false,
-    category: 'ai',
-    keywords: 'rewrite humanizer anti-ia turnitin groq',
-    stack: ['Pages Functions', 'Groq LPU', 'Workers AI'],
-    cta: 'Abrir Rewrite', repo: 'https://github.com/ATM-Software-Labs/rewrite-ai'
+    category: 'security',
+    keywords: 'api gateway proxy perimeter',
+    stack: ['Proxy Central', 'Perímetro'],
+    cta: 'API', repo: ''
   },
   'focusguard': {
     id: 'focusguard',
-    title: 'FocusGuard SaaS & AdShield',
-    description: 'Filtrado DNS Zero-Trust. Bloquea anuncios, telemetría, malware y rastreadores a nivel de red.',
+    title: 'FocusGuard & AdShield',
+    description: 'DoH Zero-Trust',
     url: 'https://focusguard.trujillomingorance.com',
     domain: 'focusguard.trujillomingorance.com',
     alt: '',
-    featured: false,
     category: 'security',
-    keywords: 'focusguard adshield dns adblock zero-trust',
-    stack: ['DNS-over-HTTPS', 'Zero-Trust', 'D1 & KV'],
-    cta: 'Abrir FocusGuard', repo: 'https://github.com/ATM-Software-Labs/focusguard-saas'
-  },
-  'alberto-portfolio': {
-    id: 'alberto-portfolio',
-    title: 'Portfolio Profesional',
-    description: 'Perfil técnico de Alberto Trujillo. SysAdmin, seguridad, proyectos y contacto.',
-    url: 'https://alberto.trujillomingorance.com',
-    domain: 'alberto.trujillomingorance.com',
-    alt: '',
-    featured: false,
-    category: 'engineering',
-    keywords: 'portfolio alberto cv sysadmin devops',
-    stack: ['Cloudflare Pages', 'Vanilla JS', 'Security Eng'],
-    cta: 'Ver Portfolio', repo: 'https://github.com/ATM-Software-Labs/portfolio'
-  },
-  'trujillo-guides': {
-    id: 'trujillo-guides',
-    title: 'Trujillo Engineering Guides',
-    description: 'Runbooks de producción, arquitecturas Edge y guías de sistemas.',
-    url: 'https://guides.trujillomingorance.com',
-    domain: 'guides.trujillomingorance.com',
-    alt: '',
-    featured: false,
-    category: 'engineering',
-    keywords: 'guias guides documentacion devops cloudflare',
-    stack: ['Technical Docs', 'DevOps', 'Edge'],
-    cta: 'Explorar Guías', repo: 'https://github.com/ATM-Software-Labs/trujillo-guides'
-  },
-  'atm-labs-hub': {
-    id: 'atm-labs-hub',
-    title: 'ATM Labs Hub (Portal Central)',
-    description: 'Directorio vivo del ecosistema. Autodescubrimiento de proyectos en Cloudflare Pages.',
-    url: 'https://labs.trujillomingorance.com',
-    domain: 'labs.trujillomingorance.com',
-    alt: 'trujillomingorance.com',
-    category: 'engineering',
-    keywords: 'labs atm hub central directorio',
-    stack: ['Central Hub', 'Edge Gateway', 'Pages Functions'],
-    cta: 'Estás aquí', repo: 'https://github.com/ATM-Software-Labs/atm-labs-hub',
-    current: true
-  },
-  'domain-root': {
-    id: 'domain-root',
-    title: 'Apex Domain Gateway',
-    description: 'Enrutador del dominio raíz y telemetría 404 para subdominios no asignados.',
-    url: 'https://trujillomingorance.com',
-    domain: 'trujillomingorance.com',
-    alt: '',
-    category: 'engineering',
-    keywords: 'root apex gateway dns wildcard',
-    stack: ['Pages', 'DNS', 'Edge'],
-    cta: 'Abrir raíz'
+    keywords: 'focusguard adshield dns zero-trust',
+    stack: ['Zero-Trust', 'DoH'],
+    cta: 'Abrir', repo: 'https://github.com/ATM-Software-Labs/focusguard-saas'
   },
   'invest-platform': {
     id: 'invest-platform',
     title: 'INVEST Terminal',
-    description: 'Mesa cuantitativa institucional: identificadores globales, normalización IFRS/US GAAP y scoring determinista Buffett/Burry/Dalio.',
+    description: 'Fintech Cuantitativa',
     url: 'https://invest.trujillomingorance.com',
     domain: 'invest.trujillomingorance.com',
     alt: '',
-    featured: false,
     category: 'finance',
-    keywords: 'invest acciones crypto bonos scoring buffett burry dalio fintech',
-    stack: ['Next.js 15', 'Cloudflare Pages', 'Scoring determinista'],
-    cta: 'Abrir INVEST', repo: 'https://github.com/ATM-Software-Labs/invest-platform'
+    keywords: 'invest cuantitativa fintech',
+    stack: ['Fintech', 'Scoring'],
+    cta: 'Abrir', repo: 'https://github.com/ATM-Software-Labs/invest-platform'
+  },
+  'rewrite-ai': {
+    id: 'rewrite-ai',
+    title: 'Rewrite AI',
+    description: 'NLP / Groq LPU',
+    url: 'https://rewrite.trujillomingorance.com',
+    domain: 'rewrite.trujillomingorance.com',
+    alt: '',
+    category: 'ai',
+    keywords: 'rewrite nlp groq lpu',
+    stack: ['Groq LPU', 'NLP'],
+    cta: 'Abrir', repo: 'https://github.com/ATM-Software-Labs/rewrite-ai'
+  },
+  'trujillo-ai-studio': {
+    id: 'trujillo-ai-studio',
+    title: 'Trujillo AI Studio',
+    description: 'Multimodal LPU',
+    url: 'https://ai.trujillomingorance.com',
+    domain: 'ai.trujillomingorance.com',
+    alt: '',
+    category: 'ai',
+    keywords: 'ia ai groq studio multimodal',
+    stack: ['Multimodal', 'LPU'],
+    cta: 'Abrir', repo: 'https://github.com/ATM-Software-Labs/trujillo-ai-studio'
+  },
+  'trujillo-guides': {
+    id: 'trujillo-guides',
+    title: 'Engineering Guides',
+    description: 'Runbooks DevOps',
+    url: 'https://guides.trujillomingorance.com',
+    domain: 'guides.trujillomingorance.com',
+    alt: '',
+    category: 'engineering',
+    keywords: 'guias guides runbooks devops',
+    stack: ['DevOps', 'Runbooks'],
+    cta: 'Abrir', repo: 'https://github.com/ATM-Software-Labs/trujillo-guides'
   },
   'savings-runway': {
     id: 'savings-runway',
-    title: 'Savings & Runway Familiar',
-    description: 'Auditoría privada de liquidez, colchón de supervivencia financiera y coste de oportunidad al 7%. Procesamiento 100% en RAM.',
+    title: 'Savings & Runway',
+    description: 'Finanzas Zero-Knowledge',
     url: 'https://savings.trujillomingorance.com',
     domain: 'savings.trujillomingorance.com',
     alt: '',
-    featured: false,
     category: 'finance',
-    keywords: 'savings runway finanzas ahorro bancos extractos liquidez presupuesto',
-    stack: ['React 19', 'Zero-Knowledge', 'RAM Volátil'],
-    cta: 'Abrir Savings', repo: 'https://github.com/ATM-Software-Labs/savings-runway'
+    keywords: 'savings finanzas zero-knowledge',
+    stack: ['ZK', 'Finanzas'],
+    cta: 'Abrir', repo: 'https://github.com/ATM-Software-Labs/savings-runway'
   },
   'atm-tools': {
     id: 'atm-tools',
     title: 'ATM Tools',
-    description: 'Herramientas de productividad y utilidades de ingenieria para uso diario.',
+    description: 'Utilidades Web',
     url: 'https://tools.trujillomingorance.com',
     domain: 'tools.trujillomingorance.com',
     alt: '',
-    featured: false,
     category: 'engineering',
     keywords: 'tools herramientas utilities',
-    stack: ['Vanilla JS', 'Edge'],
-    cta: 'Abrir Tools', repo: 'https://github.com/ATM-Software-Labs/atm-tools'
+    stack: ['Utilities', 'Web'],
+    cta: 'Abrir', repo: 'https://github.com/ATM-Software-Labs/atm-tools'
   },
-  'rocky-setter': {
-    id: 'rocky-setter',
-    title: 'Rocky setter',
-    description: 'Pagina personal para mi perrete, Rocky.',
-    url: 'https://rocky.trujillomingorance.com',
-    domain: 'rocky.trujillomingorance.com',
+  'alberto-portfolio': {
+    id: 'alberto-portfolio',
+    title: 'Portfolio Profesional',
+    description: 'SysAdmin & Security',
+    url: 'https://alberto.trujillomingorance.com',
+    domain: 'alberto.trujillomingorance.com',
     alt: '',
-    featured: false,
-    category: 'personal',
-    keywords: 'rocky perro setter',
-    stack: ['HTML', 'CSS'],
-    cta: 'Visitar a Rocky', repo: 'https://github.com/ATM-Software-Labs/rocky-dog-website'
-  },
+    category: 'engineering',
+    keywords: 'portfolio alberto sysadmin security',
+    stack: ['SysAdmin', 'Security'],
+    cta: 'Abrir', repo: 'https://github.com/ATM-Software-Labs/portfolio'
+  }
 };
 const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'domain-root', 'rocky-setter', 'atm-labs-hub']);
-const FEATURED_ORDER = ['alberto-portfolio', 'trujillo-ai-studio', 'rewrite-ai', 'invest-platform'];
+const FEATURED_ORDER = [
+  'alberto-portfolio', 'api-gateway', 'trujillo-ai-studio', 'rewrite-ai', 
+  'invest-platform', 'savings-runway', 'focusguard', 'trujillo-guides', 
+  'atm-tools', 'nutrifit'
+];
 
 
 function ownHost(value) {

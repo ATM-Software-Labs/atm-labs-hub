@@ -64,47 +64,33 @@
   function renderSkeletons(grid, count) {
     clearNode(grid);
     for (var i = 0; i < count; i++) {
-      var card = h('article', 'app-card skeleton-card');
-      card.appendChild(h('div', 'skeleton-line skeleton-wide'));
-      card.appendChild(h('div', 'skeleton-line'));
+      var card = h('div', 'service-pill skeleton-card');
       card.appendChild(h('div', 'skeleton-line skeleton-short'));
+      card.appendChild(h('div', 'skeleton-line skeleton-wide', ''));
       grid.appendChild(card);
     }
   }
 
   function renderCard(project) {
-    var card = h('article', 'app-card');
-    card.dataset.category = project.category || 'apps';
-    var body = h('div', 'card-body');
-    body.appendChild(h('p', 'card-kicker', project.domain || ''));
-    body.appendChild(h('h2', 'card-title', project.title || ''));
-    body.appendChild(h('p', 'card-description', project.description || ''));
-    var stack = Array.isArray(project.stack) ? project.stack : [];
-    if (stack.length) {
-      var list = h('ul', 'tech-stack');
-      stack.forEach(function (item) {
-        list.appendChild(h('li', 'tech-pill', item));
-      });
-      body.appendChild(list);
-    }
-    card.appendChild(body);
-        var footer = h('div', 'card-footer');
-    if (project.repo) {
-      var repo = h('a', 'btn-repo');
-      repo.href = project.repo;
-      repo.target = '_blank';
-      repo.rel = 'noopener';
-      repo.title = 'Ver en GitHub';
-      repo.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>';
-      footer.appendChild(repo);
-    }
-    var launch = h('a', 'btn-launch');
-    launch.href = project.url || '#';
-    launch.target = '_blank';
-    launch.rel = 'noopener';
-    launch.title = project.cta || 'Abrir'; launch.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>';
-    footer.appendChild(launch);
-    card.appendChild(footer);
+    var card = h('a', 'service-pill');
+    card.href = project.url || ('https://' + project.domain);
+    card.target = '_blank';
+    card.rel = 'noopener noreferrer';
+    card.title = project.description || '';
+    
+    var status = h('span', 'status-dot');
+    card.appendChild(status);
+    
+    var title = h('span', 'pill-title', project.title || '');
+    card.appendChild(title);
+    
+    var domain = h('span', 'pill-domain', project.domain || '');
+    card.appendChild(domain);
+    
+    var icon = h('span', 'pill-icon');
+    icon.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>';
+    card.appendChild(icon);
+    
     return card;
   }
 
@@ -221,6 +207,17 @@
 
     loadProjects();
     setupAuth();
+
+    var clock = $('utc-clock');
+    if (clock) {
+      setInterval(function() {
+        var now = new Date();
+        var h = String(now.getUTCHours()).padStart(2, '0');
+        var m = String(now.getUTCMinutes()).padStart(2, '0');
+        var s = String(now.getUTCSeconds()).padStart(2, '0');
+        clock.textContent = h + ':' + m + ':' + s + ' UTC';
+      }, 1000);
+    }
   }
 
   // --- AUTH INFRASTRUCTURE ---
