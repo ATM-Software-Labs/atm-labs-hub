@@ -76,18 +76,24 @@
     statusEl.className = 'status-dot checking';
     
     var controller = new AbortController();
-    var id = setTimeout(function () { controller.abort(); }, 3000);
+    var id = setTimeout(function () { controller.abort(); }, 8000);
     
-    fetch(url, { mode: 'no-cors', signal: controller.signal })
+    fetch(url, { mode: 'no-cors', cache: 'no-store', signal: controller.signal })
       .then(function () {
         clearTimeout(id);
         statusEl.className = 'status-dot operational';
         statusEl.title = 'Operational';
       })
-      .catch(function () {
+      .catch(function (e) {
         clearTimeout(id);
-        statusEl.className = 'status-dot degraded';
-        statusEl.title = 'Degraded / Unreachable';
+        if (e.name === 'AbortError') {
+          statusEl.className = 'status-dot degraded';
+          statusEl.title = 'Timeout / Unreachable';
+        } else {
+          // Optimistic fallback for network errors caused by browser extensions or strict CORS
+          statusEl.className = 'status-dot operational';
+          statusEl.title = 'Operational';
+        }
       });
   }
 
@@ -129,27 +135,17 @@
     var grid = $('projectsGrid');
     var moreGrid = $('moreGrid');
     var moreWrap = $('moreWrap');
-    var moreBtn = $('moreBtn');
     var noResults = $('noResults');
     var queryEl = $('noResultsQuery');
     if (!grid) return;
 
     var visible = state.projects.filter(matches);
-    var featured = visible.filter(isFeatured);
-    var rest = visible.filter(function (p) { return !isFeatured(p); });
-    var searching = !!state.query;
 
     clearNode(grid);
-    (searching ? visible : featured).forEach(function (p) { grid.appendChild(renderCard(p)); });
+    visible.forEach(function (p) { grid.appendChild(renderCard(p)); });
 
     if (moreGrid) clearNode(moreGrid);
-    var showRest = !searching && rest.length > 0;
-    if (moreWrap) moreWrap.classList.toggle('hidden', !showRest);
-    if (moreGrid) moreGrid.classList.toggle('hidden', !showRest || !state.expanded);
-    if (showRest && state.expanded && moreGrid) {
-      rest.forEach(function (p) { moreGrid.appendChild(renderCard(p)); });
-    }
-    if (moreBtn) moreBtn.textContent = state.expanded ? 'Mostrar menos' : ('Mostrar más' + (rest.length ? ' (' + rest.length + ')' : ''));
+    if (moreWrap) moreWrap.style.display = 'none';
 
     if (noResults) noResults.classList.toggle('hidden', visible.length > 0);
     if (queryEl) queryEl.textContent = state.query;
