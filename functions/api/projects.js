@@ -127,7 +127,7 @@ const CATALOG = {
     cta: 'Abrir', repo: 'https://github.com/ATM-Software-Labs/portfolio'
   }
 };
-const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'domain-root', 'rocky-setter', 'atm-labs-hub']);
+const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'rocky-setter']);
 const FEATURED_ORDER = [
   'alberto-portfolio', 'api-gateway', 'trujillo-ai-studio', 'rewrite-ai', 
   'invest-platform', 'savings-runway', 'focusguard', 'trujillo-guides', 
@@ -226,12 +226,45 @@ export async function onRequestGet(context) {
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
 
-  const projects = fallbackCatalog();
-  const source = 'catalog';
+  let projects = [];
+  try {
+    const ghRes = await fetch('https://api.github.com/orgs/ATM-Software-Labs/repos?per_page=100', {
+      headers: { 'User-Agent': 'atm-labs-hub-worker' }
+    });
+    if (ghRes.ok) {
+      const repos = await ghRes.json();
+      projects = repos.map(repo => {
+        const known = CATALOG[repo.name] || {};
+        const url = known.url || repo.homepage || ('https://' + repo.name + '.trujillomingorance.com');
+        const domain = ownHost(url) || (repo.name + '.trujillomingorance.com');
+        return polish({
+          id: repo.name,
+          title: known.title || repo.name,
+          description: known.description || repo.description || 'Servicio del ecosistema',
+          url: url,
+          domain: domain,
+          category: known.category || 'engineering',
+          repo: repo.html_url
+        });
+      }).filter(Boolean);
+    }
+  } catch (e) {}
+
+  if (!projects.length) {
+    projects = fallbackCatalog();
+  } else {
+    const ghIds = new Set(projects.map(p => p.id));
+    for (const item of fallbackCatalog()) {
+      if (!ghIds.has(item.id)) {
+        projects.push(item);
+      }
+    }
+    projects.sort(byRank);
+  }
 
   const response = jsonResponse({
     success: true,
-    source,
+    source: 'github-merged',
     count: projects.length,
     projects
   });

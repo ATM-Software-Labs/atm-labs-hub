@@ -345,9 +345,13 @@ body {
   word-break: break-all;
 }
 
-.console-val.cyan { color: var(--accent-cyan); }
+.console-val.cyan { color: #38bdf8; }
 .console-val.orange { color: #fb923c; }
 .console-val.green { color: var(--success); }
+
+[data-theme="light"] .console-val.cyan { color: #0284c7; }
+[data-theme="light"] .console-val.orange { color: #ea580c; }
+[data-theme="light"] .diag-card-stripe { background: linear-gradient(90deg, #dc2626, #ea580c); }
 
 .diag-actions {
   display: flex;
