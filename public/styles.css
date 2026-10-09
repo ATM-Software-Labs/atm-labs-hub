@@ -341,13 +341,27 @@ body {
   gap: 12px;
 }
 
+[data-theme="dark"] {
+  --pill-bg: #0a0d14;
+  --pill-hover: #0f141f;
+  --pill-border: #1f242d;
+  --pill-border-hover: #2a313d;
+}
+
+[data-theme="light"] {
+  --pill-bg: #ffffff;
+  --pill-hover: #f8fafc;
+  --pill-border: #e2e8f0;
+  --pill-border-hover: #cbd5e1;
+}
+
 .service-pill {
   display: flex;
   align-items: center;
   gap: 12px;
   height: 48px;
-  background: #0a0d14;
-  border: 1px solid #1f242d;
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
   border-radius: 8px;
   padding: 0 16px;
   text-decoration: none;
@@ -356,8 +370,8 @@ body {
 }
 
 .service-pill:hover {
-  background: #0f141f;
-  border-color: #2a313d;
+  background: var(--pill-hover);
+  border-color: var(--pill-border-hover);
 }
 
 .status-dot {
