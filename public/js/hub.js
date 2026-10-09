@@ -71,15 +71,39 @@
     }
   }
 
+  function checkHealth(url, statusEl) {
+    if (!url) return;
+    statusEl.className = 'status-dot checking';
+    
+    var controller = new AbortController();
+    var id = setTimeout(function () { controller.abort(); }, 3000);
+    
+    fetch(url, { mode: 'no-cors', signal: controller.signal })
+      .then(function () {
+        clearTimeout(id);
+        statusEl.className = 'status-dot operational';
+        statusEl.title = 'Operational';
+      })
+      .catch(function () {
+        clearTimeout(id);
+        statusEl.className = 'status-dot degraded';
+        statusEl.title = 'Degraded / Unreachable';
+      });
+  }
+
   function renderCard(project) {
     var card = h('a', 'service-pill');
-    card.href = project.url || ('https://' + project.domain);
+    var url = project.url || ('https://' + project.domain);
+    card.href = url;
     card.target = '_blank';
     card.rel = 'noopener noreferrer';
     card.title = project.description || '';
     
     var status = h('span', 'status-dot');
+    status.title = 'Checking...';
     card.appendChild(status);
+    
+    checkHealth(url, status);
     
     var title = h('span', 'pill-title', project.title || '');
     card.appendChild(title);

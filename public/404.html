@@ -41,44 +41,40 @@
       <div class="diag-top">
         <div class="error-tag" id="errorTag">
           <span class="error-tag-dot"></span>
-          <span id="badgeText">HTTP 404 · SUBDOMINIO NO ASIGNADO</span>
+          <span id="badgeText">404 // Service or Route Not Found</span>
         </div>
-        <span class="routing-layer-badge">Capa 7 Edge Routing</span>
+        <span class="routing-layer-badge">Edge Gateway</span>
       </div>
 
-      <h1 class="diag-title" id="errorTitle">Subdominio no asignado en el perímetro</h1>
+      <h1 class="diag-title" id="errorTitle">404 // Service or Route Not Found</h1>
       <p class="diag-desc" id="errorDesc">
-        El host <code id="hostDisplay">trujillomingorance.com</code> resolvió correctamente mediante el registro DNS comodín (*), pero actualmente no se encuentra mapeado a ningún servicio de la red.
+        The requested host <code id="hostDisplay">trujillomingorance.com</code> or route could not be found. The traffic was routed to the edge network but no target service is mapped.
       </p>
 
       <div class="telemetry-console">
         <div class="console-header">
-          <span>Inspección técnica del perímetro</span>
+          <span>Live Edge Telemetry</span>
         </div>
         <div class="console-body">
           <div class="console-row">
-            <span class="console-label">Host solicitado</span>
+            <span class="console-label">Requested Host</span>
             <span class="console-val cyan" id="teleHost">-</span>
           </div>
           <div class="console-row">
-            <span class="console-label">Ruta solicitada</span>
+            <span class="console-label">Requested Path</span>
             <span class="console-val" id="telePath">-</span>
           </div>
           <div class="console-row">
-            <span class="console-label">Resolución DNS</span>
-            <span class="console-val green">*.trujillomingorance.com → Proxied</span>
+            <span class="console-label">UTC Timestamp</span>
+            <span class="console-val" id="teleTime">-</span>
           </div>
           <div class="console-row">
-            <span class="console-label">Estado de enrutamiento</span>
+            <span class="console-label">Routing Status</span>
             <span class="console-val orange" id="teleRouting">Target Unmapped (HTTP 404)</span>
           </div>
           <div class="console-row">
-            <span class="console-label">Enrutador Edge</span>
+            <span class="console-label">Edge Node</span>
             <span class="console-val">Cloudflare Global Anycast</span>
-          </div>
-          <div class="console-row">
-            <span class="console-label">Transporte</span>
-            <span class="console-val">HTTPS / TLS 1.3</span>
           </div>
         </div>
       </div>
