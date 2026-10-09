@@ -234,16 +234,25 @@ export async function onRequestGet(context) {
     if (ghRes.ok) {
       const repos = await ghRes.json();
       projects = repos.map(repo => {
-        const known = CATALOG[repo.name] || {};
-        const url = known.url || repo.homepage || ('https://' + repo.name + '.trujillomingorance.com');
-        const domain = ownHost(url) || (repo.name + '.trujillomingorance.com');
+        let known = CATALOG[repo.name];
+        if (!known) {
+          const found = Object.values(CATALOG).find(c => c.repo === repo.html_url);
+          if (found) known = found;
+        }
+
+        const url = (known && known.url) ? known.url : repo.homepage;
+        if (!url) return null;
+
+        const domain = ownHost(url);
+        if (!domain) return null;
+
         return polish({
-          id: repo.name,
-          title: known.title || repo.name,
-          description: known.description || repo.description || 'Servicio del ecosistema',
+          id: known ? known.id : repo.name,
+          title: known ? known.title : repo.name,
+          description: known ? known.description : (repo.description || 'Servicio del ecosistema'),
           url: url,
           domain: domain,
-          category: known.category || 'engineering',
+          category: known ? known.category : 'engineering',
           repo: repo.html_url
         });
       }).filter(Boolean);
@@ -253,9 +262,9 @@ export async function onRequestGet(context) {
   if (!projects.length) {
     projects = fallbackCatalog();
   } else {
-    const ghIds = new Set(projects.map(p => p.id));
+    const domains = new Set(projects.map(p => p.domain));
     for (const item of fallbackCatalog()) {
-      if (!ghIds.has(item.id)) {
+      if (!domains.has(item.domain)) {
         projects.push(item);
       }
     }
@@ -264,7 +273,7 @@ export async function onRequestGet(context) {
 
   const response = jsonResponse({
     success: true,
-    source: 'github-merged',
+    source: 'github-merged-v2',
     count: projects.length,
     projects
   });
