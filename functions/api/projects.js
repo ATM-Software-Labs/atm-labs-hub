@@ -114,6 +114,18 @@ const CATALOG = {
     stack: ['Utilities', 'Web'],
     cta: 'Abrir', repo: 'https://github.com/ATM-Software-Labs/atm-tools'
   },
+  'open-sentinel': {
+    id: 'open-sentinel',
+    title: 'Open Sentinel',
+    description: 'SDK Ciberseguridad',
+    url: 'https://github.com/ATM-Software-Labs/open-sentinel',
+    domain: 'github.com/ATM-Software-Labs/open-sentinel',
+    alt: '',
+    category: 'security',
+    keywords: 'open sentinel sdk security',
+    stack: ['SDK', 'Security'],
+    cta: 'GitHub', repo: 'https://github.com/ATM-Software-Labs/open-sentinel'
+  },
   'alberto-portfolio': {
     id: 'alberto-portfolio',
     title: 'Portfolio Profesional',
@@ -131,7 +143,7 @@ const HIDDEN = new Set(['neurolock', 'manual-de-bloqueo', 'rocky-setter']);
 const FEATURED_ORDER = [
   'alberto-portfolio', 'api-gateway', 'trujillo-ai-studio', 'rewrite-ai', 
   'invest-platform', 'savings-runway', 'focusguard', 'trujillo-guides', 
-  'atm-tools', 'nutrifit'
+  'atm-tools', 'nutrifit', 'open-sentinel'
 ];
 
 
