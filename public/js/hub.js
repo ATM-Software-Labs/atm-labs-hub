@@ -28,12 +28,16 @@
     if (!value) return '';
     var host = String(value).replace(/^https?:\/\//i, '').split('/')[0].toLowerCase();
     if (!host || host.indexOf('pages.dev') !== -1) return '';
-    if (host === 'trujillomingorance.com' || host.slice(-23) === '.trujillomingorance.com') return host;
+    // Allow github.com or trujillomingorance.com
+    if (host === 'github.com' || host === 'trujillomingorance.com' || host.slice(-23) === '.trujillomingorance.com') return host;
     return '';
   }
 
   function isOwnProject(project) {
-    var host = professionalHost(project && project.domain) || professionalHost(project && project.url);
+    if (!project) return false;
+    // Always show if it's from github API
+    if (project.repo) return true;
+    var host = professionalHost(project.domain) || professionalHost(project.url);
     if (!host || HIDDEN_HOSTS[host]) return false;
     return true;
   }
@@ -71,6 +75,14 @@
 
   function checkHealth(url, statusEl) {
     if (!url) return;
+    
+    // Skip health check for GitHub URLs
+    if (url.includes('github.com')) {
+      statusEl.className = 'status-dot operational';
+      statusEl.title = 'Operational';
+      return;
+    }
+    
     statusEl.className = 'status-dot checking';
     
     var controller = new AbortController();
@@ -112,7 +124,11 @@
     var title = h('span', 'pill-title', project.title || '');
     card.appendChild(title);
     
-    var domain = h('span', 'pill-domain', project.domain || '');
+    var domainDisplay = project.domain || '';
+    if (!domainDisplay.includes('.') && project.repo) {
+      domainDisplay = 'github.com';
+    }
+    var domain = h('span', 'pill-domain', domainDisplay);
     card.appendChild(domain);
     
     var icon = h('span', 'pill-icon');

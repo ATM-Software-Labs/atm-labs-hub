@@ -260,6 +260,11 @@ body {
   background: #ef4444;
 }
 
+[data-theme="light"] .error-tag {
+  color: #dc2626;
+  background: rgba(239, 68, 68, 0.08);
+}
+
 .routing-layer-badge {
   font-family: var(--font-mono);
   font-size: 0.725rem;

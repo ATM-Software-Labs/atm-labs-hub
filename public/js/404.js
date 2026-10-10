@@ -86,8 +86,9 @@
       
       var dom = document.createElement('span');
       dom.className = 'service-tile-domain';
-      var hostSplit = (p.domain || '').split('.');
-      dom.textContent = hostSplit.length > 2 ? hostSplit[0] + '.' : (p.domain || '');
+      var domainStr = p.domain || p.id || '';
+      var hostSplit = domainStr.split('.');
+      dom.textContent = (hostSplit.length > 2 && domainStr.includes('trujillomingorance.com')) ? hostSplit[0] + '.' : domainStr;
       
       top.appendChild(dom);
       a.appendChild(top);

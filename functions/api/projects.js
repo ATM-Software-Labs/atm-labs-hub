@@ -159,13 +159,12 @@ function rankOf(id) {
 
 function polish(item) {
   if (!item || HIDDEN.has(item.id)) return null;
-  const domain = ownHost(item.domain || item.url);
-  if (!domain) return null;
+  const domain = ownHost(item.domain || item.url) || item.domain || '';
   
   const rank = rankOf(item.id);
   return Object.assign({}, item, {
     domain,
-    url: item.url && ownHost(item.url) ? item.url : ('https://' + domain),
+    url: item.url || ('https://' + domain),
     alt: '',
     featured: rank < 100 || !!item.featured,
     rank
@@ -240,18 +239,15 @@ export async function onRequestGet(context) {
           if (found) known = found;
         }
 
-        const url = (known && known.url) ? known.url : repo.homepage;
-        if (!url) return null;
-
-        const domain = ownHost(url);
-        if (!domain) return null;
+        const url = (known && known.url) ? known.url : (repo.homepage || repo.html_url);
+        const domain = repo.homepage ? ownHost(repo.homepage) : (known ? known.domain : '');
 
         return polish({
           id: known ? known.id : repo.name,
           title: known ? known.title : repo.name,
           description: known ? known.description : (repo.description || 'Servicio del ecosistema'),
           url: url,
-          domain: domain,
+          domain: domain || repo.name,
           category: known ? known.category : 'engineering',
           repo: repo.html_url
         });
