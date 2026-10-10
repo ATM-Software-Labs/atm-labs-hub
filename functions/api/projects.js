@@ -239,15 +239,16 @@ export async function onRequestGet(context) {
           if (found) known = found;
         }
 
-        const url = (known && known.url) ? known.url : (repo.homepage || repo.html_url);
-        const domain = repo.homepage ? ownHost(repo.homepage) : (known ? known.domain : '');
+        const hasCustomDomain = known ? known.domain : (repo.homepage ? ownHost(repo.homepage) : '');
+        const domain = hasCustomDomain || 'github.com';
+        const url = hasCustomDomain ? (known ? known.url : repo.homepage) : repo.html_url;
 
         return polish({
           id: known ? known.id : repo.name,
           title: known ? known.title : repo.name,
           description: known ? known.description : (repo.description || 'Servicio del ecosistema'),
           url: url,
-          domain: domain || repo.name,
+          domain: domain,
           category: known ? known.category : 'engineering',
           repo: repo.html_url
         });
