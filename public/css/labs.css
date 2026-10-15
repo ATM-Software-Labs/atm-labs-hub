@@ -1,4 +1,5 @@
-/* ATM Labs layout. Same components and motion as the apex hub.
+/* ATM Labs layout. Same type, surfaces, and motion as the apex hub.
+   Monochrome: the Labs wordmark is the only mark of this site.
    Inter and JetBrains Mono are self-hosted (SIL OFL), same files as
    https://trujillomingorance.com/assets/fonts/. */
 
@@ -69,7 +70,7 @@ body::before {
   inset: 0 0 auto 0;
   z-index: 40;
   height: 2px;
-  background: linear-gradient(90deg, #12343c 0%, var(--cyan) 42%, var(--emerald) 78%, transparent 100%);
+  background: rgba(244, 247, 251, 0.22);
   pointer-events: none;
 }
 
@@ -79,8 +80,8 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, rgba(154, 215, 230, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(154, 215, 230, 0.055) 1px, transparent 1px);
+    linear-gradient(to right, rgba(244, 247, 251, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 247, 251, 0.045) 1px, transparent 1px);
   background-size: 4.5rem 4.5rem;
   mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 72%);
 }
@@ -92,7 +93,7 @@ a { color: inherit; }
 
 :focus { outline: none; }
 :focus-visible {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--text);
   outline-offset: 3px;
 }
 
@@ -175,7 +176,7 @@ a { color: inherit; }
 }
 .site-nav a { letter-spacing: 0.06em; text-transform: none; font-size: 0.82rem; }
 .lang { margin-left: 0.35rem; padding-left: 0.35rem; border-left: 1px solid var(--line); }
-.lang a[aria-current="page"] { color: var(--emerald); }
+.lang a[aria-current="page"] { color: var(--text); }
 .site-nav a:hover, .lang a:hover, .footer-nav a:hover { color: var(--text); }
 
 .hero { padding: 4.75rem 0 3.75rem; }
@@ -189,7 +190,7 @@ a { color: inherit; }
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
-.kicker span, .section-kicker span { color: var(--emerald); margin-right: 0.7rem; }
+.kicker span, .section-kicker span { color: var(--text); margin-right: 0.7rem; }
 
 h1 {
   margin: 0;
@@ -232,7 +233,7 @@ h3 {
   gap: 0.55rem;
   min-height: 1.7em;
   margin: 1.75rem 0 0;
-  color: var(--emerald);
+  color: var(--text);
   font-family: var(--mono);
   font-size: clamp(0.95rem, 2vw, 1.12rem);
   letter-spacing: 0;
@@ -326,9 +327,9 @@ h3 {
   gap: 0.6rem;
   min-width: 0;
 }
-.hub-icon { flex: none; color: var(--cyan); }
+.hub-icon { flex: none; color: var(--body); }
 .hub-host {
-  color: var(--cyan);
+  color: var(--muted);
   font-family: var(--mono);
   font-size: 0.75rem;
   overflow-wrap: anywhere;
@@ -348,9 +349,9 @@ h3 {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
 }
-.hub-card[data-state="online"] .hub-state { color: var(--emerald); }
-.hub-card[data-state="down"] .hub-state { color: var(--soon); }
-.hub-card[data-state="checking"] .hub-state { color: var(--cyan); }
+.hub-card[data-state="online"] .hub-state { color: var(--text); }
+.hub-card[data-state="down"] .hub-state { color: var(--muted); }
+.hub-card[data-state="checking"] .hub-state { color: var(--muted); }
 .hub-card[data-state="repo"] .hub-state { color: var(--muted); letter-spacing: 0.04em; text-transform: none; }
 
 .btn {
@@ -371,7 +372,7 @@ h3 {
   text-decoration: none;
   cursor: pointer;
 }
-.btn:hover { border-color: rgba(143, 232, 196, 0.55); color: var(--emerald); }
+.btn:hover { border-color: rgba(244, 247, 251, 0.35); color: var(--text); }
 .btn:disabled { opacity: 0.55; cursor: progress; }
 
 .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.35rem; }
@@ -468,8 +469,8 @@ h3 {
     transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
   .hub-card:hover, .hub-card:focus-visible {
-    border-color: rgba(143, 232, 196, 0.55);
-    box-shadow: 0 0 0 1px rgba(143, 232, 196, 0.22), 0 18px 48px -28px rgba(143, 232, 196, 0.7);
+    border-color: rgba(244, 247, 251, 0.28);
+    box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.85);
     transform: translateY(-2px);
   }
   .grid-overlay { animation: grid-drift 90s linear infinite; }

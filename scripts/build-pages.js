@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const VERSION = '20261015d';
+const VERSION = '20261015e';
 const ORIGIN = 'https://labs.trujillomingorance.com';
 const GITHUB = 'https://github.com/ATM-Software-Labs';
 const LINKEDIN = 'https://www.linkedin.com/in/alberto-trujillo-mingorance-288237266';
@@ -261,7 +261,7 @@ function header(locale, current) {
     '  <header class="site-header">',
     '    <div class="wrap header-row">',
     '      <a class="brand" id="brandLink" href="' + esc(locale.hub) + '" aria-label="' + esc(locale.hubLabel) + '">',
-    '        <img class="brand-lockup" src="/assets/lockup.svg?v=' + VERSION + '" alt="" width="351" height="168">',
+    '        <img class="brand-lockup" src="/assets/lockup.svg?v=' + VERSION + '" alt="" width="710" height="168">',
     '      </a>',
     '      <div class="header-tools">',
     '        <nav class="site-nav" id="siteNav" aria-label="' + esc(locale.navLabel) + '">',
