@@ -16,9 +16,9 @@ Locales: Spanish at `/` (default), English at `/en/`, Catalan at `/ca/`. The lan
 | `/api/projects` | Published catalog (Pages Function) |
 | `/api/auth/*` | Auth proxy to `ai.trujillomingorance.com` |
 
-`https://trujillomingorance.com/brand/tokens.css` was not published when this version shipped. The same tokens from the live hub stylesheet are vendored in `public/css/tokens.css`.
+Shared tokens are copied from [brand/tokens.css](https://trujillomingorance.com/brand/tokens.css) into `public/css/tokens.css`. Labs keeps short aliases (`--bg`, `--cyan`) on top of the published `--atm-*` names.
 
-`https://trujillomingorance.com/brand/favicon.svg` (and the matching `.ico`, apple-touch, and 192/512 icons) was not published yet. Labs vendors the icons currently served from the apex root.
+The labs mark (white line art, cyan lower A, LABS tag) is copied from [brand/labs](https://trujillomingorance.com/brand/labs/): `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `assets/og.png`, `assets/lockup.svg`, and `assets/banner.png`. Pages reference icons, the header lockup, and the Open Graph image with `?v=20261015d`. The header still links back to the hub. The cyan hairline and the LABS tag keep this site distinct from the apex.
 
 ## Repository
 
@@ -28,7 +28,7 @@ public/                 Cloudflare Pages output
   en/index.html         en
   ca/index.html         ca
   404.html
-  css/tokens.css        vendored hub tokens
+  css/tokens.css        vendored brand tokens plus labs aliases
   css/labs.css          layout, components, motion
   js/                   directory, language memory, 404
   assets/fonts/         self-hosted Inter and JetBrains Mono (SIL OFL)

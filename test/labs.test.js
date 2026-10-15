@@ -63,16 +63,49 @@ test('published catalog stays on owned hosts', function () {
   });
 });
 
-test('tokens replicate the live hub palette and name the missing shared sheet', function () {
+test('tokens match the published brand sheet and keep labs aliases', function () {
   const css = read('public/css/tokens.css');
-  assert.match(css, /brand\/tokens\.css/);
-  assert.match(css, /hub\.css/);
-  assert.match(css, /--bg:\s*#07080b/);
-  assert.match(css, /--emerald:\s*#8fe8c4/);
-  assert.match(css, /--cyan:\s*#9ad7e6/);
-  assert.match(css, /--text:\s*#f4f7fb/);
+  assert.match(css, /https:\/\/trujillomingorance\.com\/brand\/tokens\.css/);
+  assert.match(css, /--atm-bg:\s*#07080b/);
+  assert.match(css, /--atm-emerald:\s*#8fe8c4/);
+  assert.match(css, /--atm-cyan:\s*#9ad7e6/);
+  assert.match(css, /--atm-text:\s*#f4f7fb/);
+  assert.match(css, /--bg:\s*var\(--atm-bg\)/);
+  assert.match(css, /--cyan:\s*var\(--atm-cyan\)/);
   assert.match(css, /color-scheme:\s*dark/);
   assert.doesNotMatch(css, /data-theme="light"/);
+});
+
+function pngSize(file) {
+  const buf = fs.readFileSync(path.join(root, file));
+  assert.equal(buf.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', file);
+  return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
+}
+
+test('labs brand files are local copies of the published mark', function () {
+  const favicon = read('public/favicon.svg');
+  const lockup = read('public/assets/lockup.svg');
+  assert.match(favicon, /aria-label="ATM Labs"/);
+  assert.match(favicon, /#9ad7e6/);
+  assert.match(lockup, /aria-label="ATM Labs"/);
+  assert.match(lockup, /#9ad7e6/);
+  assert.equal(fs.statSync(path.join(root, 'public/favicon.ico')).size > 0, true);
+  assert.deepEqual(pngSize('public/apple-touch-icon.png'), { width: 180, height: 180 });
+  assert.deepEqual(pngSize('public/icon-192.png'), { width: 192, height: 192 });
+  assert.deepEqual(pngSize('public/icon-512.png'), { width: 512, height: 512 });
+  assert.deepEqual(pngSize('public/assets/og.png'), { width: 1200, height: 630 });
+  assert.equal(fs.existsSync(path.join(root, 'public/assets/banner.png')), true);
+  assert.equal(fs.existsSync(path.join(root, 'public/assets/og-labs.png')), false);
+  const manifest = JSON.parse(read('public/site.webmanifest'));
+  const srcs = manifest.icons.map(function (icon) { return icon.src; });
+  ['/favicon.svg?v=20261015d', '/icon-192.png?v=20261015d', '/icon-512.png?v=20261015d', '/apple-touch-icon.png?v=20261015d'].forEach(function (src) {
+    assert.ok(srcs.includes(src), src);
+  });
+  const notFound = read('public/404.html');
+  assert.match(notFound, /src="\/assets\/lockup\.svg\?v=20261015d"/);
+  assert.match(notFound, /href="\/favicon\.svg\?v=20261015d"/);
+  const css = read('public/css/labs.css');
+  assert.match(css, /var\(--cyan\) 42%, var\(--emerald\)/);
 });
 
 test('motion is reduced-motion aware', function () {
@@ -118,7 +151,14 @@ test('each locale has hreflang, hub header, footer, and translated meta', functi
     assert.match(html, new RegExp('property="og:title" content="[^"]+' + (id === 'en' ? 'ecosystem' : 'Ecosistema') ));
     assert.match(html, new RegExp('<h1 id="identidad">' + spec.h1 + '</h1>'));
     assert.match(html, new RegExp('class="brand" id="brandLink" href="' + spec.href.replace(/[.]/g, '\\.') + '"'));
-    assert.match(html, /ATM<\/span>\s*<span>Software Labs<\/span>/);
+    assert.match(html, /src="\/assets\/lockup\.svg\?v=20261015d"/);
+    assert.match(html, /og:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261015d"/);
+    assert.match(html, /twitter:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261015d"/);
+    assert.match(html, /href="\/favicon\.svg\?v=20261015d"/);
+    assert.match(html, /href="\/favicon\.ico\?v=20261015d"/);
+    assert.match(html, /href="\/apple-touch-icon\.png\?v=20261015d"/);
+    assert.doesNotMatch(html, /og-labs\.png/);
+    assert.doesNotMatch(html, /trujillomingorance\.com\/brand\//);
     assert.match(html, /data-lang-switch="es"/);
     assert.match(html, /data-lang-switch="en"/);
     assert.match(html, /data-lang-switch="ca"/);

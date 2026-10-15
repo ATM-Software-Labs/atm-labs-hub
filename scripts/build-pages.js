@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const VERSION = '20261015c';
+const VERSION = '20261015d';
 const ORIGIN = 'https://labs.trujillomingorance.com';
 const GITHUB = 'https://github.com/ATM-Software-Labs';
 const LINKEDIN = 'https://www.linkedin.com/in/alberto-trujillo-mingorance-288237266';
@@ -261,8 +261,7 @@ function header(locale, current) {
     '  <header class="site-header">',
     '    <div class="wrap header-row">',
     '      <a class="brand" id="brandLink" href="' + esc(locale.hub) + '" aria-label="' + esc(locale.hubLabel) + '">',
-    '        <span class="brand-mark">ATM</span>',
-    '        <span>Software Labs</span>',
+    '        <img class="brand-lockup" src="/assets/lockup.svg?v=' + VERSION + '" alt="" width="351" height="168">',
     '      </a>',
     '      <div class="header-tools">',
     '        <nav class="site-nav" id="siteNav" aria-label="' + esc(locale.navLabel) + '">',
@@ -320,18 +319,18 @@ function head(locale) {
     '  <meta property="og:title" content="' + esc(locale.title) + '">',
     '  <meta property="og:description" content="' + esc(locale.description) + '">',
     '  <meta property="og:url" content="' + canonical + '">',
-    '  <meta property="og:image" content="' + ORIGIN + '/assets/og-labs.png">',
+    '  <meta property="og:image" content="' + ORIGIN + '/assets/og.png?v=' + VERSION + '">',
     '  <meta property="og:image:width" content="1200">',
     '  <meta property="og:image:height" content="630">',
     '  <meta property="og:image:alt" content="' + esc(locale.ogAlt) + '">',
     '  <meta name="twitter:card" content="summary_large_image">',
     '  <meta name="twitter:title" content="' + esc(locale.title) + '">',
     '  <meta name="twitter:description" content="' + esc(locale.description) + '">',
-    '  <meta name="twitter:image" content="' + ORIGIN + '/assets/og-labs.png">',
-    '  <link rel="icon" href="/favicon.ico" sizes="32x32">',
-    '  <link rel="icon" href="/favicon.svg" type="image/svg+xml">',
-    '  <link rel="apple-touch-icon" href="/apple-touch-icon.png">',
-    '  <link rel="manifest" href="/site.webmanifest">',
+    '  <meta name="twitter:image" content="' + ORIGIN + '/assets/og.png?v=' + VERSION + '">',
+    '  <link rel="icon" href="/favicon.ico?v=' + VERSION + '" sizes="32x32">',
+    '  <link rel="icon" href="/favicon.svg?v=' + VERSION + '" type="image/svg+xml">',
+    '  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=' + VERSION + '">',
+    '  <link rel="manifest" href="/site.webmanifest?v=' + VERSION + '">',
     '  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>',
     '  <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>',
     '  <link rel="stylesheet" href="/css/tokens.css?v=' + VERSION + '">',
@@ -426,9 +425,9 @@ function notFound() {
     '  <meta name="robots" content="noindex, nofollow">',
     '  <meta name="color-scheme" content="dark">',
     '  <meta name="theme-color" content="#07080b">',
-    '  <link rel="icon" href="/favicon.ico" sizes="32x32">',
-    '  <link rel="icon" href="/favicon.svg" type="image/svg+xml">',
-    '  <link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+    '  <link rel="icon" href="/favicon.ico?v=' + VERSION + '" sizes="32x32">',
+    '  <link rel="icon" href="/favicon.svg?v=' + VERSION + '" type="image/svg+xml">',
+    '  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=' + VERSION + '">',
     '  <link rel="stylesheet" href="/css/tokens.css?v=' + VERSION + '">',
     '  <link rel="stylesheet" href="/css/labs.css?v=' + VERSION + '">',
     '  <meta http-equiv="Content-Security-Policy" content="default-src &#39;self&#39;; script-src &#39;self&#39; &#39;unsafe-inline&#39;; style-src &#39;self&#39; &#39;unsafe-inline&#39;; img-src &#39;self&#39; data:; font-src &#39;self&#39;; connect-src &#39;self&#39; https://trujillomingorance.com https://*.trujillomingorance.com; base-uri &#39;self&#39;; form-action &#39;self&#39;; object-src &#39;none&#39;">',
