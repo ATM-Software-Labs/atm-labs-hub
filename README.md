@@ -2,7 +2,7 @@
 
 **Production:** [labs.trujillomingorance.com](https://labs.trujillomingorance.com)
 
-Directory of the services published on `trujillomingorance.com`. The visual system matches the hub at [trujillomingorance.com](https://trujillomingorance.com): permanently dark, Inter and JetBrains Mono, slate surfaces, and neutral greys. Labs stays distinct through the Labs wordmark and this directory, and the header links back to the hub.
+Directory of the services published on `trujillomingorance.com`. Tokens stay the shared neutral greys, and the header still links back to the hub, but the page is a compact service console: a short hero and a dense catalog with category filters, search, live host checks, and repository links. It is not the editorial layout of [trujillomingorance.com](https://trujillomingorance.com).
 
 Locales: Spanish at `/` (default), English at `/en/`, Catalan at `/ca/`. The language switcher stores `atm_lang_choice`.
 
@@ -18,7 +18,9 @@ Locales: Spanish at `/` (default), English at `/en/`, Catalan at `/ca/`. The lan
 
 Shared tokens are copied from [brand/tokens.css](https://trujillomingorance.com/brand/tokens.css) into `public/css/tokens.css`. Labs keeps short aliases (`--bg`, `--cyan`) on top of the published `--atm-*` names.
 
-The labs mark (thin white line on near-black, plus the word Labs) is copied from [brand/labs](https://trujillomingorance.com/brand/labs/): `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `assets/og.png`, `assets/lockup.svg`, and `assets/banner.png`. Pages reference icons, the header lockup, and the Open Graph image with `?v=20261015e`. The `.ico` link is `/assets/favicon.ico` because the zone cache ignores query strings on `/favicon.ico`.
+The labs mark (thin white line on near-black, plus the word Labs) is copied from [brand/labs](https://trujillomingorance.com/brand/labs/): `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `assets/og.png`, `assets/lockup.svg`, and `assets/banner.png`. Pages reference icons, the header lockup, and the Open Graph image with `?v=20261015f`. The `.ico` link is `/assets/favicon.ico` because the zone cache ignores query strings on `/favicon.ico`.
+
+Service rows, hosts, and GitHub links come from `data/services.json`. A repository is linked only when `repoPublic` is true. `rewrite-ai` is public but unlinked because its deploy config does not name `rewrite.trujillomingorance.com`. `savings-runway` is unlinked because the repository URL is not public.
 
 ## Repository
 
@@ -33,6 +35,7 @@ public/                 Cloudflare Pages output
   js/                   directory, language memory, 404
   assets/fonts/         self-hosted Inter and JetBrains Mono (SIL OFL)
 functions/              Pages Functions
+data/services.json       catalog and confirmed repository mapping
 scripts/build-pages.js  regenerates the locale pages
 test/                   node:test
 ```

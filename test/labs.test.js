@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const vm = require('vm');
 const assert = require('node:assert/strict');
 const test = require('node:test');
 
@@ -44,14 +43,10 @@ test('client filter keeps ecosystem hosts and drops pages.dev', function () {
 });
 
 test('published catalog stays on owned hosts', function () {
-  let code = read('functions/api/projects.js');
-  code = code.replace(/export async function onRequestGet[\s\S]*$/, '');
-  const sandbox = {};
-  vm.createContext(sandbox);
-  vm.runInContext(code + '\nglobalThis.__fallback = fallbackCatalog();', sandbox);
-  const items = sandbox.__fallback;
+  const data = JSON.parse(read('data/services.json'));
+  const items = data.services;
   const ids = items.map(function (item) { return item.id; });
-  ['alberto-portfolio', 'trujillo-ai-studio', 'rewrite-ai', 'focusguard', 'trujillo-guides', 'invest-platform', 'savings-runway', 'atm-tools', 'nutrifit', 'open-sentinel', 'api-gateway'].forEach(function (id) {
+  ['alberto-portfolio', 'trujillo-ai-studio', 'rewrite-ai', 'focusguard', 'trujillo-guides', 'invest-platform', 'savings-runway', 'atm-tools', 'nutrifit', 'open-sentinel', 'api-gateway', 'labs', 'apex'].forEach(function (id) {
     assert.ok(ids.includes(id), id);
   });
   assert.equal(ids.includes('neurolock'), false);
@@ -61,6 +56,36 @@ test('published catalog stays on owned hosts', function () {
     const host = item.url.replace(/^https:\/\//, '').split('/')[0];
     assert.ok(host === 'github.com' || host === 'trujillomingorance.com' || host.endsWith('.trujillomingorance.com'), item.url);
   });
+  const api = read('functions/api/projects.js');
+  assert.match(api, /data\/services\.json/);
+  assert.match(api, /repoPublic !== true/);
+  assert.doesNotMatch(api, /repo\.html_url/);
+});
+
+test('github links follow the confirmed public mapping', function () {
+  const data = JSON.parse(read('data/services.json'));
+  const linked = {};
+  data.services.forEach(function (service) {
+    if (service.repoPublic === true) {
+      assert.equal(typeof service.repo, 'string', service.id);
+      linked[service.repo] = service;
+    } else {
+      assert.equal(service.repo, null, service.id);
+    }
+  });
+  ['atm-labs-hub', 'domain-root', 'trujillo-guides', 'trujillo-ai-studio', 'nutrifit', 'invest-platform', 'focusguard-saas', 'atm-tools', 'open-sentinel', 'portfolio'].forEach(function (repo) {
+    assert.ok(linked[repo], repo);
+  });
+  assert.equal(linked['rewrite-ai'], undefined);
+  assert.equal(linked['savings-runway'], undefined);
+  const html = read('public/index.html');
+  Object.keys(linked).forEach(function (repo) {
+    assert.match(html, new RegExp('https://github.com/ATM-Software-Labs/' + repo.replace(/[.]/g, '\\.')));
+  });
+  assert.doesNotMatch(html, /github\.com\/ATM-Software-Labs\/rewrite-ai/);
+  assert.doesNotMatch(html, /github\.com\/ATM-Software-Labs\/savings-runway/);
+  assert.equal(data.unlinked.some(function (row) { return row.repo === 'rewrite-ai' && row.public === true && row.linked === false; }), true);
+  assert.equal(data.unlinked.some(function (row) { return row.repo === 'savings-runway' && row.public === false; }), true);
 });
 
 test('tokens match the published brand sheet and keep labs aliases', function () {
@@ -103,12 +128,12 @@ test('labs brand files are local copies of the published mark', function () {
   assert.equal(fs.existsSync(path.join(root, 'public/assets/og-labs.png')), false);
   const manifest = JSON.parse(read('public/site.webmanifest'));
   const srcs = manifest.icons.map(function (icon) { return icon.src; });
-  ['/favicon.svg?v=20261015e', '/assets/favicon.ico?v=20261015e', '/icon-192.png?v=20261015e', '/icon-512.png?v=20261015e', '/apple-touch-icon.png?v=20261015e'].forEach(function (src) {
+  ['/favicon.svg?v=20261015f', '/assets/favicon.ico?v=20261015f', '/icon-192.png?v=20261015f', '/icon-512.png?v=20261015f', '/apple-touch-icon.png?v=20261015f'].forEach(function (src) {
     assert.ok(srcs.includes(src), src);
   });
   const notFound = read('public/404.html');
-  assert.match(notFound, /src="\/assets\/lockup\.svg\?v=20261015e"/);
-  assert.match(notFound, /href="\/favicon\.svg\?v=20261015e"/);
+  assert.match(notFound, /src="\/assets\/lockup\.svg\?v=20261015f"/);
+  assert.match(notFound, /href="\/favicon\.svg\?v=20261015f"/);
   const css = read('public/css/labs.css');
   assert.doesNotMatch(css, /#9ad7e6|#8fe8c4|#12343c|154,\s*215,\s*230|143,\s*232,\s*196|var\(--cyan\)|var\(--emerald\)/);
 });
@@ -117,7 +142,8 @@ test('motion is reduced-motion aware', function () {
   const css = read('public/css/labs.css');
   assert.match(css, /prefers-reduced-motion:\s*no-preference/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
-  assert.match(css, /@keyframes blink/);
+  assert.match(css, /@keyframes pulse/);
+  assert.doesNotMatch(css, /@keyframes blink/);
   assert.match(css, /JetBrains Mono/);
   assert.match(css, /inter-latin-400-normal\.woff2/);
 });
@@ -128,19 +154,25 @@ test('each locale has hreflang, hub header, footer, and translated meta', functi
       href: 'https://trujillomingorance.com/',
       h1: 'Servicios en producción',
       locale: 'es_ES',
-      canonical: 'https://labs.trujillomingorance.com/'
+      canonical: 'https://labs.trujillomingorance.com/',
+      github: 'Repositorio en GitHub',
+      clear: 'Limpiar búsqueda'
     },
     en: {
       href: 'https://trujillomingorance.com/en/',
       h1: 'Services in production',
       locale: 'en_US',
-      canonical: 'https://labs.trujillomingorance.com/en/'
+      canonical: 'https://labs.trujillomingorance.com/en/',
+      github: 'Repository on GitHub',
+      clear: 'Clear search'
     },
     ca: {
       href: 'https://trujillomingorance.com/ca/',
       h1: 'Serveis en producció',
       locale: 'ca_ES',
-      canonical: 'https://labs.trujillomingorance.com/ca/'
+      canonical: 'https://labs.trujillomingorance.com/ca/',
+      github: 'Repositori a GitHub',
+      clear: 'Netejar la cerca'
     }
   };
   Object.keys(pages).forEach(function (id) {
@@ -156,12 +188,17 @@ test('each locale has hreflang, hub header, footer, and translated meta', functi
     assert.match(html, new RegExp('property="og:title" content="[^"]+' + (id === 'en' ? 'ecosystem' : 'Ecosistema') ));
     assert.match(html, new RegExp('<h1 id="identidad">' + spec.h1 + '</h1>'));
     assert.match(html, new RegExp('class="brand" id="brandLink" href="' + spec.href.replace(/[.]/g, '\\.') + '"'));
-    assert.match(html, /src="\/assets\/lockup\.svg\?v=20261015e"/);
-    assert.match(html, /og:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261015e"/);
-    assert.match(html, /twitter:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261015e"/);
-    assert.match(html, /href="\/favicon\.svg\?v=20261015e"/);
-    assert.match(html, /href="\/assets\/favicon\.ico\?v=20261015e"/);
-    assert.match(html, /href="\/apple-touch-icon\.png\?v=20261015e"/);
+    assert.match(html, /src="\/assets\/lockup\.svg\?v=20261015f"/);
+    assert.match(html, /og:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261015f"/);
+    assert.match(html, /twitter:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261015f"/);
+    assert.match(html, /href="\/favicon\.svg\?v=20261015f"/);
+    assert.match(html, /href="\/assets\/favicon\.ico\?v=20261015f"/);
+    assert.match(html, /href="\/apple-touch-icon\.png\?v=20261015f"/);
+    assert.match(html, /class="search-clear"/);
+    assert.match(html, /data-category="ai"/);
+    assert.doesNotMatch(html, /atm@labs/);
+    assert.doesNotMatch(html, /term-prompt/);
+    assert.doesNotMatch(html, /grid-overlay/);
     assert.doesNotMatch(html, /og-labs\.png/);
     assert.doesNotMatch(html, /trujillomingorance\.com\/brand\//);
     assert.match(html, /data-lang-switch="es"/);
@@ -179,6 +216,9 @@ test('each locale has hreflang, hub header, footer, and translated meta', functi
     assert.doesNotMatch(html, /flagcdn/);
     assert.doesNotMatch(html, /Edge Network/);
     assert.doesNotMatch(html, /theme-btn/);
+    assert.match(html, new RegExp('aria-label="' + spec.github + '"'));
+    assert.match(html, new RegExp('aria-label="' + spec.clear + '"'));
+    assert.doesNotMatch(html, new RegExp('>' + spec.clear + '<'));
     assert.doesNotMatch(html, /fonts\.googleapis/);
   });
 });

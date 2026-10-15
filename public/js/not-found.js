@@ -33,7 +33,7 @@
     var grid = document.getElementById('servicesGrid');
     var ui = copy.notFound || {};
     if (!count || !ui.count || !grid) return;
-    var n = grid.querySelectorAll('a.hub-card').length;
+    var n = grid.querySelectorAll('tbody tr[data-id]').length;
     count.textContent = ui.count.replace('{n}', String(n));
   }
 
@@ -56,6 +56,14 @@
     text('homeLink', ui.home);
     text('servicesTitle', ui.services);
     text('servicesLead', ui.servicesLead);
+    if (copy.cols) {
+      text('colStatus', copy.cols.status);
+      text('colService', copy.cols.service);
+      text('colHost', copy.cols.host);
+      text('colCategory', copy.cols.category);
+      text('colStack', copy.cols.stack);
+      text('colActions', copy.cols.actions);
+    }
     var siteNav = document.getElementById('siteNav');
     if (siteNav && copy.navLabel) siteNav.setAttribute('aria-label', copy.navLabel);
     var langNav = document.getElementById('langNav');
@@ -82,6 +90,30 @@
     document.querySelectorAll('[data-i18n-desc]').forEach(function (node) {
       var id = node.getAttribute('data-i18n-desc');
       if (descriptions[id]) node.textContent = descriptions[id];
+    });
+    var categories = copy.categories || {};
+    document.querySelectorAll('[data-cat]').forEach(function (node) {
+      var id = node.getAttribute('data-cat');
+      if (categories[id]) node.textContent = categories[id];
+    });
+    document.querySelectorAll('.act-open .act-label').forEach(function (node) {
+      if (copy.open) node.textContent = copy.open;
+    });
+    document.querySelectorAll('.act-muted .act-label').forEach(function (node) {
+      if (copy.noLink) node.textContent = copy.noLink;
+    });
+    document.querySelectorAll('.repo-link').forEach(function (node) {
+      if (copy.githubLabel) node.setAttribute('aria-label', copy.githubLabel);
+    });
+    document.querySelectorAll('.svc-status').forEach(function (cell) {
+      var state = cell.getAttribute('data-state');
+      var label = cell.querySelector('.js-label');
+      if (!label) return;
+      if (state === 'repo' && copy.repo) label.textContent = copy.repo;
+      else if (state === 'pending' && copy.pending) label.textContent = copy.pending;
+      else if (state === 'checking' && copy.checking) label.textContent = copy.checking;
+      else if (state === 'online' && copy.online) label.textContent = copy.online;
+      else if (state === 'down' && copy.offline) label.textContent = copy.offline;
     });
     paintCount(copy);
   }
@@ -124,64 +156,8 @@
     });
   }
 
-  function renderServices(projects, copy) {
-    var grid = document.getElementById('servicesGrid');
-    if (!grid || !projects.length) return;
-    var known = {};
-    Array.prototype.forEach.call(grid.querySelectorAll('[data-id]'), function (card) {
-      known[card.getAttribute('data-id')] = card.closest('li');
-    });
-    var frag = document.createDocumentFragment();
-    projects.forEach(function (project) {
-      if (!project || !project.id) return;
-      var li = known[project.id];
-      if (li) {
-        delete known[project.id];
-      } else if (project.url) {
-        li = document.createElement('li');
-        var link = document.createElement('a');
-        link.className = 'hub-card';
-        link.href = project.url;
-        link.setAttribute('data-id', project.id);
-        var host = document.createElement('span');
-        host.className = 'hub-host';
-        host.textContent = project.domain || '';
-        var name = document.createElement('span');
-        name.className = 'hub-name';
-        name.textContent = project.title || project.id;
-        var desc = document.createElement('span');
-        desc.className = 'hub-desc';
-        var translated = copy.descriptions && copy.descriptions[project.id];
-        desc.textContent = translated || project.description || '';
-        link.appendChild(host);
-        link.appendChild(name);
-        link.appendChild(desc);
-        li.appendChild(link);
-      }
-      if (li) frag.appendChild(li);
-    });
-    Object.keys(known).forEach(function (id) {
-      if (known[id] && known[id].parentNode) known[id].parentNode.removeChild(known[id]);
-    });
-    grid.appendChild(frag);
-    paintCount(copy);
-  }
-
   var state = pack();
   applyChrome(state.lang, state.copy);
   diagnostics(state.copy.notFound || {});
   goBack();
-
-  fetch('/api/projects', { headers: { Accept: 'application/json' } })
-    .then(function (res) {
-      if (!res.ok) throw new Error('status');
-      return res.json();
-    })
-    .then(function (data) {
-      var projects = (data && Array.isArray(data.projects) ? data.projects : []).filter(function (project) {
-        return window.ATMFilter && window.ATMFilter.isOwnProject(project);
-      });
-      renderServices(projects, state.copy);
-    })
-    .catch(function () {});
 })();

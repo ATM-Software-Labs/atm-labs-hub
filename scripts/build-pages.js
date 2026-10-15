@@ -5,39 +5,18 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const VERSION = '20261015e';
+const VERSION = '20261015f';
 const ORIGIN = 'https://labs.trujillomingorance.com';
 const GITHUB = 'https://github.com/ATM-Software-Labs';
 const LINKEDIN = 'https://www.linkedin.com/in/alberto-trujillo-mingorance-288237266';
 
-const ICONS = {
-  person: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2a6.5 6.5 0 0 1 13 0"/></g>',
-  gateway: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1"/><rect x="13.5" y="3.5" width="7" height="7" rx="1"/><rect x="3.5" y="13.5" width="7" height="7" rx="1"/><path d="M17 13.5v7M13.5 17h7"/></g>',
-  spark: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l1.5 4.8 4.8 1.5-4.8 1.5L12 16.8l-1.5-4.8L5.7 10.5l4.8-1.5z"/></g>',
-  pen: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L18.2 9.8 14.2 5.8 4 16z"/><path d="M13 7.2l3.8 3.8"/></g>',
-  bars: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V10"/><path d="M10 19.5V5"/><path d="M16 19.5v-6.5"/><path d="M3.5 19.5h17"/></g>',
-  card: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6.5" width="18" height="12" rx="2"/><path d="M3 10.5h18"/><path d="M16 14.6h.1"/></g>',
-  shield: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l7.5 2.8v5.6c0 4.6-3.1 7.4-7.5 8.6-4.4-1.2-7.5-4-7.5-8.6V6z"/></g>',
-  book: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.2A2.2 2.2 0 0 1 7.2 3H20v15.2H7.2A2.2 2.2 0 0 0 5 20.4z"/><path d="M5 5.2A2.2 2.2 0 0 1 7.2 7.4H20"/></g>',
-  wrench: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.4a3.6 3.6 0 0 0-5 5L4.2 16.9 7.1 19.8l5.5-5.5a3.6 3.6 0 0 0 5-5L15.2 11.7 12.3 8.8z"/></g>',
-  leaf: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19.2C5 11.5 11.2 5 20 4c-1 8.5-7.2 15.2-15 15.2z"/><path d="M8.2 16.2c2-2.2 4.2-5 7.2-8"/></g>',
-  sentinel: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2.8 12S6.2 6.5 12 6.5 21.2 12 21.2 12 17.8 17.5 12 17.5 2.8 12 2.8 12z"/></g>',
-  generic: '<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12h8"/></g>'
-};
+const CATALOG = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/services.json'), 'utf8'));
+const SERVICES = CATALOG.services.slice().sort(function (a, b) { return a.rank - b.rank; });
 
-const SERVICES = [
-  { id: 'alberto-portfolio', title: 'Portfolio Profesional', host: 'alberto.trujillomingorance.com', url: 'https://alberto.trujillomingorance.com', icon: 'person', keywords: 'portfolio alberto sysadmin security', desc: { es: 'SysAdmin & Security', en: 'SysAdmin and security.', ca: 'SysAdmin i seguretat.' } },
-  { id: 'api-gateway', title: 'API Gateway', host: 'api.trujillomingorance.com', url: 'https://api.trujillomingorance.com', icon: 'gateway', keywords: 'api gateway proxy perimeter', desc: { es: 'Perímetro / Proxy Central', en: 'Perimeter / central proxy.', ca: 'Perímetre / proxy central.' } },
-  { id: 'trujillo-ai-studio', title: 'Trujillo AI Studio', host: 'ai.trujillomingorance.com', url: 'https://ai.trujillomingorance.com', icon: 'spark', keywords: 'ia ai groq studio multimodal', desc: { es: 'Multimodal LPU', en: 'Multimodal LPU.', ca: 'LPU multimodal.' } },
-  { id: 'rewrite-ai', title: 'Rewrite AI', host: 'rewrite.trujillomingorance.com', url: 'https://rewrite.trujillomingorance.com', icon: 'pen', keywords: 'rewrite nlp groq lpu', desc: { es: 'NLP / Groq LPU', en: 'NLP / Groq LPU.', ca: 'NLP / Groq LPU.' } },
-  { id: 'invest-platform', title: 'INVEST Terminal', host: 'invest.trujillomingorance.com', url: 'https://invest.trujillomingorance.com', icon: 'bars', keywords: 'invest cuantitativa fintech', desc: { es: 'Fintech Cuantitativa', en: 'Quantitative fintech.', ca: 'Fintech quantitativa.' } },
-  { id: 'savings-runway', title: 'Savings & Runway', host: 'savings.trujillomingorance.com', url: 'https://savings.trujillomingorance.com', icon: 'card', keywords: 'savings finanzas zero-knowledge', desc: { es: 'Finanzas Zero-Knowledge', en: 'Zero-knowledge finance.', ca: 'Finances zero-knowledge.' } },
-  { id: 'focusguard', title: 'FocusGuard & AdShield', host: 'focusguard.trujillomingorance.com', url: 'https://focusguard.trujillomingorance.com', icon: 'shield', keywords: 'focusguard adshield dns zero-trust', desc: { es: 'DoH Zero-Trust', en: 'Zero-Trust DoH.', ca: 'DoH Zero-Trust.' } },
-  { id: 'trujillo-guides', title: 'Engineering Guides', host: 'guides.trujillomingorance.com', url: 'https://guides.trujillomingorance.com', icon: 'book', keywords: 'guias guides runbooks devops', desc: { es: 'Runbooks DevOps', en: 'DevOps runbooks.', ca: 'Runbooks de DevOps.' } },
-  { id: 'atm-tools', title: 'ATM Tools', host: 'tools.trujillomingorance.com', url: 'https://tools.trujillomingorance.com', icon: 'wrench', keywords: 'tools herramientas utilities', desc: { es: 'Utilidades Web', en: 'Web utilities.', ca: 'Utilitats web.' } },
-  { id: 'nutrifit', title: 'NutriFit PWA', host: 'nutri.trujillomingorance.com', url: 'https://nutri.trujillomingorance.com', icon: 'leaf', keywords: 'nutri fitness salud pwa vision', desc: { es: 'Salud / Visión IA', en: 'Health / vision AI.', ca: 'Salut / visió IA.' } },
-  { id: 'open-sentinel', title: 'Open Sentinel', host: 'github.com/ATM-Software-Labs/open-sentinel', url: 'https://github.com/ATM-Software-Labs/open-sentinel', icon: 'sentinel', keywords: 'open sentinel sdk security', desc: { es: 'SDK Ciberseguridad', en: 'Security SDK.', ca: 'SDK de ciberseguretat.' } }
-];
+const GITHUB_ICON = '<svg class="mark" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92-.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>';
+const CLEAR_ICON = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path></svg>';
+
+const CATEGORY_ORDER = ['all', 'ai', 'finance', 'security', 'docs', 'tools', 'platform', 'profile'];
 
 const LOCALES = {
   es: {
@@ -54,26 +33,47 @@ const LOCALES = {
     navLabel: 'Secciones',
     langLabel: 'Idioma',
     directory: 'Directorio',
-    kicker: 'Directorio',
+    kicker: 'Catálogo',
     h1: 'Servicios en producción',
     statement: 'IA, reescritura, finanzas familiares, documentación y seguridad perimetral en el dominio trujillomingorance.com.',
-    phrases: ['directorio del ecosistema', 'servicios en producción', 'herramientas que se pueden operar'],
-    stackLabel: 'Ámbitos',
-    stack: ['IA', 'Documentación', 'Finanzas', 'Seguridad'],
     h2: 'Servicios',
-    lead: 'El listado sale del catálogo publicado. En línea: el host contestó. Sin respuesta: no contestó a tiempo. No es una cifra de disponibilidad.',
+    lead: 'En línea: el host contestó. Sin respuesta: no contestó a tiempo. No es una cifra de disponibilidad.',
     searchLabel: 'Buscar un servicio',
     placeholder: 'Buscar un servicio…',
     clear: 'Limpiar búsqueda',
+    filtersLabel: 'Categorías',
+    categories: {
+      all: 'Todos',
+      ai: 'IA',
+      finance: 'Finanzas',
+      security: 'Seguridad',
+      docs: 'Documentación',
+      tools: 'Herramientas',
+      platform: 'Plataforma',
+      profile: 'Perfil'
+    },
+    cols: {
+      status: 'Estado',
+      service: 'Servicio',
+      host: 'Host',
+      category: 'Categoría',
+      stack: 'Stack',
+      actions: 'Acciones'
+    },
+    open: 'Abrir',
+    noLink: 'Sin enlace',
+    githubLabel: 'Repositorio en GitHub',
+    count: '{n} servicios',
     emptyTitle: 'Sin resultados',
     emptyBefore: 'Nada coincide con “',
     emptyAfter: '”.',
-    reset: 'Ver principales',
-    hint: 'Con el foco en una ficha, las flechas mueven la selección.',
+    reset: 'Ver el directorio',
+    hint: 'Con el foco en un servicio, las flechas mueven la selección.',
     noscript: 'Sin JavaScript el directorio estático sigue disponible. La comprobación de alcance no se ejecuta.',
     footerLabel: 'Perfiles',
     newTab: 'se abre en una pestaña nueva',
     hubLabel: 'ATM Software Labs, hub',
+    pending: 'pendiente',
     checking: 'comprobando',
     online: 'en línea',
     offline: 'sin respuesta',
@@ -109,26 +109,47 @@ const LOCALES = {
     navLabel: 'Sections',
     langLabel: 'Language',
     directory: 'Directory',
-    kicker: 'Directory',
+    kicker: 'Catalog',
     h1: 'Services in production',
     statement: 'AI, rewriting, household finance, documentation, and perimeter security on trujillomingorance.com.',
-    phrases: ['ecosystem directory', 'services in production', 'tools that can be operated'],
-    stackLabel: 'Areas',
-    stack: ['AI', 'Documentation', 'Finance', 'Security'],
     h2: 'Services',
-    lead: 'The list comes from the published catalog. Online: the host answered. No response: it did not answer in time. This is not an availability figure.',
+    lead: 'Online: the host answered. No response: it did not answer in time. This is not an availability figure.',
     searchLabel: 'Search services',
     placeholder: 'Search services…',
     clear: 'Clear search',
+    filtersLabel: 'Categories',
+    categories: {
+      all: 'All',
+      ai: 'AI',
+      finance: 'Finance',
+      security: 'Security',
+      docs: 'Documentation',
+      tools: 'Tools',
+      platform: 'Platform',
+      profile: 'Profile'
+    },
+    cols: {
+      status: 'Status',
+      service: 'Service',
+      host: 'Host',
+      category: 'Category',
+      stack: 'Stack',
+      actions: 'Actions'
+    },
+    open: 'Open',
+    noLink: 'No link',
+    githubLabel: 'Repository on GitHub',
+    count: '{n} services',
     emptyTitle: 'No results',
     emptyBefore: 'Nothing matches “',
     emptyAfter: '”.',
     reset: 'Show the directory',
-    hint: 'With a card focused, the arrow keys move the selection.',
+    hint: 'With a service focused, the arrow keys move the selection.',
     noscript: 'Without JavaScript the static directory stays available. The reachability check does not run.',
     footerLabel: 'Profiles',
     newTab: 'opens in a new tab',
     hubLabel: 'ATM Software Labs, hub',
+    pending: 'pending',
     checking: 'checking',
     online: 'online',
     offline: 'no response',
@@ -164,26 +185,47 @@ const LOCALES = {
     navLabel: 'Seccions',
     langLabel: 'Idioma',
     directory: 'Directori',
-    kicker: 'Directori',
+    kicker: 'Catàleg',
     h1: 'Serveis en producció',
     statement: 'IA, reescriptura, finances familiars, documentació i seguretat perimetral al domini trujillomingorance.com.',
-    phrases: ['directori de l’ecosistema', 'serveis en producció', 'eines que es poden operar'],
-    stackLabel: 'Àmbits',
-    stack: ['IA', 'Documentació', 'Finances', 'Seguretat'],
     h2: 'Serveis',
-    lead: 'La llista surt del catàleg publicat. En línia: l’amfitrió ha respost. Sense resposta: no ha respost a temps. No és una xifra de disponibilitat.',
+    lead: 'En línia: l’amfitrió ha respost. Sense resposta: no ha respost a temps. No és una xifra de disponibilitat.',
     searchLabel: 'Cercar un servei',
     placeholder: 'Cercar un servei…',
     clear: 'Netejar la cerca',
+    filtersLabel: 'Categories',
+    categories: {
+      all: 'Tots',
+      ai: 'IA',
+      finance: 'Finances',
+      security: 'Seguretat',
+      docs: 'Documentació',
+      tools: 'Eines',
+      platform: 'Plataforma',
+      profile: 'Perfil'
+    },
+    cols: {
+      status: 'Estat',
+      service: 'Servei',
+      host: 'Host',
+      category: 'Categoria',
+      stack: 'Stack',
+      actions: 'Accions'
+    },
+    open: 'Obre',
+    noLink: 'Sense enllaç',
+    githubLabel: 'Repositori a GitHub',
+    count: '{n} serveis',
     emptyTitle: 'Sense resultats',
     emptyBefore: 'Res no coincideix amb «',
     emptyAfter: '».',
     reset: 'Veure el directori',
-    hint: 'Amb el focus en una fitxa, les fletxes mouen la selecció.',
+    hint: 'Amb el focus en un servei, les fletxes mouen la selecció.',
     noscript: 'Sense JavaScript el directori estàtic continua disponible. La comprovació d’abast no s’executa.',
     footerLabel: 'Perfils',
     newTab: 's’obre en una pestanya nova',
     hubLabel: 'ATM Software Labs, hub',
+    pending: 'pendent',
     checking: 'comprovant',
     online: 'en línia',
     offline: 'sense resposta',
@@ -217,31 +259,69 @@ function json(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c');
 }
 
-function icon(name) {
-  return '<svg class="hub-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">' + (ICONS[name] || ICONS.generic) + '</svg>';
+function repoUrl(service) {
+  if (!service || service.repoPublic !== true || !service.repo) return '';
+  return GITHUB + '/' + service.repo;
 }
 
-function linkable(url) {
-  // The gateway root answers HTTP 404. Keep the service in the directory and do not link it.
-  return url !== 'https://api.trujillomingorance.com' && url !== 'https://api.trujillomingorance.com/';
-}
-
-function cards(locale) {
+function rows(localeId) {
+  const t = LOCALES[localeId];
   return SERVICES.map(function (service) {
-    var open = linkable(service.url)
-      ? '<a class="hub-card" data-hub-item data-id="' + esc(service.id) + '" data-keywords="' + esc(service.keywords) + '" href="' + esc(service.url) + '">'
-      : '<div class="hub-card" data-hub-item data-id="' + esc(service.id) + '" data-keywords="' + esc(service.keywords) + '" tabindex="0">';
-    var close = linkable(service.url) ? '</a>' : '</div>';
+    const repo = repoUrl(service);
+    const state = service.probe ? 'pending' : 'repo';
+    const stateLabel = service.probe ? t.pending : t.repo;
+    const open = service.linkable
+      ? '<a class="act act-open" data-hub-item href="' + esc(service.url) + '"><span class="act-label">' + esc(t.open) + '</span><span class="visually-hidden"> ' + esc(service.title) + '</span></a>'
+      : '<span class="act act-muted"><span class="act-label">' + esc(t.noLink) + '</span></span>';
+    const git = repo
+      ? '<a class="act act-git repo-link" href="' + esc(repo) + '" rel="noopener noreferrer" target="_blank" aria-label="' + esc(t.githubLabel) + '">' + GITHUB_ICON + '<span class="visually-hidden"> (' + esc(t.newTab) + ')</span></a>'
+      : '';
+    const tags = (service.stack || []).map(function (tag) {
+      return '<span class="tag">' + esc(tag) + '</span>';
+    }).join('');
+    const hubItem = service.linkable ? '' : ' data-hub-item tabindex="0"';
     return [
-      '          <li>',
-      '            ' + open,
-      '              <span class="hub-top">' + icon(service.icon) + '<span class="hub-host">' + esc(service.host) + '</span></span>',
-      '              <span class="hub-name">' + esc(service.title) + '</span>',
-      '              <span class="hub-desc" data-i18n-desc="' + esc(service.id) + '">' + esc(service.desc[locale]) + '</span>',
-      '            ' + close,
-      '          </li>'
+      '            <tr data-id="' + esc(service.id) + '" data-category="' + esc(service.category) + '" data-keywords="' + esc(service.keywords) + '" data-host="' + esc(service.probe ? service.host : '') + '" data-probe="' + (service.probe ? '1' : '0') + '"' + hubItem + '>',
+      '              <td class="svc-status" data-state="' + state + '"><span class="dot" aria-hidden="true"></span><span class="js-label">' + esc(stateLabel) + '</span></td>',
+      '              <td class="svc-main"><span class="svc-name">' + esc(service.title) + '</span><span class="svc-desc" data-i18n-desc="' + esc(service.id) + '">' + esc(service.desc[localeId]) + '</span></td>',
+      '              <td class="svc-host">' + esc(service.host) + '</td>',
+      '              <td class="svc-cat" data-cat="' + esc(service.category) + '">' + esc(t.categories[service.category] || service.category) + '</td>',
+      '              <td class="svc-stack">' + tags + '</td>',
+      '              <td class="svc-actions">' + open + git + '</td>',
+      '            </tr>'
     ].join('\n');
   }).join('\n');
+}
+
+function chips(locale) {
+  return CATEGORY_ORDER.map(function (id) {
+    const pressed = id === 'all' ? 'true' : 'false';
+    return '<button class="chip" type="button" data-category="' + id + '" aria-pressed="' + pressed + '">' + esc(locale.categories[id]) + '</button>';
+  }).join('');
+}
+
+function table(locale, tableId) {
+  return [
+    '        <div class="catalog-scroll">',
+    '          <div class="loadbar" aria-hidden="true"></div>',
+    '          <table class="catalog" id="' + tableId + '" aria-describedby="hub-hint" aria-busy="false">',
+    '            <caption class="visually-hidden">' + esc(locale.h2) + '</caption>',
+    '            <thead>',
+    '              <tr>',
+    '                <th scope="col" id="colStatus">' + esc(locale.cols.status) + '</th>',
+    '                <th scope="col" id="colService">' + esc(locale.cols.service) + '</th>',
+    '                <th scope="col" id="colHost">' + esc(locale.cols.host) + '</th>',
+    '                <th scope="col" id="colCategory">' + esc(locale.cols.category) + '</th>',
+    '                <th scope="col" id="colStack">' + esc(locale.cols.stack) + '</th>',
+    '                <th scope="col" id="colActions">' + esc(locale.cols.actions) + '</th>',
+    '              </tr>',
+    '            </thead>',
+    '            <tbody>',
+    rows(locale.id),
+    '            </tbody>',
+    '          </table>',
+    '        </div>'
+  ].join('\n');
 }
 
 function langNav(current) {
@@ -257,7 +337,6 @@ function header(locale, current) {
   var directoryHref = current === '404' ? '/#directorio' : '#directorio';
   return [
     '  <a class="skip" id="skipLink" href="#contenido">' + esc(locale.skip) + '</a>',
-    '  <div class="grid-overlay" aria-hidden="true"></div>',
     '  <header class="site-header">',
     '    <div class="wrap header-row">',
     '      <a class="brand" id="brandLink" href="' + esc(locale.hub) + '" aria-label="' + esc(locale.hubLabel) + '">',
@@ -363,42 +442,39 @@ function head(locale) {
 }
 
 function page(locale) {
-  const stack = locale.stack.map(function (item) { return '        <li>' + esc(item) + '</li>'; }).join('\n');
   return [
     head(locale),
     '<body>',
     header(locale, locale.id),
     '  <main id="contenido">',
     '    <section class="hero wrap" aria-labelledby="identidad">',
-    '      <p class="kicker"><span>01</span>' + esc(locale.kicker) + '</p>',
+    '      <p class="eyebrow">' + esc(locale.kicker) + '</p>',
     '      <h1 id="identidad">' + esc(locale.h1) + '</h1>',
     '      <p class="statement">' + esc(locale.statement) + '</p>',
-    '      <p class="term" aria-hidden="true"><span class="term-prompt">atm@labs:~$</span> <span id="term-line"></span><span class="caret"></span></p>',
-    '      <ul class="stack" aria-label="' + esc(locale.stackLabel) + '">',
-    stack,
-    '      </ul>',
-    '      <form class="search-row" role="search" action="#directorio">',
-    '        <label class="visually-hidden" for="projectSearch">' + esc(locale.searchLabel) + '</label>',
-    '        <input class="search-field" type="search" id="projectSearch" name="q" placeholder="' + esc(locale.placeholder) + '" autocomplete="off" spellcheck="false">',
-    '        <button id="clearSearch" class="btn" type="button" hidden>' + esc(locale.clear) + '</button>',
-    '      </form>',
     '    </section>',
-    '    <section class="block" id="directorio" aria-labelledby="directorio-titulo">',
-    '      <div class="wrap">',
-    '        <p class="section-kicker"><span>02</span>' + esc(locale.kicker) + '</p>',
-    '        <h2 id="directorio-titulo">' + esc(locale.h2) + '</h2>',
-    '        <p class="section-lead">' + esc(locale.lead) + '</p>',
-    '        <p class="visually-hidden" id="hub-hint">' + esc(locale.hint) + '</p>',
-    '        <ul class="hub-grid" id="hub" aria-describedby="hub-hint">',
-    cards(locale.id),
-    '        </ul>',
-    '        <div id="noResults" class="empty" hidden>',
-    '          <h3>' + esc(locale.emptyTitle) + '</h3>',
-    '          <p>' + esc(locale.emptyBefore) + '<span id="noResultsQuery"></span>' + esc(locale.emptyAfter) + '</p>',
-    '          <button class="btn" id="btnResetFilters" type="button">' + esc(locale.reset) + '</button>',
+    '    <section class="directory wrap" aria-labelledby="directorio-titulo">',
+    '      <h2 id="directorio-titulo" class="visually-hidden">' + esc(locale.h2) + '</h2>',
+    '      <div class="toolbar" id="directorio">',
+    '        <form class="search" role="search" action="#directorio">',
+    '          <label class="visually-hidden" for="projectSearch">' + esc(locale.searchLabel) + '</label>',
+    '          <input class="search-field" type="search" id="projectSearch" name="q" placeholder="' + esc(locale.placeholder) + '" autocomplete="off" spellcheck="false">',
+    '          <kbd class="search-kbd" aria-hidden="true">Ctrl K</kbd>',
+    '          <button id="clearSearch" class="search-clear" type="button" hidden aria-label="' + esc(locale.clear) + '">' + CLEAR_ICON + '</button>',
+    '        </form>',
+    '        <div class="filters" role="toolbar" aria-label="' + esc(locale.filtersLabel) + '">',
+    '          ' + chips(locale),
     '        </div>',
-    '        <noscript><p class="note">' + esc(locale.noscript) + '</p></noscript>',
+    '        <p class="count" id="catalogCount" aria-live="polite">' + esc(locale.count.replace('{n}', String(SERVICES.length))) + '</p>',
     '      </div>',
+    '      <p class="status-note">' + esc(locale.lead) + '</p>',
+    '      <p class="visually-hidden" id="hub-hint">' + esc(locale.hint) + '</p>',
+    table(locale, 'hub'),
+    '      <div id="noResults" class="empty" hidden>',
+    '        <h3>' + esc(locale.emptyTitle) + '</h3>',
+    '        <p>' + esc(locale.emptyBefore) + '<span id="noResultsQuery"></span>' + esc(locale.emptyAfter) + '</p>',
+    '        <button class="btn" id="btnResetFilters" type="button">' + esc(locale.reset) + '</button>',
+    '      </div>',
+    '      <noscript><p class="note">' + esc(locale.noscript) + '</p></noscript>',
     '    </section>',
     '  </main>',
     footer(locale),
@@ -436,7 +512,7 @@ function notFound() {
     header(locale, '404'),
     '  <main id="contenido">',
     '    <section class="hero wrap" id="diagnostico" aria-labelledby="errorTitle">',
-    '      <p class="kicker"><span>404</span>ATM Labs</p>',
+    '      <p class="eyebrow"><span>404</span> ATM Labs</p>',
     '      <h1 id="errorTitle">' + esc(ui.h1) + '</h1>',
     '      <p class="statement" id="errorDesc">' + esc(ui.desc) + '</p>',
     '      <dl class="facts">',
@@ -451,16 +527,12 @@ function notFound() {
     '        <button id="btnBack" class="btn" type="button" data-home="/">' + esc(ui.back) + '</button>',
     '      </div>',
     '    </section>',
-    '    <section class="block" id="directorio" aria-labelledby="servicesTitle">',
-    '      <div class="wrap">',
-    '        <p class="section-kicker"><span>02</span>' + esc(locale.directory) + '</p>',
-    '        <h2 id="servicesTitle">' + esc(ui.services) + '</h2>',
-    '        <p class="section-lead" id="servicesLead">' + esc(ui.servicesLead) + '</p>',
-    '        <p class="note" id="servicesCount">' + esc(ui.count.replace('{n}', String(SERVICES.length))) + '</p>',
-    '        <ul class="hub-grid" id="servicesGrid">',
-    cards('es'),
-    '        </ul>',
-    '      </div>',
+    '    <section class="directory wrap" id="directorio" aria-labelledby="servicesTitle">',
+    '      <h2 id="servicesTitle">' + esc(ui.services) + '</h2>',
+    '      <p class="status-note" id="servicesLead">' + esc(ui.servicesLead) + '</p>',
+    '      <p class="count" id="servicesCount">' + esc(ui.count.replace('{n}', String(SERVICES.length))) + '</p>',
+    '      <p class="visually-hidden" id="hub-hint">' + esc(locale.hint) + '</p>',
+    table(locale, 'servicesGrid'),
     '    </section>',
     '  </main>',
     footer(locale),
@@ -486,11 +558,16 @@ function copyScript() {
   ['es', 'en', 'ca'].forEach(function (id) {
     const locale = LOCALES[id];
     payload[id] = {
-      phrases: locale.phrases,
       checking: locale.checking,
       online: locale.online,
       offline: locale.offline,
+      pending: locale.pending,
       repo: locale.repo,
+      open: locale.open,
+      noLink: locale.noLink,
+      githubLabel: locale.githubLabel,
+      categories: locale.categories,
+      count: locale.count,
       descriptions: descriptions[id],
       notFound: locale.notFound,
       skip: locale.skip,
@@ -499,15 +576,13 @@ function copyScript() {
       directory: locale.directory,
       footerLabel: locale.footerLabel,
       hub: locale.hub,
-      hubLabel: locale.hubLabel
+      hubLabel: locale.hubLabel,
+      cols: locale.cols
     };
   });
-  const iconMap = { generic: ICONS.generic };
-  SERVICES.forEach(function (service) { iconMap[service.id] = ICONS[service.icon]; });
   return [
-    '/* Generated by scripts/build-pages.js. Locale copy and card icons. */',
+    '/* Generated by scripts/build-pages.js. Locale copy for the directory. */',
     'window.ATM_COPY = ' + json(payload) + ';',
-    'window.ATM_ICONS = ' + json(iconMap) + ';',
     ''
   ].join('\n');
 }
@@ -518,10 +593,17 @@ function write(file, contents) {
   fs.writeFileSync(target, contents);
 }
 
+function bumpManifest() {
+  const file = path.join(ROOT, 'public/site.webmanifest');
+  const manifest = fs.readFileSync(file, 'utf8').replace(/\?v=20261015[a-z0-9]*/g, '?v=' + VERSION);
+  fs.writeFileSync(file, manifest);
+}
+
 write('public/index.html', page(LOCALES.es));
 write('public/en/index.html', page(LOCALES.en));
 write('public/ca/index.html', page(LOCALES.ca));
 write('public/404.html', notFound());
 write('public/js/copy.js', copyScript());
+bumpManifest();
 
-console.log('Wrote es, en, ca, 404, and copy.js');
+console.log('Wrote es, en, ca, 404, and copy.js (' + SERVICES.length + ' services)');

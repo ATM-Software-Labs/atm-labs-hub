@@ -1,0 +1,300 @@
+{
+  "org": "ATM-Software-Labs",
+  "github": "https://github.com/ATM-Software-Labs",
+  "services": [
+    {
+      "id": "trujillo-ai-studio",
+      "title": "Trujillo AI Studio",
+      "subdomain": "ai",
+      "host": "ai.trujillomingorance.com",
+      "url": "https://ai.trujillomingorance.com",
+      "linkable": true,
+      "probe": true,
+      "category": "ai",
+      "keywords": "ia ai groq studio multimodal lpu trujillo-ai-studio",
+      "stack": ["Workers", "LPU"],
+      "desc": {
+        "es": "Estudio multimodal sobre LPU.",
+        "en": "Multimodal studio on LPU.",
+        "ca": "Estudi multimodal sobre LPU."
+      },
+      "repo": "trujillo-ai-studio",
+      "repoPublic": true,
+      "rank": 10
+    },
+    {
+      "id": "rewrite-ai",
+      "title": "Rewrite AI",
+      "subdomain": "rewrite",
+      "host": "rewrite.trujillomingorance.com",
+      "url": "https://rewrite.trujillomingorance.com",
+      "linkable": true,
+      "probe": true,
+      "category": "ai",
+      "keywords": "rewrite nlp groq lpu reescritura",
+      "stack": ["Workers", "NLP"],
+      "desc": {
+        "es": "Reescritura de texto con modelos de lenguaje.",
+        "en": "Text rewriting with language models.",
+        "ca": "Reescriptura de text amb models de llenguatge."
+      },
+      "repo": null,
+      "repoPublic": false,
+      "rank": 20
+    },
+    {
+      "id": "invest-platform",
+      "title": "INVEST Terminal",
+      "subdomain": "invest",
+      "host": "invest.trujillomingorance.com",
+      "url": "https://invest.trujillomingorance.com",
+      "linkable": true,
+      "probe": true,
+      "category": "finance",
+      "keywords": "invest cuantitativa fintech scoring terminal",
+      "stack": ["Workers", "Scoring"],
+      "desc": {
+        "es": "Terminal de finanzas cuantitativas.",
+        "en": "Quantitative finance terminal.",
+        "ca": "Terminal de finances quantitatives."
+      },
+      "repo": "invest-platform",
+      "repoPublic": true,
+      "rank": 30
+    },
+    {
+      "id": "savings-runway",
+      "title": "Savings & Runway",
+      "subdomain": "savings",
+      "host": "savings.trujillomingorance.com",
+      "url": "https://savings.trujillomingorance.com",
+      "linkable": true,
+      "probe": true,
+      "category": "finance",
+      "keywords": "savings finanzas zero-knowledge runway",
+      "stack": ["Local", "ZK"],
+      "desc": {
+        "es": "Finanzas locales de conocimiento cero.",
+        "en": "Local zero-knowledge finance.",
+        "ca": "Finances locals de coneixement zero."
+      },
+      "repo": null,
+      "repoPublic": false,
+      "rank": 40
+    },
+    {
+      "id": "focusguard",
+      "title": "FocusGuard & AdShield",
+      "subdomain": "focusguard",
+      "host": "focusguard.trujillomingorance.com",
+      "url": "https://focusguard.trujillomingorance.com",
+      "linkable": true,
+      "probe": true,
+      "category": "security",
+      "keywords": "focusguard adshield dns doh zero-trust",
+      "stack": ["Pages", "DoH"],
+      "desc": {
+        "es": "DNS filtrado sobre DoH.",
+        "en": "Filtered DNS over HTTPS.",
+        "ca": "DNS filtrat sobre DoH."
+      },
+      "repo": "focusguard-saas",
+      "repoPublic": true,
+      "rank": 50
+    },
+    {
+      "id": "api-gateway",
+      "title": "API Gateway",
+      "subdomain": "api",
+      "host": "api.trujillomingorance.com",
+      "url": "https://api.trujillomingorance.com",
+      "linkable": false,
+      "probe": true,
+      "category": "security",
+      "keywords": "api gateway proxy perimeter perimetro",
+      "stack": ["Proxy"],
+      "desc": {
+        "es": "Proxy central del perímetro.",
+        "en": "Central perimeter proxy.",
+        "ca": "Proxy central del perímetre."
+      },
+      "repo": null,
+      "repoPublic": false,
+      "rank": 60
+    },
+    {
+      "id": "open-sentinel",
+      "title": "Open Sentinel",
+      "subdomain": null,
+      "host": "github.com/ATM-Software-Labs/open-sentinel",
+      "url": "https://github.com/ATM-Software-Labs/open-sentinel",
+      "linkable": true,
+      "probe": false,
+      "category": "security",
+      "keywords": "open sentinel sdk security ciberseguridad",
+      "stack": ["SDK"],
+      "desc": {
+        "es": "SDK de ciberseguridad.",
+        "en": "Security SDK.",
+        "ca": "SDK de ciberseguretat."
+      },
+      "repo": "open-sentinel",
+      "repoPublic": true,
+      "rank": 70
+    },
+    {
+      "id": "trujillo-guides",
+      "title": "Engineering Guides",
+      "subdomain": "guides",
+      "host": "guides.trujillomingorance.com",
+      "url": "https://guides.trujillomingorance.com",
+      "linkable": true,
+      "probe": true,
+      "category": "docs",
+      "keywords": "guias guides runbooks devops documentacion",
+      "stack": ["Docs"],
+      "desc": {
+        "es": "Runbooks de ingeniería y operación.",
+        "en": "Engineering and operations runbooks.",
+        "ca": "Runbooks d'enginyeria i operació."
+      },
+      "repo": "trujillo-guides",
+      "repoPublic": true,
+      "rank": 80
+    },
+    {
+      "id": "atm-tools",
+      "title": "ATM Tools",
+      "subdomain": "tools",
+      "host": "tools.trujillomingorance.com",
+      "url": "https://tools.trujillomingorance.com",
+      "linkable": true,
+      "probe": true,
+      "category": "tools",
+      "keywords": "tools herramientas utilities utilidades",
+      "stack": ["Utilities"],
+      "desc": {
+        "es": "Utilidades web del laboratorio.",
+        "en": "Web utilities from the lab.",
+        "ca": "Utilitats web del laboratori."
+      },
+      "repo": "atm-tools",
+      "repoPublic": true,
+      "rank": 90
+    },
+    {
+      "id": "nutrifit",
+      "title": "NutriFit PWA",
+      "subdomain": "nutri",
+      "host": "nutri.trujillomingorance.com",
+      "url": "https://nutri.trujillomingorance.com",
+      "linkable": true,
+      "probe": true,
+      "category": "tools",
+      "keywords": "nutri fitness salud pwa vision visio",
+      "stack": ["PWA", "Vision"],
+      "desc": {
+        "es": "Registro de salud con visión.",
+        "en": "Health log with vision.",
+        "ca": "Registre de salut amb visió."
+      },
+      "repo": "nutrifit",
+      "repoPublic": true,
+      "rank": 100
+    },
+    {
+      "id": "alberto-portfolio",
+      "title": "Portfolio Profesional",
+      "subdomain": "alberto",
+      "host": "alberto.trujillomingorance.com",
+      "url": "https://alberto.trujillomingorance.com",
+      "linkable": true,
+      "probe": true,
+      "category": "profile",
+      "keywords": "portfolio alberto sysadmin security perfil",
+      "stack": ["Pages"],
+      "desc": {
+        "es": "Perfil de sistemas y seguridad.",
+        "en": "Systems and security profile.",
+        "ca": "Perfil de sistemes i seguretat."
+      },
+      "repo": "portfolio",
+      "repoPublic": true,
+      "rank": 110
+    },
+    {
+      "id": "labs",
+      "title": "Labs",
+      "subdomain": "labs",
+      "host": "labs.trujillomingorance.com",
+      "url": "https://labs.trujillomingorance.com",
+      "linkable": true,
+      "probe": true,
+      "category": "platform",
+      "keywords": "labs directorio hub atm-labs-hub catalogo",
+      "stack": ["Pages"],
+      "desc": {
+        "es": "Directorio de servicios en producción.",
+        "en": "Directory of services in production.",
+        "ca": "Directori de serveis en producció."
+      },
+      "repo": "atm-labs-hub",
+      "repoPublic": true,
+      "rank": 120
+    },
+    {
+      "id": "apex",
+      "title": "Apex",
+      "subdomain": "apex",
+      "host": "trujillomingorance.com",
+      "url": "https://trujillomingorance.com/",
+      "linkable": true,
+      "probe": true,
+      "category": "platform",
+      "keywords": "apex dominio raiz domain-root personal hub",
+      "stack": ["Pages"],
+      "desc": {
+        "es": "Página personal en el dominio raíz.",
+        "en": "Personal page on the apex domain.",
+        "ca": "Pàgina personal al domini arrel."
+      },
+      "repo": "domain-root",
+      "repoPublic": true,
+      "rank": 130
+    }
+  ],
+  "unlinked": [
+    {
+      "service": "Rewrite AI",
+      "subdomain": "rewrite",
+      "repo": "rewrite-ai",
+      "public": true,
+      "linked": false,
+      "reason": "The repository is public, but wrangler.toml, README, and package.json do not name rewrite.trujillomingorance.com."
+    },
+    {
+      "service": "Savings & Runway",
+      "subdomain": "savings",
+      "repo": "savings-runway",
+      "public": false,
+      "linked": false,
+      "reason": "Unauthenticated https://github.com/ATM-Software-Labs/savings-runway returns 404."
+    },
+    {
+      "service": "API Gateway",
+      "subdomain": "api",
+      "repo": null,
+      "public": false,
+      "linked": false,
+      "reason": "No public repository. The host root answers HTTP 404, so the row is listed and probed but not linked."
+    },
+    {
+      "service": "Charts",
+      "subdomain": "charts",
+      "repo": null,
+      "public": false,
+      "linked": false,
+      "reason": "No public repository. charts.trujillomingorance.com returns 404. Not listed in the directory."
+    }
+  ]
+}
