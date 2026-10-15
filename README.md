@@ -18,7 +18,7 @@ Locales: Spanish at `/` (default), English at `/en/`, Catalan at `/ca/`. The lan
 
 Shared tokens are copied from [brand/tokens.css](https://trujillomingorance.com/brand/tokens.css) into `public/css/tokens.css`. Labs keeps short aliases (`--bg`, `--cyan`) on top of the published `--atm-*` names.
 
-The labs mark (white line art, cyan lower A, LABS tag) is copied from [brand/labs](https://trujillomingorance.com/brand/labs/): `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `assets/og.png`, `assets/lockup.svg`, and `assets/banner.png`. Pages reference icons, the header lockup, and the Open Graph image with `?v=20261015d`. The header still links back to the hub. The cyan hairline and the LABS tag keep this site distinct from the apex.
+The labs mark (white line art, cyan lower A, LABS tag) is copied from [brand/labs](https://trujillomingorance.com/brand/labs/): `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `assets/og.png`, `assets/lockup.svg`, and `assets/banner.png`. Pages reference icons, the header lockup, and the Open Graph image with `?v=20261015d`. The `.ico` link is `/assets/favicon.ico` because the zone cache ignores query strings on `/favicon.ico`. The header still links back to the hub. The cyan hairline and the LABS tag keep this site distinct from the apex.
 
 ## Repository
 

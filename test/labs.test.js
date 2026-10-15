@@ -98,7 +98,7 @@ test('labs brand files are local copies of the published mark', function () {
   assert.equal(fs.existsSync(path.join(root, 'public/assets/og-labs.png')), false);
   const manifest = JSON.parse(read('public/site.webmanifest'));
   const srcs = manifest.icons.map(function (icon) { return icon.src; });
-  ['/favicon.svg?v=20261015d', '/icon-192.png?v=20261015d', '/icon-512.png?v=20261015d', '/apple-touch-icon.png?v=20261015d'].forEach(function (src) {
+  ['/favicon.svg?v=20261015d', '/assets/favicon.ico?v=20261015d', '/icon-192.png?v=20261015d', '/icon-512.png?v=20261015d', '/apple-touch-icon.png?v=20261015d'].forEach(function (src) {
     assert.ok(srcs.includes(src), src);
   });
   const notFound = read('public/404.html');
@@ -155,7 +155,7 @@ test('each locale has hreflang, hub header, footer, and translated meta', functi
     assert.match(html, /og:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261015d"/);
     assert.match(html, /twitter:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261015d"/);
     assert.match(html, /href="\/favicon\.svg\?v=20261015d"/);
-    assert.match(html, /href="\/favicon\.ico\?v=20261015d"/);
+    assert.match(html, /href="\/assets\/favicon\.ico\?v=20261015d"/);
     assert.match(html, /href="\/apple-touch-icon\.png\?v=20261015d"/);
     assert.doesNotMatch(html, /og-labs\.png/);
     assert.doesNotMatch(html, /trujillomingorance\.com\/brand\//);
