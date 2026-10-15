@@ -1,81 +1,29 @@
-/* Shared Trujillo tokens — same contract as Guides / AI Studio. */
-:root,
-[data-theme="dark"] {
-  --bg: #000000;
-  --bg-elev: #0a0a0a;
-  --bg-card: #0a0a0a;
-  --bg-color: #000000;
-  --card-bg: #0a0a0a;
-  --card-hover: #111111;
-  --card-border: rgba(255, 255, 255, 0.1);
-  --card-border-hover: rgba(255, 255, 255, 0.2);
-  --line: rgba(255, 255, 255, 0.08);
-  --line-strong: rgba(255, 255, 255, 0.14);
-  --text: #ededed;
-  --text-primary: #ededed;
-  --text-main: #ededed;
-  --muted: #888888;
-  --text-secondary: #888888;
-  --dim: #666666;
-  --text-muted: #666666;
-  --white: #ffffff;
-  --accent: #ffffff;
-  --accent-cyan: #ffffff;
-  --accent-pill: #ffffff;
-  --accent-pill-text: #000000;
-  --green: #107c41;
-  --success: #107c41;
-  --success-bg: rgba(16, 124, 65, 0.12);
-  --purple: #818cf8;
-  --indigo: #6366f1;
-  --fill-subtle: rgba(255, 255, 255, 0.05);
-  --fill-hover: rgba(255, 255, 255, 0.1);
-  --skeleton-a: rgba(255, 255, 255, 0.05);
-  --skeleton-b: rgba(255, 255, 255, 0.12);
-  --shadow-card: 0 18px 40px -18px rgba(0, 0, 0, 0.55);
-  --header-bg: rgba(8, 12, 20, 0.85);
-  --header-border: rgba(255, 255, 255, 0.08);
-  --font: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-main: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --serif: Newsreader, "Iowan Old Style", Georgia, serif;
-  --mono: "Cascadia Code", "IBM Plex Mono", ui-monospace, monospace;
-  --font-mono: "Cascadia Code", "IBM Plex Mono", ui-monospace, monospace;
-  --radius-lg: 16px;
-  --radius-md: 10px;
-  --radius-sm: 6px;
-  --transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  --header-height: 64px;
+/* ATM Labs design tokens.
+   https://trujillomingorance.com/brand/tokens.css was not published on 2026-10-15
+   (HTTP 302 to https://labs.trujillomingorance.com/). These values are replicated
+   from the live hub stylesheet:
+   https://trujillomingorance.com/css/hub.css?v=20261015b
+   Permanently dark. Slate surfaces, emerald and cyan accents. */
+
+:root {
+  --bg: #07080b;
+  --bg-raise: #0d1117;
+  --line: rgba(232, 238, 245, 0.1);
+  --line-strong: rgba(232, 238, 245, 0.2);
+  --text: #f4f7fb;
+  --body: #c5d0dc;
+  --muted: #9aabbd;
+  --emerald: #8fe8c4;
+  --cyan: #9ad7e6;
+  --soon: #e4d2b0;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --header: 4.5rem;
+  --wrap: 70rem;
+  --step--1: 0.8125rem;
+  --step-0: 1.0625rem;
+  --step-1: clamp(1.2rem, 2.1vw, 1.45rem);
+  --step-2: clamp(1.65rem, 2.8vw, 2.05rem);
+  --step-hero: clamp(2.55rem, 6.2vw, 4.5rem);
+  color-scheme: dark;
 }
-
-[data-theme="light"] {
-  --bg: #ffffff;
-  --bg-elev: #f8fafc;
-  --bg-card: #ffffff;
-  --bg-color: #f8fafc;
-  --card-bg: #ffffff;
-  --card-hover: #f1f5f9;
-  --card-border: #e2e8f0;
-  --card-border-hover: #cbd5e1;
-  --line: rgba(15, 23, 42, 0.1);
-  --line-strong: rgba(15, 23, 42, 0.18);
-  --text: #0f172a;
-  --text-primary: #0f172a;
-  --text-main: #0f172a;
-  --muted: #475569;
-  --text-secondary: #475569;
-  --dim: #64748b;
-  --text-muted: #64748b;
-  --white: #ffffff;
-  --accent-pill: #0f172a;
-  --accent-pill-text: #ffffff;
-  --fill-subtle: rgba(15, 23, 42, 0.06);
-  --fill-hover: rgba(15, 23, 42, 0.12);
-  --skeleton-a: rgba(15, 23, 42, 0.06);
-  --skeleton-b: rgba(15, 23, 42, 0.15);
-  --shadow-card: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
-  --header-bg: rgba(255, 255, 255, 0.85);
-  --header-border: #e2e8f0;
-}
-
-
-

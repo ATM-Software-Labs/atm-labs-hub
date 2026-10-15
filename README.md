@@ -1,113 +1,53 @@
-# ATM Software Labs — Ecosystem Hub
+# ATM Software Labs — Labs
 
-**Production Gateway:** [labs.trujillomingorance.com](https://labs.trujillomingorance.com)
+**Production:** [labs.trujillomingorance.com](https://labs.trujillomingorance.com)
 
-The central directory and navigation portal for the services, tools, and technical resources deployed across the `trujillomingorance.com` ecosystem.
+Directory of the services published on `trujillomingorance.com`. The visual system matches the hub at [trujillomingorance.com](https://trujillomingorance.com): permanently dark, Inter and JetBrains Mono, slate surfaces, emerald and cyan accents.
 
----
+Locales: Spanish at `/` (default), English at `/en/`, Catalan at `/ca/`. The language switcher stores `atm_lang_choice`.
 
-## Active Deployments & Showcase
+## Pages
 
-### 1. Ecosystem Hub (Labs)
+| Path | Role |
+| --- | --- |
+| `/` | Spanish directory |
+| `/en/` | English directory |
+| `/ca/` | Catalan directory |
+| `/api/projects` | Published catalog (Pages Function) |
+| `/api/auth/*` | Auth proxy to `ai.trujillomingorance.com` |
 
-* **Endpoint:** [labs.trujillomingorance.com](https://labs.trujillomingorance.com)
-* **Architecture:** Central service directory with client-side fuzzy search and Mica corporate styling.
-* **Preview:**
+`https://trujillomingorance.com/brand/tokens.css` was not published when this version shipped. The same tokens from the live hub stylesheet are vendored in `public/css/tokens.css`.
 
----
+`https://trujillomingorance.com/brand/favicon.svg` (and the matching `.ico`, apple-touch, and 192/512 icons) was not published yet. Labs vendors the icons currently served from the apex root.
 
-### 2. Rewrite AI
+## Repository
 
-* **Endpoint:** [rewrite.trujillomingorance.com](https://rewrite.trujillomingorance.com)
-* **Architecture:** Editorial rewriter and humanizer with real-time edge streaming.
-* **Preview:**
-
----
-
-### 3. FocusGuard
-
-* **Endpoint:** [focusguard.trujillomingorance.com](https://focusguard.trujillomingorance.com)
-* **Architecture:** Zero-Trust DNS-over-HTTPS filtering, ad-blocking, and parental controls.
-* **Preview:**
-
----
-
-### 4. Trujillo AI Studio
-
-* **Endpoint:** [ai.trujillomingorance.com](https://ai.trujillomingorance.com)
-* **Architecture:** Multimodal AI assistant powered by Groq LPU inference and Cloudflare Workers.
-* **Preview:**
-
----
-
-### 5. ATM Technical Guides & Engineering Portfolio
-
-* **Guides Endpoint:** [guides.trujillomingorance.com](https://guides.trujillomingorance.com) — In-depth engineering runbooks, mail architectures, and technical docs.
-* **Personal Page Endpoint:** [alberto.trujillomingorance.com](https://www.google.com/search?q=https://alberto.trujillomingorance.com) — Personal portfolio, skills showcase, and systems engineering background.
-
----
-
-## System Architecture and Design
-
-* **Deployment Platform:** Cloudflare Pages running on an anycast edge network.
-* **Visual Architecture:** Obsidian navy background (#080c14) with semi-translucent mica acrylic cards (rgba(15, 22, 36, 0.78)), Microsoft technical blue accents (#0078d4), and clear typography using system font stacks.
-* **Search and Filtering:** Pure client-side fuzzy search with zero runtime overhead, instant category filtering, and responsive mobile navigation.
-* **Reliability:** Direct edge delivery with near-zero latency and high uptime.
-
----
-
-## Repository Structure
 ```
-atm-labs-hub/
-
-├── .github/
-
-│   └── workflows/
-
-│       └── ci.yml        # Asset integrity and build verification
-
-├── public/               # Static web directory deployed to Cloudflare Pages
-
-│   ├── 404.html          # Diagnostic 404 handler matching corporate styling
-
-│   ├── index.html        # Main service directory with client-side search
-
-│   └── styles.css        # Design tokens, acrylic layering, and responsive layout
-
-├── package.json          # Project manifest and deployment scripts
-
-└── wrangler.toml         # Cloudflare Pages deployment configuration
+public/                 Cloudflare Pages output
+  index.html            es
+  en/index.html         en
+  ca/index.html         ca
+  404.html
+  css/tokens.css        vendored hub tokens
+  css/labs.css          layout, components, motion
+  js/                   directory, language memory, 404
+  assets/fonts/         self-hosted Inter and JetBrains Mono (SIL OFL)
+functions/              Pages Functions
+scripts/build-pages.js  regenerates the locale pages
+test/                   node:test
 ```
----
 
-## Branching Model
+## Develop
 
-* **main:** Production branch. Automatically deployed to [labs.trujillomingorance.com](https://labs.trujillomingorance.com).
-* **develop:** Staging and active integration branch. Used to test directory changes and style tweaks.
+```bash
+npm test
+npm run build
+```
 
----
+`main` deploys to [labs.trujillomingorance.com](https://labs.trujillomingorance.com).
 
-## Deployment Instructions
+## Author
 
-To deploy to Cloudflare Pages using Wrangler:
+Alberto Trujillo Mingorance · [ATM Software Labs](https://github.com/ATM-Software-Labs) · [LinkedIn](https://www.linkedin.com/in/alberto-trujillo-mingorance-288237266)
 
-1. Authenticate with Cloudflare:
-npx wrangler login
-2. Deploy the public directory directly to Cloudflare Pages:
-npx wrangler pages deploy public --project-name atm-labs-hub --commit-dirty=true
-
----
-
-## Author & Organization
-
-* **Organization:** [ATM Software Labs](https://www.google.com/search?q=https://github.com/atm-software-labs)
-* **LinkedIn Org:** [ATM Software Labs](https://www.linkedin.com/company/atm-software-labs)
-* **Author:** Alberto Trujillo Mingorance
-* **Personal Website:** [alberto.trujillomingorance.com](https://www.google.com/search?q=https://alberto.trujillomingorance.com)
-* **Personal GitHub:** [@atrumin16](https://github.com/atrumin16)
-
----
-
-## License
-
-Copyright (c) 2026 Alberto Trujillo Mingorance (ATM Software Labs). Released under the MIT License.
+Copyright (c) 2026 Alberto Trujillo Mingorance (ATM Software Labs). MIT License.

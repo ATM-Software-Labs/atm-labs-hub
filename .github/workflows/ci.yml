@@ -15,9 +15,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Verify Public Structure
-        run: |
-          test -f public/index.html || exit 1
-          test -f public/404.html || exit 1
-          test -f public/styles.css || exit 1
-          echo "All public web assets verified successfully."
+      - name: Verify pages and behavior
+        run: npm test

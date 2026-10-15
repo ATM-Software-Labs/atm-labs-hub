@@ -4,6 +4,8 @@
   "private": true,
   "description": "Central ecosystem hub and service directory for trujillomingorance.com",
   "scripts": {
+    "build": "node scripts/build-pages.js",
+    "test": "node scripts/build-pages.js && node --test",
     "deploy": "npx wrangler pages deploy public --project-name=atm-labs-hub --commit-dirty=true"
   },
   "author": "Alberto Trujillo Mingorance",
