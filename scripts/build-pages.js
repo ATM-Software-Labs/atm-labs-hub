@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const VERSION = '20261015f';
+const VERSION = '20261017a';
 const ORIGIN = 'https://labs.trujillomingorance.com';
 const GITHUB = 'https://github.com/ATM-Software-Labs';
 const LINKEDIN = 'https://www.linkedin.com/in/alberto-trujillo-mingorance-288237266';
@@ -406,8 +406,8 @@ function head(locale) {
     '  <meta name="twitter:title" content="' + esc(locale.title) + '">',
     '  <meta name="twitter:description" content="' + esc(locale.description) + '">',
     '  <meta name="twitter:image" content="' + ORIGIN + '/assets/og.png?v=' + VERSION + '">',
-    '  <link rel="icon" href="/assets/favicon.ico?v=' + VERSION + '" sizes="32x32">',
     '  <link rel="icon" href="/favicon.svg?v=' + VERSION + '" type="image/svg+xml">',
+    '  <link rel="icon" href="/assets/favicon.ico?v=' + VERSION + '" sizes="16x16 32x32 48x48">',
     '  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=' + VERSION + '">',
     '  <link rel="manifest" href="/site.webmanifest?v=' + VERSION + '">',
     '  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>',
@@ -501,8 +501,8 @@ function notFound() {
     '  <meta name="robots" content="noindex, nofollow">',
     '  <meta name="color-scheme" content="dark">',
     '  <meta name="theme-color" content="#07080b">',
-    '  <link rel="icon" href="/assets/favicon.ico?v=' + VERSION + '" sizes="32x32">',
     '  <link rel="icon" href="/favicon.svg?v=' + VERSION + '" type="image/svg+xml">',
+    '  <link rel="icon" href="/assets/favicon.ico?v=' + VERSION + '" sizes="16x16 32x32 48x48">',
     '  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=' + VERSION + '">',
     '  <link rel="stylesheet" href="/css/tokens.css?v=' + VERSION + '">',
     '  <link rel="stylesheet" href="/css/labs.css?v=' + VERSION + '">',
