@@ -125,20 +125,31 @@ a { color: inherit; }
 .brand {
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.5rem;
-  margin-left: -0.5rem;
-  border-radius: 8px;
+  gap: 0.75rem;
+  padding: 0.35rem 0.65rem 0.35rem 0.35rem;
+  margin-left: -0.35rem;
+  border-radius: 10px;
   text-decoration: none;
   opacity: 0.95;
   transition: all 0.2s ease;
 }
 .brand:hover {
   opacity: 1;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.05);
+}
+.brand-avatar {
+  display: block;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 8px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
 }
 .brand-lockup {
   display: block;
-  height: 1.85rem;
+  height: 1.55rem;
   width: auto;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
 }
@@ -279,12 +290,13 @@ h3 {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem 1rem;
-  padding: 0.85rem 1rem;
-  background: rgba(15, 23, 42, 0.5);
+  padding: 0.75rem 1rem;
+  background: rgba(13, 17, 23, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
 }
 
 .search {
@@ -297,9 +309,9 @@ h3 {
   width: 100%;
   height: 2.35rem;
   margin: 0;
-  padding: 0 4.5rem 0 2.25rem;
-  background: rgba(3, 7, 18, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0 4.5rem 0 2.35rem;
+  background: rgba(5, 7, 12, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 9px;
   color: #f8fafc;
   font-family: var(--sans);
@@ -309,11 +321,11 @@ h3 {
 .search::before {
   content: "";
   position: absolute;
-  left: 0.75rem;
+  left: 0.8rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 0.9rem;
-  height: 0.9rem;
+  width: 0.95rem;
+  height: 0.95rem;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2364748b'%3E%3Cpath fill-rule='evenodd' d='M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z' clip-rule='evenodd'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-size: contain;
@@ -321,7 +333,7 @@ h3 {
 }
 .search-field:focus {
   border-color: #38bdf8;
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(13, 17, 23, 0.95);
   box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
 }
 .search-field::placeholder { color: #64748b; opacity: 1; }
@@ -336,8 +348,8 @@ h3 {
 }
 .search-kbd {
   right: 0.5rem;
-  padding: 0.15rem 0.4rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.15rem 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.04);
   color: #64748b;
@@ -377,15 +389,15 @@ h3 {
 
 .chip {
   appearance: none;
-  height: 2rem;
+  height: 2.1rem;
   margin: 0;
-  padding: 0 0.75rem;
+  padding: 0 0.85rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.02);
   color: #94a3b8;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   cursor: pointer;
@@ -394,13 +406,13 @@ h3 {
 .chip:hover {
   color: #f8fafc;
   border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
 }
 .chip[aria-pressed="true"] {
   color: #ffffff;
   border-color: rgba(56, 189, 248, 0.5);
   background: rgba(56, 189, 248, 0.12);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.18);
 }
 
 .count,

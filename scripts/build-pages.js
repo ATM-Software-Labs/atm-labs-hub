@@ -340,6 +340,7 @@ function header(locale, current) {
     '  <header class="site-header">',
     '    <div class="wrap header-row">',
     '      <a class="brand" id="brandLink" href="' + esc(locale.hub) + '" aria-label="' + esc(locale.hubLabel) + '">',
+    '        <img class="brand-avatar" src="/avatar.png?v=' + VERSION + '" alt="ATM" width="30" height="30">',
     '        <img class="brand-lockup" src="/assets/lockup.svg?v=' + VERSION + '" alt="" width="710" height="168">',
     '      </a>',
     '      <div class="header-tools">',
