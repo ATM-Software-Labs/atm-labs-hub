@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const VERSION = '20261017a';
+const VERSION = '20261018a';
 const ORIGIN = 'https://labs.trujillomingorance.com';
 const GITHUB = 'https://github.com/ATM-Software-Labs';
 const LINKEDIN = 'https://www.linkedin.com/in/alberto-trujillo-mingorance-288237266';
@@ -408,6 +408,8 @@ function head(locale) {
     '  <meta name="twitter:description" content="' + esc(locale.description) + '">',
     '  <meta name="twitter:image" content="' + ORIGIN + '/assets/og.png?v=' + VERSION + '">',
     '  <link rel="icon" href="/favicon.svg?v=' + VERSION + '" type="image/svg+xml">',
+    '  <link rel="icon" href="/favicon.ico?v=' + VERSION + '" sizes="any">',
+    '  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=' + VERSION + '">',
     '  <link rel="icon" href="/assets/favicon.ico?v=' + VERSION + '" sizes="16x16 32x32 48x48">',
     '  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=' + VERSION + '">',
     '  <link rel="manifest" href="/site.webmanifest?v=' + VERSION + '">',
@@ -508,6 +510,8 @@ function notFound() {
     '  <meta name="color-scheme" content="dark">',
     '  <meta name="theme-color" content="#07080b">',
     '  <link rel="icon" href="/favicon.svg?v=' + VERSION + '" type="image/svg+xml">',
+    '  <link rel="icon" href="/favicon.ico?v=' + VERSION + '" sizes="any">',
+    '  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=' + VERSION + '">',
     '  <link rel="icon" href="/assets/favicon.ico?v=' + VERSION + '" sizes="16x16 32x32 48x48">',
     '  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=' + VERSION + '">',
     '  <link rel="stylesheet" href="/css/tokens.css?v=' + VERSION + '">',
@@ -601,7 +605,7 @@ function write(file, contents) {
 
 function bumpManifest() {
   const file = path.join(ROOT, 'public/site.webmanifest');
-  const manifest = fs.readFileSync(file, 'utf8').replace(/\?v=20261015[a-z0-9]*/g, '?v=' + VERSION);
+  const manifest = fs.readFileSync(file, 'utf8').replace(/\?v=\d{8}[a-z0-9]*/g, '?v=' + VERSION);
   fs.writeFileSync(file, manifest);
 }
 

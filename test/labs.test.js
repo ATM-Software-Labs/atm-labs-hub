@@ -128,12 +128,12 @@ test('labs brand files are local copies of the published mark', function () {
   assert.equal(fs.existsSync(path.join(root, 'public/assets/og-labs.png')), false);
   const manifest = JSON.parse(read('public/site.webmanifest'));
   const srcs = manifest.icons.map(function (icon) { return icon.src; });
-  ['/favicon.svg?v=20261017a', '/assets/favicon.ico?v=20261017a', '/icon-192.png?v=20261017a', '/icon-512.png?v=20261017a', '/apple-touch-icon.png?v=20261017a'].forEach(function (src) {
+  ['/favicon.svg?v=20261018a', '/assets/favicon.ico?v=20261018a', '/icon-192.png?v=20261018a', '/icon-512.png?v=20261018a', '/apple-touch-icon.png?v=20261018a'].forEach(function (src) {
     assert.ok(srcs.includes(src), src);
   });
   const notFound = read('public/404.html');
-  assert.match(notFound, /src="\/assets\/lockup\.svg\?v=20261017a"/);
-  assert.match(notFound, /href="\/favicon\.svg\?v=20261017a"/);
+  assert.match(notFound, /src="\/assets\/lockup\.svg\?v=20261018a"/);
+  assert.match(notFound, /href="\/favicon\.svg\?v=20261018a"/);
   const css = read('public/css/labs.css');
   assert.doesNotMatch(css, /#9ad7e6|#8fe8c4|#12343c|154,\s*215,\s*230|143,\s*232,\s*196|var\(--cyan\)|var\(--emerald\)/);
 });
@@ -188,12 +188,12 @@ test('each locale has hreflang, hub header, footer, and translated meta', functi
     assert.match(html, new RegExp('property="og:title" content="[^"]+' + (id === 'en' ? 'ecosystem' : 'Ecosistema') ));
     assert.match(html, new RegExp('<h1 id="identidad">' + spec.h1 + '</h1>'));
     assert.match(html, new RegExp('class="brand" id="brandLink" href="' + spec.href.replace(/[.]/g, '\\.') + '"'));
-    assert.match(html, /src="\/assets\/lockup\.svg\?v=20261017a"/);
-    assert.match(html, /og:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261017a"/);
-    assert.match(html, /twitter:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261017a"/);
-    assert.match(html, /href="\/favicon\.svg\?v=20261017a"/);
-    assert.match(html, /href="\/assets\/favicon\.ico\?v=20261017a"/);
-    assert.match(html, /href="\/apple-touch-icon\.png\?v=20261017a"/);
+    assert.match(html, /src="\/assets\/lockup\.svg\?v=20261018a"/);
+    assert.match(html, /og:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261018a"/);
+    assert.match(html, /twitter:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261018a"/);
+    assert.match(html, /href="\/favicon\.svg\?v=20261018a"/);
+    assert.match(html, /href="\/assets\/favicon\.ico\?v=20261018a"/);
+    assert.match(html, /href="\/apple-touch-icon\.png\?v=20261018a"/);
     assert.match(html, /class="search-clear"/);
     assert.match(html, /data-category="ai"/);
     assert.doesNotMatch(html, /atm@labs/);

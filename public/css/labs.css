@@ -301,15 +301,15 @@ h3 {
 
 .search {
   position: relative;
-  flex: 1 1 18rem;
-  min-width: min(100%, 18rem);
+  flex: 0 1 15.5rem;
+  min-width: min(100%, 12rem);
 }
 
 .search-field {
   width: 100%;
   height: 2.35rem;
   margin: 0;
-  padding: 0 4.5rem 0 2.35rem;
+  padding: 0 4rem 0 2.35rem;
   background: rgba(5, 7, 12, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 9px;
@@ -391,7 +391,7 @@ h3 {
   appearance: none;
   height: 2.1rem;
   margin: 0;
-  padding: 0 0.85rem;
+  padding: 0 0.7rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.02);
@@ -520,6 +520,13 @@ h3 {
   display: block;
   padding: 0;
   border: 0;
+}
+.catalog td.svc-status,
+.catalog td.svc-actions {
+  display: flex;
+}
+.catalog td.svc-status {
+  justify-content: flex-start;
 }
 
 /* Top bar de la tarjeta: Estado y Categoría */
