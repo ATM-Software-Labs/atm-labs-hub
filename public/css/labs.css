@@ -137,21 +137,12 @@ a { color: inherit; }
   opacity: 1;
   background: rgba(255, 255, 255, 0.05);
 }
-.brand-avatar {
-  display: block;
-  width: 1.85rem;
-  height: 1.85rem;
-  border-radius: 8px;
-  background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-  flex-shrink: 0;
-}
-.brand-lockup {
-  display: block;
-  height: 1.55rem;
-  width: auto;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+.brand-name {
+  color: #f8fafc;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .site-nav,
