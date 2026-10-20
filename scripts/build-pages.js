@@ -2,6 +2,8 @@
 'use strict';
 
 const fs = require('fs');
+// Critical CSS is inlined so the first paint does not wait on two stylesheet requests (public/css stays the source).
+const INLINE_CSS = ['tokens.css', 'labs.css'].map(function (f) { return require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'css', f), 'utf8'); }).join('\n').replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s*\n\s*/g, '\n');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
@@ -414,9 +416,8 @@ function head(locale) {
     '  <link rel="manifest" href="/site.webmanifest?v=' + VERSION + '">',
     '  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>',
     '  <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>',
-    '  <link rel="stylesheet" href="/css/tokens.css?v=' + VERSION + '">',
-    '  <link rel="stylesheet" href="/css/labs.css?v=' + VERSION + '">',
-    '  <meta http-equiv="Content-Security-Policy" content="default-src &#39;self&#39;; script-src &#39;self&#39; &#39;unsafe-inline&#39;; style-src &#39;self&#39; &#39;unsafe-inline&#39;; img-src &#39;self&#39; data:; font-src &#39;self&#39;; connect-src &#39;self&#39; https://trujillomingorance.com https://*.trujillomingorance.com; base-uri &#39;self&#39;; form-action &#39;self&#39;; object-src &#39;none&#39;">',
+    '  <style>' + INLINE_CSS + '</style>',
+    '  <meta http-equiv="Content-Security-Policy" content="default-src &#39;self&#39;; script-src &#39;self&#39; &#39;unsafe-inline&#39; https://static.cloudflareinsights.com; style-src &#39;self&#39; &#39;unsafe-inline&#39;; img-src &#39;self&#39; data:; font-src &#39;self&#39;; connect-src &#39;self&#39; https://trujillomingorance.com https://*.trujillomingorance.com https://cloudflareinsights.com; base-uri &#39;self&#39;; form-action &#39;self&#39;; object-src &#39;none&#39;">',
     boot.trimEnd(),
     '  <script type="application/ld+json">',
     json({
@@ -451,7 +452,7 @@ function page(locale) {
     '  <main id="contenido">',
     '    <section class="hero wrap" aria-labelledby="identidad">',
     '      <div class="hero-brand">',
-    '        <img class="hero-avatar" src="/avatar.png?v=' + VERSION + '" alt="ATM Software Labs" width="56" height="56">',
+    '        <img class="hero-avatar" src="/assets/avatar-112.webp?v=' + VERSION + '" alt="ATM Software Labs" width="56" height="56">',
     '        <div class="hero-copy">',
     '          <p class="eyebrow">' + esc(locale.kicker) + '</p>',
     '          <h1 id="identidad">' + esc(locale.h1) + '</h1>',
@@ -513,9 +514,8 @@ function notFound() {
     '  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=' + VERSION + '">',
     '  <link rel="icon" href="/assets/favicon.ico?v=' + VERSION + '" sizes="16x16 32x32 48x48">',
     '  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=' + VERSION + '">',
-    '  <link rel="stylesheet" href="/css/tokens.css?v=' + VERSION + '">',
-    '  <link rel="stylesheet" href="/css/labs.css?v=' + VERSION + '">',
-    '  <meta http-equiv="Content-Security-Policy" content="default-src &#39;self&#39;; script-src &#39;self&#39; &#39;unsafe-inline&#39;; style-src &#39;self&#39; &#39;unsafe-inline&#39;; img-src &#39;self&#39; data:; font-src &#39;self&#39;; connect-src &#39;self&#39; https://trujillomingorance.com https://*.trujillomingorance.com; base-uri &#39;self&#39;; form-action &#39;self&#39;; object-src &#39;none&#39;">',
+    '  <style>' + INLINE_CSS + '</style>',
+    '  <meta http-equiv="Content-Security-Policy" content="default-src &#39;self&#39;; script-src &#39;self&#39; &#39;unsafe-inline&#39; https://static.cloudflareinsights.com; style-src &#39;self&#39; &#39;unsafe-inline&#39;; img-src &#39;self&#39; data:; font-src &#39;self&#39;; connect-src &#39;self&#39; https://trujillomingorance.com https://*.trujillomingorance.com https://cloudflareinsights.com; base-uri &#39;self&#39;; form-action &#39;self&#39;; object-src &#39;none&#39;">',
     '</head>',
     '<body data-page="404">',
     header(locale, '404'),

@@ -62,7 +62,7 @@
     var controller = new AbortController();
     var timer = setTimeout(function () { controller.abort(); }, TIMEOUT_MS);
     return fetch('https://' + host + '/', {
-      method: 'HEAD',
+      method: 'GET',
       mode: 'no-cors',
       cache: 'no-store',
       redirect: 'follow',
