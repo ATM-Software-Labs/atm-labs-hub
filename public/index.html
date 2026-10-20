@@ -894,6 +894,18 @@ scroll-behavior: auto !important;
 50% { transform: scaleX(0.55); transform-origin: left center; }
 100% { transform: scaleX(0.15); transform-origin: right center; }
 }
+.atm-net{border-top:1px solid color-mix(in srgb,currentColor 14%,transparent);margin-top:0;padding:18px 0 22px;font-family:var(--atm-font-sans,Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif);font-size:13px;line-height:1.5;text-align:left}
+.atm-net__in{box-sizing:border-box;width:min(70rem,calc(100% - 2.5rem));margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px}
+.atm-net a{color:inherit;text-decoration:none}
+.atm-net__brand{font-family:var(--atm-font-mono,"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;padding:6px 0}
+.atm-net__sites{display:flex;flex-wrap:wrap;gap:0 2px;margin:0;padding:0;list-style:none;flex:1 1 auto}
+.atm-net__sites a{display:inline-block;padding:6px 8px;border-radius:6px;color:color-mix(in srgb,currentColor 78%,transparent)}
+.atm-net__sites a:hover,.atm-net__sites a:focus-visible,.atm-net__sites a[aria-current]{color:inherit;background:color-mix(in srgb,currentColor 8%,transparent)}
+.atm-net__legal{margin:0;color:color-mix(in srgb,currentColor 78%,transparent);white-space:nowrap}
+.atm-net__legal a{text-decoration:underline;text-underline-offset:2px}
+.atm-net a:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+@media (max-width:640px){.atm-net__in{flex-direction:column;align-items:flex-start}.atm-net__sites{margin-left:-8px}.atm-net__legal{white-space:normal}}
+@media print{.atm-net{display:none}}
 </style>
   <meta http-equiv="Content-Security-Policy" content="default-src &#39;self&#39;; script-src &#39;self&#39; &#39;unsafe-inline&#39; https://static.cloudflareinsights.com; style-src &#39;self&#39; &#39;unsafe-inline&#39;; img-src &#39;self&#39; data:; font-src &#39;self&#39;; connect-src &#39;self&#39; https://trujillomingorance.com https://*.trujillomingorance.com https://cloudflareinsights.com; base-uri &#39;self&#39;; form-action &#39;self&#39;; object-src &#39;none&#39;">
   <script>(function(){try{var h=location.hostname;if(h!=="labs.trujillomingorance.com"&&h!=="www.labs.trujillomingorance.com")return;var p=location.pathname;if(p!=="/"&&p!=="/index.html")return;if(localStorage.getItem("atm_lang_choice")||localStorage.getItem("atm_lang_auto"))return;var n=(navigator.language||"").toLowerCase();var w=n.indexOf("en")===0?"en":n.indexOf("ca")===0?"ca":"es";var ua=navigator.userAgent||"";var bot=navigator.webdriver||/bot|crawl|spider|slurp|lighthouse|headless/i.test(ua);localStorage.setItem("atm_lang_auto",w);if(bot||w==="es")return;location.replace(w==="en"?"/en/":"/ca/");}catch(e){}})();</script>
@@ -1079,8 +1091,8 @@ scroll-behavior: auto !important;
         <a href="https://github.com/ATM-Software-Labs" rel="me noopener noreferrer" target="_blank">GitHub<span class="visually-hidden"> (se abre en una pestaña nueva)</span></a>
         <a href="https://www.linkedin.com/in/alberto-trujillo-mingorance-288237266" rel="me noopener noreferrer" target="_blank">LinkedIn<span class="visually-hidden"> (se abre en una pestaña nueva)</span></a>
       </nav>
-      <p class="credits">© 2026 ATM Software Labs · Alberto Trujillo Mingorance</p>
     </div>
+    <div class="atm-net"><div class="atm-net__in"><a class="atm-net__brand" href="https://trujillomingorance.com/">ATM Software Labs</a><nav aria-label="Sitios de ATM Software Labs"><ul class="atm-net__sites"><li><a href="https://labs.trujillomingorance.com/" aria-current="page">ATM Labs</a></li><li><a href="https://invest.trujillomingorance.com/">INVEST</a></li><li><a href="https://charts.trujillomingorance.com/">Markets Briefing</a></li><li><a href="https://ai.trujillomingorance.com/">Trujillo AI</a></li><li><a href="https://guides.trujillomingorance.com/">Guías</a></li><li><a href="https://tools.trujillomingorance.com/">Tools</a></li><li><a href="https://rewrite.trujillomingorance.com/">Rewrite</a></li><li><a href="https://alberto.trujillomingorance.com/">Alberto</a></li></ul></nav><p class="atm-net__legal">© 2026 ATM Software Labs · Alberto Trujillo Mingorance · <a href="https://trujillomingorance.com/privacy">Privacidad</a> · <a href="https://trujillomingorance.com/terms">Términos</a></p></div></div>
   </footer>
   <script src="/js/copy.js?v=20261018a" defer></script>
   <script src="/js/filter.js?v=20261018a" defer></script>

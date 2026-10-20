@@ -3,8 +3,10 @@
 
 const fs = require('fs');
 // Critical CSS is inlined so the first paint does not wait on two stylesheet requests (public/css stays the source).
-const INLINE_CSS = ['tokens.css', 'labs.css'].map(function (f) { return require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'css', f), 'utf8'); }).join('\n').replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s*\n\s*/g, '\n');
+const INLINE_CSS = ['tokens.css', 'labs.css', 'atm-net.css'].map(function (f) { return require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'css', f), 'utf8'); }).join('\n').replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s*\n\s*/g, '\n');
 const path = require('path');
+const { atmNet } = require('./atm-net.cjs');
+const LEGAL = { es: ['https://trujillomingorance.com/privacy', 'https://trujillomingorance.com/terms'], en: ['https://trujillomingorance.com/en/privacy/', 'https://trujillomingorance.com/en/terms/'], ca: ['https://trujillomingorance.com/ca/privacy/', 'https://trujillomingorance.com/ca/terms/'] };
 
 const ROOT = path.join(__dirname, '..');
 const VERSION = '20261018a';
@@ -363,8 +365,8 @@ function footer(locale) {
     '        <a href="' + GITHUB + '" rel="me noopener noreferrer" target="_blank">GitHub<span class="visually-hidden"> (' + esc(locale.newTab) + ')</span></a>',
     '        <a href="' + LINKEDIN + '" rel="me noopener noreferrer" target="_blank">LinkedIn<span class="visually-hidden"> (' + esc(locale.newTab) + ')</span></a>',
     '      </nav>',
-    '      <p class="credits">© 2026 ATM Software Labs · Alberto Trujillo Mingorance</p>',
     '    </div>',
+    '    ' + atmNet('labs', locale.id, LEGAL[locale.id][0], LEGAL[locale.id][1]),
     '  </footer>'
   ].join('\n');
 }
