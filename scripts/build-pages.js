@@ -10,6 +10,7 @@ const LEGAL = { es: ['https://trujillomingorance.com/privacy', 'https://trujillo
 
 const ROOT = path.join(__dirname, '..');
 const VERSION = '20261018a';
+const INTERNAL_V = '20261022a';
 const ORIGIN = 'https://labs.trujillomingorance.com';
 const GITHUB = 'https://github.com/ATM-Software-Labs';
 const LINKEDIN = 'https://www.linkedin.com/in/alberto-trujillo-mingorance-288237266';
@@ -493,7 +494,7 @@ function page(locale) {
     '  <script src="/js/filter.js?v=' + VERSION + '" defer></script>',
     '  <script src="/js/lang.js?v=' + VERSION + '" defer></script>',
     '  <script src="/js/directory.js?v=' + VERSION + '" defer></script>',
-    '  <script src="/js/atm-internal.js?v=' + VERSION + '" defer></script>',
+    '  <script src="/js/atm-internal.js?v=' + INTERNAL_V + '" defer></script>',
     '</body>',
     '</html>',
     ''
@@ -553,7 +554,7 @@ function notFound() {
     '  <script src="/js/filter.js?v=' + VERSION + '" defer></script>',
     '  <script src="/js/lang.js?v=' + VERSION + '" defer></script>',
     '  <script src="/js/not-found.js?v=' + VERSION + '" defer></script>',
-    '  <script src="/js/atm-internal.js?v=' + VERSION + '" defer></script>',
+    '  <script src="/js/atm-internal.js?v=' + INTERNAL_V + '" defer></script>',
     '</body>',
     '</html>',
     ''
