@@ -98,7 +98,7 @@ El proyecto de Cloudflare Pages `atm-labs-hub` está conectado a GitHub: cada pu
 | Nombre | Tipo | Uso |
 |---|---|---|
 | `CF_ACCOUNT_ID` | variable | Cuenta de Cloudflare para leer despliegues |
-| `CF_API_TOKEN` | secreto | Token de solo lectura para `/api/admin/deploys` |
+| `CF_API_TOKEN` | secreto | Token para leer los despliegues en `/api/admin/deploys` (dale solo permisos de lectura) |
 | `ENVIRONMENT` | variable | `production` |
 
 ## Estructura
