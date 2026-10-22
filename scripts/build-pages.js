@@ -53,7 +53,7 @@ const LOCALES = {
       security: 'Seguridad',
       docs: 'Documentación',
       tools: 'Herramientas',
-      platform: 'Plataforma',
+      platform: 'Infraestructura',
       profile: 'Perfil'
     },
     cols: {
@@ -129,7 +129,7 @@ const LOCALES = {
       security: 'Security',
       docs: 'Documentation',
       tools: 'Tools',
-      platform: 'Platform',
+      platform: 'Infrastructure',
       profile: 'Profile'
     },
     cols: {
@@ -205,7 +205,7 @@ const LOCALES = {
       security: 'Seguretat',
       docs: 'Documentació',
       tools: 'Eines',
-      platform: 'Plataforma',
+      platform: 'Infraestructura',
       profile: 'Perfil'
     },
     cols: {
@@ -345,6 +345,7 @@ function header(locale, current) {
     '    <div class="wrap header-row">',
     '      <a class="brand" id="brandLink" href="' + esc(locale.hub) + '" aria-label="' + esc(locale.hubLabel) + '">',
     '        <span class="brand-name" data-notranslate>ATM Labs</span>',
+    '        <span class="brand-badge" aria-hidden="true">Hub ↗</span>',
     '      </a>',
     '      <div class="header-tools">',
     '        <nav class="site-nav" id="siteNav" aria-label="' + esc(locale.navLabel) + '">',
@@ -456,7 +457,7 @@ function page(locale) {
     '      <div class="hero-brand">',
     '        <img class="hero-avatar" src="/assets/avatar-112.webp?v=' + VERSION + '" alt="ATM Software Labs" width="56" height="56">',
     '        <div class="hero-copy">',
-    '          <p class="eyebrow">' + esc(locale.kicker) + '</p>',
+    '          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span>' + esc(locale.kicker) + '</span><span class="eyebrow-sep" aria-hidden="true">/</span><span>ATM Software Labs</span></p>',
     '          <h1 id="identidad">' + esc(locale.h1) + '</h1>',
     '        </div>',
     '      </div>',

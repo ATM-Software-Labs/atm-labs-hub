@@ -12,7 +12,10 @@
       "probe": true,
       "category": "ai",
       "keywords": "ia ai groq studio multimodal lpu trujillo-ai-studio",
-      "stack": ["Workers", "LPU"],
+      "stack": [
+        "Workers",
+        "LPU"
+      ],
       "desc": {
         "es": "Estudio multimodal sobre LPU.",
         "en": "Multimodal studio on LPU.",
@@ -32,7 +35,10 @@
       "probe": true,
       "category": "ai",
       "keywords": "rewrite nlp groq lpu reescritura",
-      "stack": ["Workers", "NLP"],
+      "stack": [
+        "Workers",
+        "NLP"
+      ],
       "desc": {
         "es": "Reescritura de texto con modelos de lenguaje.",
         "en": "Text rewriting with language models.",
@@ -52,7 +58,10 @@
       "probe": true,
       "category": "finance",
       "keywords": "invest cuantitativa fintech scoring terminal",
-      "stack": ["Workers", "Scoring"],
+      "stack": [
+        "Workers",
+        "Scoring"
+      ],
       "desc": {
         "es": "Terminal de finanzas cuantitativas.",
         "en": "Quantitative finance terminal.",
@@ -72,7 +81,10 @@
       "probe": true,
       "category": "finance",
       "keywords": "savings finanzas zero-knowledge runway",
-      "stack": ["Local", "ZK"],
+      "stack": [
+        "Local",
+        "ZK"
+      ],
       "desc": {
         "es": "Finanzas locales de conocimiento cero.",
         "en": "Local zero-knowledge finance.",
@@ -92,7 +104,10 @@
       "probe": true,
       "category": "security",
       "keywords": "focusguard adshield dns doh zero-trust",
-      "stack": ["Pages", "DoH"],
+      "stack": [
+        "Pages",
+        "DoH"
+      ],
       "desc": {
         "es": "DNS filtrado sobre DoH.",
         "en": "Filtered DNS over HTTPS.",
@@ -111,8 +126,10 @@
       "linkable": false,
       "probe": true,
       "category": "security",
-      "keywords": "api gateway proxy perimeter perimetro",
-      "stack": ["Proxy"],
+      "keywords": "api gateway proxy perimeter perimetro infraestructura infrastructure",
+      "stack": [
+        "Proxy"
+      ],
       "desc": {
         "es": "Proxy central del perímetro.",
         "en": "Central perimeter proxy.",
@@ -132,7 +149,9 @@
       "probe": false,
       "category": "security",
       "keywords": "open sentinel sdk security ciberseguridad",
-      "stack": ["SDK"],
+      "stack": [
+        "SDK"
+      ],
       "desc": {
         "es": "SDK de ciberseguridad.",
         "en": "Security SDK.",
@@ -152,7 +171,9 @@
       "probe": true,
       "category": "docs",
       "keywords": "guias guides runbooks devops documentacion",
-      "stack": ["Docs"],
+      "stack": [
+        "Docs"
+      ],
       "desc": {
         "es": "Runbooks de ingeniería y operación.",
         "en": "Engineering and operations runbooks.",
@@ -172,7 +193,9 @@
       "probe": true,
       "category": "tools",
       "keywords": "tools herramientas utilities utilidades",
-      "stack": ["Utilities"],
+      "stack": [
+        "Utilities"
+      ],
       "desc": {
         "es": "Utilidades web del laboratorio.",
         "en": "Web utilities from the lab.",
@@ -192,7 +215,10 @@
       "probe": true,
       "category": "tools",
       "keywords": "nutri fitness salud pwa vision visio",
-      "stack": ["PWA", "Vision"],
+      "stack": [
+        "PWA",
+        "Vision"
+      ],
       "desc": {
         "es": "Registro de salud con visión.",
         "en": "Health log with vision.",
@@ -212,7 +238,9 @@
       "probe": true,
       "category": "profile",
       "keywords": "portfolio alberto sysadmin security perfil",
-      "stack": ["Pages"],
+      "stack": [
+        "Pages"
+      ],
       "desc": {
         "es": "Perfil de sistemas y seguridad.",
         "en": "Systems and security profile.",
@@ -231,8 +259,10 @@
       "linkable": true,
       "probe": true,
       "category": "platform",
-      "keywords": "labs directorio hub atm-labs-hub catalogo",
-      "stack": ["Pages"],
+      "keywords": "labs directorio hub atm-labs-hub catalogo infraestructura infrastructure",
+      "stack": [
+        "Pages"
+      ],
       "desc": {
         "es": "Directorio de servicios en producción.",
         "en": "Directory of services in production.",
@@ -251,8 +281,10 @@
       "linkable": true,
       "probe": true,
       "category": "platform",
-      "keywords": "apex dominio raiz domain-root personal hub",
-      "stack": ["Pages"],
+      "keywords": "apex dominio raiz domain-root personal hub infraestructura infrastructure",
+      "stack": [
+        "Pages"
+      ],
       "desc": {
         "es": "Página personal en el dominio raíz.",
         "en": "Personal page on the apex domain.",
