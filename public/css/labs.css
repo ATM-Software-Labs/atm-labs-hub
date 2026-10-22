@@ -358,8 +358,8 @@ h3 {
   align-items: center;
   gap: 0.65rem 0.85rem;
   padding: 0.75rem 1rem;
-  background: rgba(10, 12, 16, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(14, 16, 23, 0.85);
+  border: 1px solid #1f2433;
   border-radius: 14px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -469,9 +469,9 @@ h3 {
   height: 2.1rem;
   margin: 0;
   padding: 0 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid #1f2433;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(18, 20, 28, 0.5);
   color: #94a3b8;
   font-family: var(--mono);
   font-size: 0.74rem;
@@ -581,8 +581,8 @@ h3 {
     "stack   stack"
     "actions actions";
   position: relative;
-  background: rgba(12, 14, 20, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #12141c;
+  border: 1px solid #1f2433;
   border-radius: 14px;
   padding: 1.35rem 1.35rem 1.25rem;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -606,7 +606,7 @@ h3 {
 }
 
 .catalog tbody tr:hover {
-  background: rgba(18, 21, 30, 0.85);
+  background: #161a25;
   border-color: rgba(255, 255, 255, 0.22);
   transform: translateY(-2px);
   box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 255, 255, 0.02);
@@ -956,8 +956,8 @@ h3 {
   gap: 0.65rem;
   height: 2.5rem;
   padding: 0 1.5rem;
-  background: rgba(14, 16, 22, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #12141c;
+  border: 1px solid #1f2433;
   border-radius: 999px;
   color: #e2e8f0;
   font-family: var(--sans);
