@@ -60,19 +60,34 @@
     });
   }
 
+  // Comprobación ligera: HEAD a un archivo estático (no invoca Functions en los sitios de Pages)
+  // y resultado guardado 5 minutos en sessionStorage para no repetir 13 peticiones en cada visita.
+  var PROBE_PATH = '/favicon.svg';
+  var PROBE_TTL = 5 * 60 * 1000;
+  function cachedProbe(host) {
+    try {
+      var c = JSON.parse(sessionStorage.getItem('labs_probe:' + host) || 'null');
+      if (c && Date.now() - c.t < PROBE_TTL) return c.ok;
+    } catch (e) {}
+    return null;
+  }
+  function rememberProbe(host, ok) {
+    try { sessionStorage.setItem('labs_probe:' + host, JSON.stringify({ t: Date.now(), ok: ok })); } catch (e) {}
+  }
   function probe(host) {
+    var hit = cachedProbe(host);
+    if (hit !== null) return Promise.resolve(hit);
     var controller = new AbortController();
     var timer = setTimeout(function () { controller.abort(); }, TIMEOUT_MS);
-    return fetch('https://' + host + '/', {
-      method: 'GET',
+    return fetch('https://' + host + PROBE_PATH, {
+      method: 'HEAD',
       mode: 'no-cors',
-      cache: 'no-store',
       redirect: 'follow',
       credentials: 'omit',
       referrerPolicy: 'no-referrer',
       signal: controller.signal
     }).then(
-      function () { clearTimeout(timer); return true; },
+      function () { clearTimeout(timer); rememberProbe(host, true); return true; },
       function () { clearTimeout(timer); return false; }
     );
   }
