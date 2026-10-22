@@ -4,7 +4,9 @@
   'use strict';
 
   var TIMEOUT_MS = 4500;
+  var INITIAL_LIMIT = 6;
   var category = 'all';
+  var isExpanded = false;
 
   function ready(fn) {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
@@ -121,25 +123,58 @@
     var kbd = document.querySelector('.search-kbd');
     var scroll = document.querySelector('.catalog-scroll');
     var count = document.getElementById('catalogCount');
+    var moreWrap = document.getElementById('catalogMoreWrap');
+    var moreBtn = document.getElementById('btnToggleCatalog');
+    var moreText = document.getElementById('toggleCatalogText');
+    var moreIcon = moreBtn ? moreBtn.querySelector('.btn-more-icon') : null;
     if (!table || !input) return;
+
     var q = (input.value || '').trim().toLowerCase();
-    var shown = 0;
+    var isFiltered = !!q || category !== 'all';
+    var matchedRows = [];
+
     rows(table).forEach(function (row) {
       var blob = ((row.innerText || '') + ' ' + (row.getAttribute('data-keywords') || '')).toLowerCase();
       var rowCat = row.getAttribute('data-category') || '';
       var okCat = category === 'all' || rowCat === category;
       var ok = okCat && (!q || blob.indexOf(q) !== -1);
-      row.hidden = !ok;
-      if (ok) shown += 1;
+      if (ok) matchedRows.push(row);
+      else row.hidden = true;
     });
-    if (empty) empty.hidden = shown !== 0;
-    if (scroll) scroll.hidden = shown === 0;
+
+    var totalMatched = matchedRows.length;
+    var visibleLimit = (isFiltered || isExpanded) ? totalMatched : INITIAL_LIMIT;
+
+    matchedRows.forEach(function (row, index) {
+      row.hidden = index >= visibleLimit;
+    });
+
+    if (empty) empty.hidden = totalMatched !== 0;
+    if (scroll) scroll.hidden = totalMatched === 0;
     if (queryEl) queryEl.textContent = input.value.trim();
     if (clearBtn) clearBtn.hidden = !q;
-    if (kbd) kbd.hidden = !!q;
+    if (kbd) kbd.hidden = !q;
+
     if (count) {
       var template = copy().count || '{n}';
-      count.textContent = fill(template, { n: shown });
+      count.textContent = fill(template, { n: totalMatched });
+    }
+
+    if (moreWrap && moreBtn && moreText) {
+      var canExpand = !isFiltered && totalMatched > INITIAL_LIMIT;
+      moreWrap.hidden = !canExpand;
+      if (canExpand) {
+        moreBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        var remaining = totalMatched - INITIAL_LIMIT;
+        if (isExpanded) {
+          moreText.textContent = copy().showLess || 'Mostrar menos';
+          if (moreIcon) moreIcon.textContent = '↑';
+        } else {
+          var moreTemplate = copy().showMore || 'Mostrar más servicios (+{n})';
+          moreText.textContent = fill(moreTemplate, { n: remaining });
+          if (moreIcon) moreIcon.textContent = '↓';
+        }
+      }
     }
   }
 
@@ -157,7 +192,9 @@
     var input = document.getElementById('projectSearch');
     var clearBtn = document.getElementById('clearSearch');
     var resetBtn = document.getElementById('btnResetFilters');
+    var toggleBtn = document.getElementById('btnToggleCatalog');
     var form = document.querySelector('.search');
+
     if (form) form.addEventListener('submit', function (event) { event.preventDefault(); applyQuery(); });
     if (input) input.addEventListener('input', applyQuery);
     if (clearBtn) {
@@ -173,8 +210,21 @@
       resetBtn.addEventListener('click', function () {
         if (input) input.value = '';
         setCategory('all');
+        isExpanded = false;
         applyQuery();
         if (input) input.focus();
+      });
+    }
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        isExpanded = !isExpanded;
+        applyQuery();
+        if (!isExpanded) {
+          var dir = document.getElementById('directorio');
+          if (dir && typeof dir.scrollIntoView === 'function') {
+            dir.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
       });
     }
     Array.prototype.forEach.call(document.querySelectorAll('.chip'), function (chip) {

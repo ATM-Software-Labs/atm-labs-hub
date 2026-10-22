@@ -46,6 +46,8 @@ test('published catalog stays on owned hosts', function () {
   const data = JSON.parse(read('data/services.json'));
   const items = data.services;
   const ids = items.map(function (item) { return item.id; });
+  const top6 = items.slice(0, 6).map(function (item) { return item.id; });
+  assert.deepEqual(top6, ['trujillo-ai-studio', 'rewrite-ai', 'invest-platform', 'savings-runway', 'focusguard', 'api-gateway']);
   ['alberto-portfolio', 'trujillo-ai-studio', 'rewrite-ai', 'focusguard', 'trujillo-guides', 'invest-platform', 'savings-runway', 'atm-tools', 'nutrifit', 'open-sentinel', 'api-gateway', 'labs', 'apex'].forEach(function (id) {
     assert.ok(ids.includes(id), id);
   });
@@ -259,5 +261,14 @@ test('security policy allows same-origin assets and ecosystem probes only', func
     assert.match(source, /connect-src 'self' https:\/\/trujillomingorance\.com https:\/\/\*\.trujillomingorance\.com/);
     assert.doesNotMatch(source, /translate\.googleapis/);
     assert.doesNotMatch(source, /fonts\.googleapis/);
+  });
+});
+
+test('progressive disclosure renders top 6 and collapsible more toggle', function () {
+  Object.keys(pages).forEach(function (id) {
+    const html = read(pages[id]);
+    assert.match(html, /id="catalogMoreWrap"/);
+    assert.match(html, /id="btnToggleCatalog"/);
+    assert.match(html, /aria-expanded="false"/);
   });
 });
