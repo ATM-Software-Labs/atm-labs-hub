@@ -492,6 +492,7 @@ function page(locale) {
     '  <script src="/js/filter.js?v=' + VERSION + '" defer></script>',
     '  <script src="/js/lang.js?v=' + VERSION + '" defer></script>',
     '  <script src="/js/directory.js?v=' + VERSION + '" defer></script>',
+    '  <script src="/js/atm-internal.js?v=' + VERSION + '" defer></script>',
     '</body>',
     '</html>',
     ''
@@ -551,6 +552,7 @@ function notFound() {
     '  <script src="/js/filter.js?v=' + VERSION + '" defer></script>',
     '  <script src="/js/lang.js?v=' + VERSION + '" defer></script>',
     '  <script src="/js/not-found.js?v=' + VERSION + '" defer></script>',
+    '  <script src="/js/atm-internal.js?v=' + VERSION + '" defer></script>',
     '</body>',
     '</html>',
     ''
