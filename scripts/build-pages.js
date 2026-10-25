@@ -375,7 +375,7 @@ function page(t) {
     '    <section class="hero" aria-labelledby="identidad">',
     '      <div class="gridbg" aria-hidden="true"></div>',
     '      <div class="wrap hero-in">',
-    '        <div class="rise">',
+    '        <div class="hero-copy">',
     '          <p class="pill"><span class="dot" aria-hidden="true"></span>' + esc(fill(t.pill)) + '</p>',
     '          <h1 id="identidad">' + esc(t.h1a) + ' <span class="accent">' + esc(t.h1b) + '</span></h1>',
     '          <p class="lead">' + esc(t.lead) + '</p>',
