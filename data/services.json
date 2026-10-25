@@ -3,8 +3,50 @@
   "github": "https://github.com/ATM-Software-Labs",
   "services": [
     {
+      "id": "markets-briefing",
+      "title": "Markets Briefing",
+      "subdomain": "charts",
+      "host": "charts.trujillomingorance.com",
+      "url": "https://charts.trujillomingorance.com",
+      "linkable": true,
+      "probe": true,
+      "featured": true,
+      "category": "finance",
+      "keywords": "markets briefing charts bolsa mercados newsletter correo heatmap drawdown monitor",
+      "stack": [
+        "Workers",
+        "KV",
+        "Brevo"
+      ],
+      "desc": {
+        "es": "Correo gratuito de bolsa: Morning 09:00, Midday 15:00, Close 22:45 y Weekly el viernes (hora de Madrid). Cifras con fuente.",
+        "en": "Free stock market email: Morning 09:00, Midday 15:00, Close 22:45 and Weekly on Friday (Madrid time). Sourced figures.",
+        "ca": "Correu gratuït de borsa: Morning 09:00, Midday 15:00, Close 22:45 i Weekly el divendres (hora de Madrid). Xifres amb font."
+      },
+      "repo": null,
+      "repoPublic": false,
+      "rank": 5,
+      "highlights": {
+        "es": [
+          "3 al día + semanal",
+          "Español o inglés",
+          "Baja con un clic"
+        ],
+        "en": [
+          "3 a day + weekly",
+          "Spanish or English",
+          "One-click unsubscribe"
+        ],
+        "ca": [
+          "3 al dia + setmanal",
+          "Castellà o anglès",
+          "Baixa amb un clic"
+        ]
+      }
+    },
+    {
       "id": "trujillo-ai-studio",
-      "title": "Trujillo AI Studio",
+      "title": "Trujillo AI",
       "subdomain": "ai",
       "host": "ai.trujillomingorance.com",
       "url": "https://ai.trujillomingorance.com",
@@ -14,16 +56,34 @@
       "keywords": "ia ai groq studio multimodal lpu trujillo-ai-studio",
       "stack": [
         "Workers",
-        "LPU"
+        "Groq"
       ],
       "desc": {
-        "es": "Estudio multimodal sobre LPU.",
-        "en": "Multimodal studio on LPU.",
-        "ca": "Estudi multimodal sobre LPU."
+        "es": "Workspace de IA: chat multimodelo, documentos, proyectos, investigación e imagen. Incluye bot de Discord y API compatible con OpenAI.",
+        "en": "AI workspace: multi-model chat, documents, projects, research and images. Ships a Discord bot and an OpenAI-compatible API.",
+        "ca": "Espai de treball d’IA: xat multimodel, documents, projectes, recerca i imatge. Inclou bot de Discord i API compatible amb OpenAI."
       },
       "repo": "trujillo-ai-studio",
       "repoPublic": true,
-      "rank": 10
+      "rank": 10,
+      "featured": true,
+      "highlights": {
+        "es": [
+          "Chat multimodelo",
+          "Bot de Discord",
+          "API compatible con OpenAI"
+        ],
+        "en": [
+          "Multi-model chat",
+          "Discord bot",
+          "OpenAI-compatible API"
+        ],
+        "ca": [
+          "Xat multimodel",
+          "Bot de Discord",
+          "API compatible amb OpenAI"
+        ]
+      }
     },
     {
       "id": "rewrite-ai",
@@ -36,13 +96,13 @@
       "category": "ai",
       "keywords": "rewrite nlp groq lpu reescritura",
       "stack": [
-        "Workers",
-        "NLP"
+        "Pages",
+        "Workers AI"
       ],
       "desc": {
-        "es": "Reescritura de texto con modelos de lenguaje.",
-        "en": "Text rewriting with language models.",
-        "ca": "Reescriptura de text amb models de llenguatge."
+        "es": "Reescribe, corrige y traduce textos para que se lean claros y naturales, con salida en streaming. Conserva el formato Markdown.",
+        "en": "Rewrite, proofread and translate text so it reads clear and natural, with streaming output. Keeps your Markdown formatting.",
+        "ca": "Reescriu, corregeix i tradueix textos perquè es llegeixin clars i naturals, amb sortida en streaming. Conserva el format Markdown."
       },
       "repo": null,
       "repoPublic": false,
@@ -60,16 +120,34 @@
       "keywords": "invest cuantitativa fintech scoring terminal",
       "stack": [
         "Workers",
-        "Scoring"
+        "SEC 10-K"
       ],
       "desc": {
-        "es": "Terminal de finanzas cuantitativas.",
-        "en": "Quantitative finance terminal.",
-        "ca": "Terminal de finances quantitatives."
+        "es": "Consulta y compara acciones, ETF, índices y cripto por ticker, nombre o ISIN: cotización, cifras 10-K de la SEC y checklist Munger.",
+        "en": "Look up and compare stocks, ETFs, indices and crypto by ticker, name or ISIN: quotes, SEC 10-K figures and a Munger checklist.",
+        "ca": "Consulta i compara accions, ETF, índexs i cripto per ticker, nom o ISIN: cotització, xifres 10-K de la SEC i checklist Munger."
       },
       "repo": "invest-platform",
       "repoPublic": true,
-      "rank": 30
+      "rank": 30,
+      "featured": true,
+      "highlights": {
+        "es": [
+          "Ticker, nombre o ISIN",
+          "Cifras 10-K de la SEC",
+          "Checklist Munger"
+        ],
+        "en": [
+          "Ticker, name or ISIN",
+          "SEC 10-K figures",
+          "Munger checklist"
+        ],
+        "ca": [
+          "Ticker, nom o ISIN",
+          "Xifres 10-K de la SEC",
+          "Checklist Munger"
+        ]
+      }
     },
     {
       "id": "savings-runway",
@@ -83,12 +161,12 @@
       "keywords": "savings finanzas zero-knowledge runway",
       "stack": [
         "Local",
-        "ZK"
+        "Privacidad"
       ],
       "desc": {
-        "es": "Finanzas locales de conocimiento cero.",
-        "en": "Local zero-knowledge finance.",
-        "ca": "Finances locals de coneixement zero."
+        "es": "Auditoría privada de liquidez familiar: colchón de supervivencia y coste de oportunidad. Los datos se procesan solo en memoria.",
+        "en": "Private household liquidity audit: survival runway and opportunity cost. Data is processed in memory only.",
+        "ca": "Auditoria privada de liquiditat familiar: coixí de supervivència i cost d’oportunitat. Les dades es processen només en memòria."
       },
       "repo": null,
       "repoPublic": false,
@@ -106,12 +184,12 @@
       "keywords": "focusguard adshield dns doh zero-trust",
       "stack": [
         "Pages",
-        "DoH"
+        "Zero Trust"
       ],
       "desc": {
-        "es": "DNS filtrado sobre DoH.",
-        "en": "Filtered DNS over HTTPS.",
-        "ca": "DNS filtrat sobre DoH."
+        "es": "Panel de filtrado DNS (anuncios, rastreadores y control parental) sobre Cloudflare Zero Trust Gateway, con exportación a Pi-hole y dnsmasq.",
+        "en": "DNS filtering dashboard (ads, trackers, parental controls) on Cloudflare Zero Trust Gateway, with Pi-hole and dnsmasq exports.",
+        "ca": "Tauler de filtratge DNS (anuncis, rastrejadors i control parental) sobre Cloudflare Zero Trust Gateway, amb exportació a Pi-hole i dnsmasq."
       },
       "repo": "focusguard-saas",
       "repoPublic": true,
@@ -128,12 +206,13 @@
       "category": "security",
       "keywords": "api gateway proxy perimeter perimetro infraestructura infrastructure",
       "stack": [
+        "Workers",
         "Proxy"
       ],
       "desc": {
-        "es": "Proxy central del perímetro.",
-        "en": "Central perimeter proxy.",
-        "ca": "Proxy central del perímetre."
+        "es": "Proxy central del perímetro de trujillomingorance.com. Infraestructura interna, sin interfaz pública.",
+        "en": "Central perimeter proxy for trujillomingorance.com. Internal infrastructure with no public interface.",
+        "ca": "Proxy central del perímetre de trujillomingorance.com. Infraestructura interna, sense interfície pública."
       },
       "repo": null,
       "repoPublic": false,
@@ -150,12 +229,13 @@
       "category": "security",
       "keywords": "open sentinel sdk security ciberseguridad",
       "stack": [
-        "SDK"
+        "Python",
+        "Flask"
       ],
       "desc": {
-        "es": "SDK de ciberseguridad.",
-        "en": "Security SDK.",
-        "ca": "SDK de ciberseguretat."
+        "es": "Alertas de arranque (Discord, Telegram y WhatsApp) y panel local de telemetría para un PC con Windows. Autoalojado.",
+        "en": "Boot alerts (Discord, Telegram and WhatsApp) and a local telemetry dashboard for a Windows PC. Self-hosted.",
+        "ca": "Alertes d’arrencada (Discord, Telegram i WhatsApp) i tauler local de telemetria per a un PC amb Windows. Autoallotjat."
       },
       "repo": "open-sentinel",
       "repoPublic": true,
@@ -172,12 +252,13 @@
       "category": "docs",
       "keywords": "guias guides runbooks devops documentacion",
       "stack": [
-        "Docs"
+        "Pages",
+        "16 idiomas"
       ],
       "desc": {
-        "es": "Runbooks de ingeniería y operación.",
-        "en": "Engineering and operations runbooks.",
-        "ca": "Runbooks d'enginyeria i operació."
+        "es": "Guías prácticas de sistemas: Cloudflare, DNS, correo e identidad, con perfiles de autor. Interfaz en 16 idiomas.",
+        "en": "Practical sysadmin guides: Cloudflare, DNS, email and identity, with author profiles. UI in 16 languages.",
+        "ca": "Guies pràctiques de sistemes: Cloudflare, DNS, correu i identitat, amb perfils d’autor. Interfície en 16 idiomes."
       },
       "repo": "trujillo-guides",
       "repoPublic": true,
@@ -194,12 +275,12 @@
       "category": "tools",
       "keywords": "tools herramientas utilities utilidades",
       "stack": [
-        "Utilities"
+        "Client-side"
       ],
       "desc": {
-        "es": "Utilidades web del laboratorio.",
-        "en": "Web utilities from the lab.",
-        "ca": "Utilitats web del laboratori."
+        "es": "Utilidades para imágenes, PDF, datos y redes que se ejecutan en tu navegador. Nada sale de tu equipo.",
+        "en": "Utilities for images, PDFs, data and networking that run in your browser. Nothing leaves your device.",
+        "ca": "Utilitats per a imatges, PDF, dades i xarxes que s’executen al navegador. Res no surt del teu equip."
       },
       "repo": "atm-tools",
       "repoPublic": true,
@@ -207,26 +288,45 @@
     },
     {
       "id": "nutrifit",
-      "title": "NutriFit PWA",
+      "title": "NutriFit",
       "subdomain": "nutri",
       "host": "nutri.trujillomingorance.com",
       "url": "https://nutri.trujillomingorance.com",
       "linkable": true,
       "probe": true,
-      "category": "tools",
+      "category": "health",
       "keywords": "nutri fitness salud pwa vision visio",
       "stack": [
         "PWA",
-        "Vision"
+        "D1",
+        "Android"
       ],
       "desc": {
-        "es": "Registro de salud con visión.",
-        "en": "Health log with vision.",
-        "ca": "Registre de salut amb visió."
+        "es": "Calorías y macros con IA a partir de una foto, el código de barras o una frase. Agua, peso, ayuno y días de entreno. Gratis y sin anuncios.",
+        "en": "Calories and macros with AI from a photo, a barcode or a sentence. Water, weight, fasting and training days. Free, no ads.",
+        "ca": "Calories i macros amb IA a partir d’una foto, el codi de barres o una frase. Aigua, pes, dejuni i dies d’entrenament. Gratis i sense anuncis."
       },
       "repo": "nutrifit",
       "repoPublic": true,
-      "rank": 100
+      "rank": 100,
+      "featured": true,
+      "highlights": {
+        "es": [
+          "Foto, código de barras o texto",
+          "Agua, peso y ayuno",
+          "Sin anuncios"
+        ],
+        "en": [
+          "Photo, barcode or text",
+          "Water, weight and fasting",
+          "No ads"
+        ],
+        "ca": [
+          "Foto, codi de barres o text",
+          "Aigua, pes i dejuni",
+          "Sense anuncis"
+        ]
+      }
     },
     {
       "id": "alberto-portfolio",
@@ -242,9 +342,9 @@
         "Pages"
       ],
       "desc": {
-        "es": "Perfil de sistemas y seguridad.",
-        "en": "Systems and security profile.",
-        "ca": "Perfil de sistemes i seguretat."
+        "es": "Web de Alberto Trujillo Mingorance, administrador de sistemas en Barcelona: proyectos, notas técnicas y CV con terminal interactiva.",
+        "en": "Alberto Trujillo Mingorance’s site, a systems administrator in Barcelona: projects, technical notes and a CV with an interactive terminal.",
+        "ca": "Web d’Alberto Trujillo Mingorance, administrador de sistemes a Barcelona: projectes, notes tècniques i CV amb terminal interactiu."
       },
       "repo": "portfolio",
       "repoPublic": true,
@@ -264,9 +364,9 @@
         "Pages"
       ],
       "desc": {
-        "es": "Directorio de servicios en producción.",
-        "en": "Directory of services in production.",
-        "ca": "Directori de serveis en producció."
+        "es": "Este directorio: todos los proyectos publicados con su estado comprobado en vivo desde tu navegador.",
+        "en": "This directory: every published project, with status checked live from your browser.",
+        "ca": "Aquest directori: tots els projectes publicats amb l’estat comprovat en directe des del navegador."
       },
       "repo": "atm-labs-hub",
       "repoPublic": true,
@@ -286,9 +386,9 @@
         "Pages"
       ],
       "desc": {
-        "es": "Página personal en el dominio raíz.",
-        "en": "Personal page on the apex domain.",
-        "ca": "Pàgina personal al domini arrel."
+        "es": "Sitio raíz de trujillomingorance.com: inicio, páginas legales, kit de marca y página 404.",
+        "en": "Root site for trujillomingorance.com: home, legal pages, brand kit and 404 page.",
+        "ca": "Lloc arrel de trujillomingorance.com: inici, pàgines legals, kit de marca i pàgina 404."
       },
       "repo": "domain-root",
       "repoPublic": true,
@@ -321,12 +421,12 @@
       "reason": "No public repository. The host root answers HTTP 404, so the row is listed and probed but not linked."
     },
     {
-      "service": "Charts",
+      "service": "Markets Briefing",
       "subdomain": "charts",
       "repo": null,
       "public": false,
       "linked": false,
-      "reason": "No public repository. charts.trujillomingorance.com returns 404. Not listed in the directory."
+      "reason": "Cloudflare Worker markets-digest; no public repository, so the card links the site only."
     }
   ]
 }

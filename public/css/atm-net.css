@@ -1,10 +1,11 @@
-/* ATM Software Labs: shared network footer strip (v1, 2026-10-20).
+/* ATM Software Labs: shared network footer strip (v1.1, 2026-10-25, charts variant with the symbol).
    Copy this file into each site; it has no runtime dependency on another origin.
    Theme-agnostic: inherits the site's text colour and background (works in light and dark). */
 .atm-net{border-top:1px solid color-mix(in srgb,currentColor 14%,transparent);margin-top:0;padding:18px 0 22px;font-family:var(--atm-font-sans,Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif);font-size:13px;line-height:1.5;text-align:left}
-.atm-net__in{box-sizing:border-box;width:min(70rem,calc(100% - 2.5rem));margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px}
+.atm-net__in{box-sizing:border-box;width:min(73rem,calc(100% - 2.5rem));margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px}
 .atm-net a{color:inherit;text-decoration:none}
-.atm-net__brand{font-family:var(--atm-font-mono,"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;padding:6px 0}
+.atm-net__brand{display:inline-flex;align-items:center;gap:10px;font-family:var(--atm-font-mono,"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);font-size:13px;font-weight:500;letter-spacing:.02em;white-space:nowrap;padding:6px 0}
+.atm-net__brand .atm-symbol-bg{display:inline-block;flex:none;width:20px;height:20px;border-radius:5px;background:#07080b url(/brand/symbol.svg?v=20261020a) 50%/100% 100% no-repeat}
 .atm-net__sites{display:flex;flex-wrap:wrap;gap:0 2px;margin:0;padding:0;list-style:none;flex:1 1 auto}
 .atm-net__sites a{display:inline-block;padding:6px 8px;border-radius:6px;color:color-mix(in srgb,currentColor 78%,transparent)}
 .atm-net__sites a:hover,.atm-net__sites a:focus-visible,.atm-net__sites a[aria-current]{color:inherit;background:color-mix(in srgb,currentColor 8%,transparent)}

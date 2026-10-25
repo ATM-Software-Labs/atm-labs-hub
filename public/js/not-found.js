@@ -28,15 +28,6 @@
     return lang === 'es' ? '/' : '/' + lang + '/';
   }
 
-  function paintCount(copy) {
-    var count = document.getElementById('servicesCount');
-    var grid = document.getElementById('servicesGrid');
-    var ui = copy.notFound || {};
-    if (!count || !ui.count || !grid) return;
-    var n = grid.querySelectorAll('tbody tr[data-id]').length;
-    count.textContent = ui.count.replace('{n}', String(n));
-  }
-
   function applyChrome(lang, copy) {
     var ui = copy.notFound || {};
     document.documentElement.lang = lang;
@@ -56,36 +47,26 @@
     text('homeLink', ui.home);
     text('servicesTitle', ui.services);
     text('servicesLead', ui.servicesLead);
-    if (copy.cols) {
-      text('colStatus', copy.cols.status);
-      text('colService', copy.cols.service);
-      text('colHost', copy.cols.host);
-      text('colCategory', copy.cols.category);
-      text('colStack', copy.cols.stack);
-      text('colActions', copy.cols.actions);
-    }
-    var siteNav = document.getElementById('siteNav');
-    if (siteNav && copy.navLabel) siteNav.setAttribute('aria-label', copy.navLabel);
-    var langNav = document.getElementById('langNav');
-    if (langNav && copy.langLabel) langNav.setAttribute('aria-label', copy.langLabel);
-    var footerNav = document.getElementById('footerNav');
-    if (footerNav && copy.footerLabel) footerNav.setAttribute('aria-label', copy.footerLabel);
     var brand = document.getElementById('brandLink');
-    if (brand && copy.hub) {
-      brand.setAttribute('href', copy.hub);
-      if (copy.hubLabel) brand.setAttribute('aria-label', copy.hubLabel);
-    }
+    if (brand) brand.setAttribute('href', homePath(lang));
     var directory = document.getElementById('navDirectory');
     if (directory) directory.setAttribute('href', homePath(lang) + '#directorio');
     var home = document.getElementById('homeLink');
     if (home) home.setAttribute('href', homePath(lang));
     var back = document.getElementById('btnBack');
     if (back) back.setAttribute('data-home', homePath(lang));
-    document.querySelectorAll('.lang a[data-lang-switch]').forEach(function (link) {
+    document.querySelectorAll('#langNav a[data-lang-switch]').forEach(function (link) {
       var current = link.getAttribute('data-lang-switch') === lang;
       if (current) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     });
+    var grid = document.getElementById('servicesGrid');
+    if (grid) {
+      if (copy.pending) grid.setAttribute('data-l-pending', copy.pending);
+      if (copy.checking) grid.setAttribute('data-l-checking', copy.checking);
+      if (copy.online) grid.setAttribute('data-l-online', copy.online);
+      if (copy.offline) grid.setAttribute('data-l-down', copy.offline);
+    }
     var descriptions = copy.descriptions || {};
     document.querySelectorAll('[data-i18n-desc]').forEach(function (node) {
       var id = node.getAttribute('data-i18n-desc');
@@ -96,16 +77,13 @@
       var id = node.getAttribute('data-cat');
       if (categories[id]) node.textContent = categories[id];
     });
-    document.querySelectorAll('.act-open .act-label').forEach(function (node) {
-      if (copy.open) node.textContent = copy.open;
+    document.querySelectorAll('.open').forEach(function (node) {
+      if (copy.open && node.firstChild && node.firstChild.nodeType === 3) node.firstChild.nodeValue = copy.open;
     });
-    document.querySelectorAll('.act-muted .act-label').forEach(function (node) {
+    document.querySelectorAll('.muted-note').forEach(function (node) {
       if (copy.noLink) node.textContent = copy.noLink;
     });
-    document.querySelectorAll('.repo-link').forEach(function (node) {
-      if (copy.githubLabel) node.setAttribute('aria-label', copy.githubLabel);
-    });
-    document.querySelectorAll('.svc-status').forEach(function (cell) {
+    document.querySelectorAll('.status').forEach(function (cell) {
       var state = cell.getAttribute('data-state');
       var label = cell.querySelector('.js-label');
       if (!label) return;
@@ -115,7 +93,6 @@
       else if (state === 'online' && copy.online) label.textContent = copy.online;
       else if (state === 'down' && copy.offline) label.textContent = copy.offline;
     });
-    paintCount(copy);
   }
 
   function diagnostics(ui) {

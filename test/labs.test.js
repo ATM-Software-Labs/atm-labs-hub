@@ -47,8 +47,9 @@ test('published catalog stays on owned hosts', function () {
   const items = data.services;
   const ids = items.map(function (item) { return item.id; });
   const top6 = items.slice(0, 6).map(function (item) { return item.id; });
-  assert.deepEqual(top6, ['trujillo-ai-studio', 'rewrite-ai', 'invest-platform', 'savings-runway', 'focusguard', 'api-gateway']);
-  ['alberto-portfolio', 'trujillo-ai-studio', 'rewrite-ai', 'focusguard', 'trujillo-guides', 'invest-platform', 'savings-runway', 'atm-tools', 'nutrifit', 'open-sentinel', 'api-gateway', 'labs', 'apex'].forEach(function (id) {
+  assert.deepEqual(top6, ['markets-briefing', 'trujillo-ai-studio', 'rewrite-ai', 'invest-platform', 'savings-runway', 'focusguard']);
+  assert.deepEqual(items.filter(function (item) { return item.featured; }).map(function (item) { return item.id; }).sort(), ['invest-platform', 'markets-briefing', 'nutrifit', 'trujillo-ai-studio']);
+  ['markets-briefing', 'alberto-portfolio', 'trujillo-ai-studio', 'rewrite-ai', 'focusguard', 'trujillo-guides', 'invest-platform', 'savings-runway', 'atm-tools', 'nutrifit', 'open-sentinel', 'api-gateway', 'labs', 'apex'].forEach(function (id) {
     assert.ok(ids.includes(id), id);
   });
   assert.equal(ids.includes('neurolock'), false);
@@ -125,7 +126,9 @@ test('labs brand files are local copies of the published mark', function () {
   assert.deepEqual(pngSize('public/apple-touch-icon.png'), { width: 180, height: 180 });
   assert.deepEqual(pngSize('public/icon-192.png'), { width: 192, height: 192 });
   assert.deepEqual(pngSize('public/icon-512.png'), { width: 512, height: 512 });
-  assert.deepEqual(pngSize('public/assets/og.png'), { width: 1200, height: 630 });
+  ['og.png', 'og-en.png', 'og-ca.png'].forEach(function (file) {
+    assert.deepEqual(pngSize('public/assets/' + file), { width: 1200, height: 630 }, file);
+  });
   assert.equal(fs.existsSync(path.join(root, 'public/assets/banner.png')), true);
   assert.equal(fs.existsSync(path.join(root, 'public/assets/og-labs.png')), false);
   const manifest = JSON.parse(read('public/site.webmanifest'));
@@ -153,24 +156,24 @@ test('motion is reduced-motion aware', function () {
 test('each locale has hreflang, hub header, footer, and translated meta', function () {
   const expect = {
     es: {
-      href: 'https://trujillomingorance.com/',
-      h1: 'Servicios en producción',
+      href: '/',
+      h1: 'Software propio, <span class="accent">en producción\\.</span>',
       locale: 'es_ES',
       canonical: 'https://labs.trujillomingorance.com/',
       github: 'Repositorio en GitHub',
       clear: 'Limpiar búsqueda'
     },
     en: {
-      href: 'https://trujillomingorance.com/en/',
-      h1: 'Services in production',
+      href: '/en/',
+      h1: 'Our own software, <span class="accent">in production\\.</span>',
       locale: 'en_US',
       canonical: 'https://labs.trujillomingorance.com/en/',
       github: 'Repository on GitHub',
       clear: 'Clear search'
     },
     ca: {
-      href: 'https://trujillomingorance.com/ca/',
-      h1: 'Serveis en producció',
+      href: '/ca/',
+      h1: 'Programari propi, <span class="accent">en producció\\.</span>',
       locale: 'ca_ES',
       canonical: 'https://labs.trujillomingorance.com/ca/',
       github: 'Repositori a GitHub',
@@ -180,7 +183,7 @@ test('each locale has hreflang, hub header, footer, and translated meta', functi
   Object.keys(pages).forEach(function (id) {
     const html = read(pages[id]);
     const spec = expect[id];
-    assert.match(html, new RegExp('<html lang="' + id + '">'));
+    assert.match(html, new RegExp('<html lang="' + id + '"[ >]'));
     assert.match(html, new RegExp('rel="canonical" href="' + spec.canonical.replace(/[.]/g, '\\.') + '"'));
     assert.match(html, /hreflang="es"/);
     assert.match(html, /hreflang="en"/);
@@ -191,8 +194,19 @@ test('each locale has hreflang, hub header, footer, and translated meta', functi
     assert.match(html, new RegExp('<h1 id="identidad">' + spec.h1 + '</h1>'));
     assert.match(html, new RegExp('class="brand" id="brandLink" href="' + spec.href.replace(/[.]/g, '\\.') + '"'));
     assert.doesNotMatch(html.split('</header>')[0], /brand-(avatar|lockup)/);
-    assert.match(html, /og:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261018a"/);
-    assert.match(html, /twitter:image" content="https:\/\/labs\.trujillomingorance\.com\/assets\/og\.png\?v=20261018a"/);
+    const og = 'https://labs.trujillomingorance.com/assets/' + (id === 'es' ? 'og.png' : 'og-' + id + '.png') + '?v=20261025a';
+    assert.ok(html.includes('property="og:image" content="' + og + '"'), og);
+    assert.ok(html.includes('name="twitter:image" content="' + og + '"'), og);
+    assert.match(html, /name="twitter:card" content="summary_large_image"/);
+    assert.match(html, /property="og:image:width" content="1200"/);
+    assert.match(html, /"@type":"Organization"/);
+    assert.match(html, /"@type":"WebSite"/);
+    assert.match(html, /id="themeToggle"/);
+    assert.match(html, /src="\/brand\/symbol\.svg\?v=20261020a"/);
+    assert.match(html, /src="\/brand\/lockup-white\.svg\?v=20261020a"/);
+    assert.match(html, /src="\/brand\/lockup-black\.svg\?v=20261020a"/);
+    assert.match(html, /https:\/\/charts\.trujillomingorance\.com/);
+    assert.match(html, /data-id="markets-briefing"/);
     assert.match(html, /href="\/favicon\.svg\?v=20261018a"/);
     assert.match(html, /href="\/assets\/favicon\.ico\?v=20261018a"/);
     assert.match(html, /href="\/apple-touch-icon\.png\?v=20261018a"/);
@@ -218,7 +232,7 @@ test('each locale has hreflang, hub header, footer, and translated meta', functi
     assert.doesNotMatch(html, /flagcdn/);
     assert.doesNotMatch(html, /Edge Network/);
     assert.doesNotMatch(html, /theme-btn/);
-    assert.match(html, new RegExp('aria-label="' + spec.github + '"'));
+    assert.match(html, new RegExp('aria-label="' + spec.github + ': '));
     assert.match(html, new RegExp('aria-label="' + spec.clear + '"'));
     assert.doesNotMatch(html, new RegExp('>' + spec.clear + '<'));
     assert.doesNotMatch(html, /fonts\.googleapis/);
@@ -264,11 +278,24 @@ test('security policy allows same-origin assets and ecosystem probes only', func
   });
 });
 
-test('progressive disclosure renders top 6 and collapsible more toggle', function () {
+test('directory renders every service as a card with a live status hook', function () {
+  const data = JSON.parse(read('data/services.json'));
   Object.keys(pages).forEach(function (id) {
     const html = read(pages[id]);
-    assert.match(html, /id="catalogMoreWrap"/);
-    assert.match(html, /id="btnToggleCatalog"/);
-    assert.match(html, /aria-expanded="false"/);
+    assert.doesNotMatch(html, /id="catalogMoreWrap"/);
+    const hub = html.split('id="hub"')[1].split('id="noResults"')[0];
+    data.services.forEach(function (service) {
+      assert.match(hub, new RegExp('data-id="' + service.id + '"'), service.id);
+    });
+    assert.match(html, /id="destacados"/);
+    assert.match(html, /class="status" data-state="pending" data-host="charts\.trujillomingorance\.com"/);
   });
+});
+
+test('official brand files are byte copies of the apex assets', function () {
+  const crypto = require('node:crypto');
+  const md5 = function (file) { return crypto.createHash('md5').update(fs.readFileSync(path.join(root, file))).digest('hex'); };
+  assert.equal(md5('public/brand/symbol.svg'), 'ab99196009a352b5c7d6a5356ceb0106');
+  assert.equal(md5('public/brand/lockup-white.svg'), 'db3ed589e4eb36f935b9a643d447b795');
+  assert.equal(md5('public/brand/lockup-black.svg'), 'e260d3eae2e19044d8248227d2393de5');
 });

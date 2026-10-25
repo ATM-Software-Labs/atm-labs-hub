@@ -2,7 +2,7 @@
   "name": "ATM Labs",
   "short_name": "ATM Labs",
   "lang": "es",
-  "description": "Directorio de servicios en producción de ATM Software Labs.",
+  "description": "Directorio de los proyectos en producción de ATM Software Labs.",
   "icons": [
     {
       "src": "/favicon.svg?v=20261018a",

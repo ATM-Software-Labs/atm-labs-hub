@@ -1,5 +1,5 @@
 'use strict';
-// ATM Software Labs: shared network footer strip markup (v1). Pair with atm-net.css.
+// ATM Software Labs: shared network footer strip markup (v1.1, brand carries the symbol like charts). Pair with atm-net.css.
 const SITES = [
   ['labs', 'https://labs.trujillomingorance.com/', 'ATM Labs'],
   ['invest', 'https://invest.trujillomingorance.com/', 'INVEST'],
@@ -20,7 +20,7 @@ function atmNet(cur, lang, priv, terms) {
   const cp = (k) => (k === cur ? ' aria-current="page"' : '');
   const li = SITES.map(([k, u, n]) => '<li><a href="' + u + '"' + cp(k) + '>' + n.replace('{guides}', t.guides) + '</a></li>').join('');
   return '<div class="atm-net"><div class="atm-net__in">' +
-    '<a class="atm-net__brand" href="https://trujillomingorance.com/"' + cp('apex') + '>ATM Software Labs</a>' +
+    '<a class="atm-net__brand" href="https://trujillomingorance.com/"' + cp('apex') + '><span class="atm-symbol-bg" aria-hidden="true"></span><span>ATM Software Labs</span></a>' +
     '<nav aria-label="' + t.nav + '"><ul class="atm-net__sites">' + li + '</ul></nav>' +
     (priv === false ? '' : '<p class="atm-net__legal">© 2026 ATM Software Labs · Alberto Trujillo Mingorance · <a href="' + priv + '">' + t.priv + '</a> · <a href="' + terms + '">' + t.terms + '</a></p>') +
     '</div></div>';
