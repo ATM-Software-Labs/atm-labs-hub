@@ -237,7 +237,7 @@ function langMenu(current) {
   const items = LANGS.map(function (l) {
     return '<a href="' + LOCALES[l[0]].path + '" hreflang="' + l[0] + '" lang="' + l[0] + '" data-lang-switch="' + l[0] + '"' + (l[0] === current ? ' aria-current="page"' : '') + '><img class="flag" src="/flags/' + l[2] + '.svg?v=' + ASSET_V + '" width="20" height="15" alt="" decoding="async"><span>' + l[1] + '</span><span class="ck" aria-hidden="true">✓</span></a>';
   }).join('');
-  return '<details class="lang" id="langNav"><summary class="icon-btn" aria-label="' + esc(t.langLabel) + '"><img class="flag" src="/flags/' + cur[2] + '.svg?v=' + ASSET_V + '" width="20" height="15" alt="" decoding="async"><span class="lang-code">' + current + '</span>' + icon('chev') + '</summary><div class="menu">' + items + '</div></details>';
+  return '<details class="lang" id="langNav"><summary class="icon-btn" aria-label="' + esc(current.toUpperCase() + ' · ' + t.langLabel) + '"><img class="flag" src="/flags/' + cur[2] + '.svg?v=' + ASSET_V + '" width="20" height="15" alt="" decoding="async"><span class="lang-code">' + current + '</span>' + icon('chev') + '</summary><div class="menu">' + items + '</div></details>';
 }
 function header(t, is404) {
   const base = is404 ? t.path : '';

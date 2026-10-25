@@ -166,6 +166,12 @@
     if (!grid) return;
     var l = labels(grid);
     directory(grid, l);
-    probes(l);
+    // Las comprobaciones de estado esperan a que la página termine de cargar
+    // para no competir con el contenido inicial.
+    var start = function () {
+      var go = function () { probes(l); };
+      if (window.requestIdleCallback) window.requestIdleCallback(go, { timeout: 2000 }); else setTimeout(go, 300);
+    };
+    if (document.readyState === 'complete') start(); else window.addEventListener('load', start, { once: true });
   });
 })();
